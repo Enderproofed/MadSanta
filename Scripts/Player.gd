@@ -1,14 +1,15 @@
+@tool
 extends RigidBody2D
 
-var speed = 310.0
-var acc = 0.2
-var jump_speed = 420.0
+var speed = 550.0
+var acc = 0.12
+var jump_speed = 800.0
 var jump_extra_speed = 100.0
 var extra = 1.0
 var extra2 = Vector2.ZERO
 var velocity = Vector2()
 var wall_jumping = true
-var gravity = 15.0
+var gravity = 35.0
 var on_ground = false
 var left_col = false
 var right_col = false
@@ -24,6 +25,11 @@ var paused = false
 var tilemap
 
 func _process(delta):
+	if Engine.is_editor_hint():
+		$floor.position.x = -$col.shape.size.x/2
+		$floor.position.y = $col.shape.size.y/2
+		$floor2.position = $col.shape.size/2
+		return
 	movin = true
 	
 	safe_ground = max(safe_ground - delta,0)
@@ -38,6 +44,7 @@ func _process(delta):
 	
 
 func _integrate_forces(state):
+	if Engine.is_editor_hint():return
 	for child in get_children():
 		if child.get("global_rotation"):
 			child.global_rotation = 0
@@ -76,7 +83,6 @@ func _integrate_forces(state):
 	
 	extra2 = Vector2.ZERO
 	for body in $down.get_overlapping_bodies():
-		print(body)
 		if body is TileMap or body is StaticBody2D:
 			on_ground = true
 			if body.get("velocity"):
@@ -125,28 +131,31 @@ func _integrate_forces(state):
 		velocity.x = min(velocity.x,0)
 		right = false
 	
-	if ground:
-		if safe_jump and Input.is_action_pressed("jump"):
-			safe_jump = false
-			jump()
+	#if ground:
+	if safe_jump and Input.is_action_pressed("jump"):
+		safe_jump = false
+		jump()
 	if on_ground:
 		if extra < 1.02:velocity.y = min(velocity.y,0)
 		velocity.x = lerp(velocity.x,(int(right)-int(left)) * speed,acc)
 	else:
 		velocity.y += gravity
-		velocity.x = lerp(velocity.x,(int(right)-int(left)) * speed,(acc/7))
+		velocity.x = lerp(velocity.x,(int(right)-int(left)) * speed,(acc/3))
 	
-	linear_velocity.y = min(velocity.y ,speed+100)
 	
 	normal_v = velocity.x * extra
 	if extra2:linear_velocity.x = normal_v + extra2.x
 	else:linear_velocity.x = normal_v
+	
+	extra = lerp(extra,1.0,0.1)
 	
 	if normal_v < 0:$skin.scale.x = -1
 	if normal_v > 0:$skin.scale.x = 1
 	
 	if $floor.is_colliding():
 		global_position.y = min(global_position.y,$floor.get_collision_point().y-$col.shape.extents.y)
+	if $floor2.is_colliding():
+		global_position.y = min(global_position.y,$floor2.get_collision_point().y-$col.shape.extents.y)
 	if $left.is_colliding():
 		global_position.x = max(global_position.x,$left.get_collision_point().x+$col.shape.extents.x)
 	if $right.is_colliding():
@@ -155,8 +164,10 @@ func _integrate_forces(state):
 		if global_position.y < $top.get_collision_point().y+$col.shape.extents.y:
 			velocity.y = max(velocity.y,0)
 		global_position.y = max(global_position.y,$top.get_collision_point().y+$col.shape.extents.y)
-	if  $floor.is_colliding() or $left.is_colliding() or $right.is_colliding() or $top.is_colliding():
-		print("floor: ", $floor.is_colliding(), ", left: ", $left.is_colliding(), ", right: ", $right.is_colliding(), ", top: ", $top.is_colliding())
+	
+	linear_velocity.y = min(velocity.y ,speed+100)
+	#print("Velocity.y: ", linear_velocity.y)
+
 #func wall_jump(dir):
 	#play_sound(-15,rand_range(1.1,1.4),"8bit-jump")
 	#extra = 1
