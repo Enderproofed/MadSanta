@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://cf6ewm62kcask"]
+
+[ext_resource type="Script" path="res://Scripts/snowball.gd" id="1_p2pia"]
+[ext_resource type="Texture2D" uid="uid://dknmtsban5tcd" path="res://Resources/Images/snowball.png" id="1_s2y8b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvldb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w88jg"]
+radius = 20.0
+
+[sub_resource type="Animation" id="Animation_p4ity"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aove2"]
+resource_name = "die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ax0hu"]
+_data = {
+"RESET": SubResource("Animation_p4ity"),
+"die": SubResource("Animation_aove2")
+}
+
+[node name="Snowball" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_p2pia")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cvldb")
+
+[node name="Snowball" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(3, 3)
+texture = ExtResource("1_s2y8b")
+
+[node name="area" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="collision" type="CollisionShape2D" parent="area"]
+shape = SubResource("CircleShape2D_w88jg")
+
+[node name="Animations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ax0hu")
+}
+
+[connection signal="body_entered" from="area" to="." method="collision"]

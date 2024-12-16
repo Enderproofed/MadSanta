@@ -88,7 +88,9 @@ script = ExtResource("1")
 
 [node name="Cam" type="Camera2D" parent="."]
 limit_left = 0
-limit_bottom = 0
+limit_bottom = 648
+limit_smoothed = true
+position_smoothing_enabled = true
 drag_vertical_offset = -1.0
 
 [node name="A" type="AnimationPlayer" parent="."]
