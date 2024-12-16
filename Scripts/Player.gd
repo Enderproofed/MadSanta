@@ -42,6 +42,17 @@ func _process(delta):
 	if safe_ground > 0.0:ground = true
 	else:ground = false 
 	
+	if Input.is_action_just_pressed("shoot"):
+		if get_parent().has_node("Projectiles"):
+			shoot()
+	
+
+func shoot():
+	var snowball_projectile = preload("res://Scenes/snowball.tscn").instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
+	get_node("../Projectiles").add_child(snowball_projectile)
+	var direction = (get_global_mouse_position() - position).normalized()
+	snowball_projectile.linear_velocity = direction * 1000
+	snowball_projectile.global_position = global_position + direction*20
 
 func _integrate_forces(state):
 	if Engine.is_editor_hint():return
@@ -67,6 +78,8 @@ func _integrate_forces(state):
 	on_ground = false
 	left_col = false
 	right_col = false
+	
+	on_ground = $down.has_overlapping_bodies()
 	
 	if $left.is_colliding():
 		var col = $left.get_collider()
@@ -112,8 +125,6 @@ func _integrate_forces(state):
 				if velocity.y < 0:$skin.frame = 25
 				else:$skin.frame = 26
 	
-
-	
 	if left_col:
 		#if left and !$down.get_overlapping_bodies():
 			#if safe_jump and Input.is_action_pressed("jump") and wall_jumping:
@@ -132,7 +143,7 @@ func _integrate_forces(state):
 		right = false
 	
 	#if ground:
-	if safe_jump and Input.is_action_pressed("jump"):
+	if safe_jump and ground and Input.is_action_pressed("jump"):
 		safe_jump = false
 		jump()
 	if on_ground:
