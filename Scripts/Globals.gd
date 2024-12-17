@@ -15,3 +15,6 @@ func _process(delta: float) -> void:
 		fullscreen = !fullscreen
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if fullscreen else DisplayServer.WINDOW_MODE_WINDOWED)
 	
+
+func timer(seconds: float):
+	return get_tree().create_timer(seconds).timeout

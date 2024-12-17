@@ -119,8 +119,10 @@ amount = 128
 process_material = SubResource("9")
 
 [node name="skin" type="Sprite2D" parent="."]
+visible = false
 hframes = 10
 vframes = 10
+frame = 12
 
 [node name="wall" type="GPUParticles2D" parent="skin"]
 position = Vector2(7.5, 8)
@@ -138,21 +140,24 @@ amount = 16
 process_material = SubResource("10")
 
 [node name="floor" type="RayCast2D" parent="."]
-position = Vector2(-16, 24)
-target_position = Vector2(0, 150)
+position = Vector2(-15, 24)
+target_position = Vector2(0, 80)
 
 [node name="floor2" type="RayCast2D" parent="."]
-position = Vector2(16, 24)
-target_position = Vector2(0, 150)
+position = Vector2(15, 24)
+target_position = Vector2(0, 80)
 
 [node name="top" type="RayCast2D" parent="."]
-target_position = Vector2(0, -150)
+position = Vector2(0, -24)
+target_position = Vector2(0, -80)
 
 [node name="right" type="RayCast2D" parent="."]
-target_position = Vector2(100, 0)
+position = Vector2(16, 0)
+target_position = Vector2(80, 0)
 
 [node name="left" type="RayCast2D" parent="."]
-target_position = Vector2(-100, 0)
+position = Vector2(-16, 0)
+target_position = Vector2(-80, 0)
 
 [node name="Snowman" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
