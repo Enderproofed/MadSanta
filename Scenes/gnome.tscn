@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://gv4layjcwelw"]
+
+[ext_resource type="Texture2D" uid="uid://xv0xrc5mu1a7" path="res://Resources/Images/Gnome.png" id="1_0ew41"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcyav"]
+size = Vector2(14, 36)
+
+[node name="Gnome" type="RigidBody2D"]
+collision_layer = 8
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qcyav")
+
+[node name="skin" type="Sprite2D" parent="."]
+texture = ExtResource("1_0ew41")

@@ -3,7 +3,6 @@ extends RigidBody2D
 func _ready() -> void:
 	await get_tree().create_timer(5).timeout
 	die()
-	
 
 func _process(delta: float) -> void:
 	pass
