@@ -33,7 +33,7 @@ size_flags_vertical = 4
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Play"
+text = "Levelauswahl"
 
 [node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -47,9 +47,14 @@ text = "Quit"
 layout_mode = 2
 text = "Credits"
 
+[node name="DeleteSaveFile" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Spielstand Löschen"
+
 [node name="Background" parent="." instance=ExtResource("2_sdfqu")]
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/DeleteSaveFile" to="." method="_on_play_pressed"]
