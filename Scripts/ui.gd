@@ -14,7 +14,7 @@ func start_text_sequence(texts):
 	text_switch_blocked = false
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("shoot") or Input.is_action_just_pressed("Enter"):
+	if Input.is_action_just_pressed("Text"):
 		if $Text/Label.visible_ratio < 1.0:
 			$Text/Label.visible_ratio = 1
 		else: next_text()

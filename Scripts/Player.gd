@@ -15,6 +15,8 @@ var safe_ground = 0
 var ground = false
 var normal_v = 0
 var paused = false
+var reload = 0.25
+var shoot_cooldown = 0
 
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -27,28 +29,33 @@ func _process(delta):
 	
 	safe_ground = max(safe_ground - delta,0)
 	
-	if Input.is_action_just_pressed("jump"):
-		safe_jump = true
 	if on_ground:
 		safe_ground = 0.05
 	
 	if safe_ground > 0.0:ground = true
 	else:ground = false 
 	
-	if Input.is_action_just_pressed("shoot") and get_parent().has_node("Projectiles"):
+	
+	shoot_cooldown = max(shoot_cooldown - delta, 0)
+	if Input.is_action_pressed("shoot") and get_parent().has_node("Projectiles"):
 		if Globals.state != Globals.PAUSED:
 			shoot()
 	
 
 func shoot():
-	var snowball_projectile = preload("res://Scenes/snowball.tscn").instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
-	get_node("../Projectiles").add_child(snowball_projectile)
-	var direction = (get_global_mouse_position() - position).normalized()
-	snowball_projectile.linear_velocity = direction * 1000
-	snowball_projectile.global_position = global_position + direction*20
+	if shoot_cooldown == 0:
+		shoot_cooldown = reload
+		var snowball_projectile = preload("res://Scenes/snowball.tscn").instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
+		get_node("../Projectiles").add_child(snowball_projectile)
+		var direction = (get_global_mouse_position() - position).normalized()
+		snowball_projectile.linear_velocity = direction * 1000
+		snowball_projectile.global_position = global_position + direction*50
 
 func _integrate_forces(state):
 	if Engine.is_editor_hint():return
+	
+	if Input.is_action_just_pressed("jump"):
+		safe_jump = true
 	
 	$floor.global_position = global_position + Vector2(-$col.shape.size.x/2+1, $col.shape.size.y/2-1)
 	$floor2.global_position = global_position + Vector2($col.shape.size.x/2-1, $col.shape.size.y/2-1)
@@ -126,3 +133,7 @@ func jump():
 	extra = 1.5
 	safe_jump = 0
 	
+
+func enemy_entered(body: Node2D) -> void:
+	if body.get("enemy") == true:
+		velocity = (global_position - body.global_position).normalized() * 150

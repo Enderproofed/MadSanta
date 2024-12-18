@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://mdwboriqudwf"]
+[gd_scene load_steps=11 format=4 uid="uid://mdwboriqudwf"]
 
 [ext_resource type="PackedScene" uid="uid://c2hskt6dqvqh2" path="res://Scenes/LevelBase.tscn" id="1_2ehbp"]
 [ext_resource type="TileSet" uid="uid://dcltu6sxqh3la" path="res://Resources/tileset.tres" id="1_625tp"]
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_euhco"]
 [ext_resource type="PackedScene" uid="uid://b6lj54tqfp1fr" path="res://Scenes/Player.tscn" id="2_it4ws"]
 [ext_resource type="Texture2D" uid="uid://dmfuxcim4k6df" path="res://Resources/Images/MeltingSnowman.png" id="4_ortai"]
+[ext_resource type="PackedScene" uid="uid://gv4layjcwelw" path="res://Scenes/gnome.tscn" id="6_y5phi"]
 
 [sub_resource type="Animation" id="Animation_3j4tx"]
 length = 0.001
@@ -78,3 +79,6 @@ shape = SubResource("CircleShape2D_ou32v")
 position = Vector2(0, -3.015)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_ortai")
+
+[node name="Gnome" parent="." instance=ExtResource("6_y5phi")]
+position = Vector2(1104, 480)
