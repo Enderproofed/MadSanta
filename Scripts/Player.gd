@@ -84,7 +84,7 @@ func _integrate_forces(state):
 	var left = Input.is_action_pressed("ui_left")
 	var right = Input.is_action_pressed("ui_right")
 	
-	if safe_jump and ground and Input.is_action_pressed("jump"):
+	if safe_jump and (ground or on_ground) and Input.is_action_pressed("jump"):
 		safe_jump = false
 		jump()
 	if on_ground:
