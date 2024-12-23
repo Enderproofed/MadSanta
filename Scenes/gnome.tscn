@@ -1,10 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://gv4layjcwelw"]
+[gd_scene load_steps=7 format=3 uid="uid://gv4layjcwelw"]
 
 [ext_resource type="Texture2D" uid="uid://xv0xrc5mu1a7" path="res://Resources/Images/Gnome.png" id="1_0ew41"]
 [ext_resource type="Script" path="res://Scripts/gnome.gd" id="1_18kyi"]
+[ext_resource type="Script" path="res://Scripts/HitBoxEnemy.gd" id="2_jfrr3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qcyav"]
 size = Vector2(21, 54)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aa4cj"]
+radius = 11.9961
+height = 57.7758
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iimlj"]
 size = Vector2(2, 32)
@@ -16,6 +21,13 @@ script = ExtResource("1_18kyi")
 
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qcyav")
+
+[node name="HitBoxEnemy" type="Area2D" parent="collision"]
+script = ExtResource("2_jfrr3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision/HitBoxEnemy"]
+rotation = -3.16724
+shape = SubResource("CapsuleShape2D_aa4cj")
 
 [node name="skin" type="Sprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
