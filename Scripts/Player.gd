@@ -19,6 +19,8 @@ var reload = 0.25
 var shoot_cooldown = 0
 @onready var healthbar 
 @export var health = 100
+
+
 func _process(delta):
 	if Engine.is_editor_hint():
 		$floor.position = Vector2(-$col.shape.size.x/2+1, $col.shape.size.y/2)
@@ -136,9 +138,11 @@ func jump():
 
 func enemy_entered(body: Node2D) -> void:
 	if body.get("enemy") == true:
-		velocity = (global_position - body.global_position).normalized() * 150
+		velocity = (global_position - body.global_position).normalized() * 300
+		body.linear_velocity.x = 0
 		
 func _ready() -> void:
+	Globals.player = self
 	healthbar = $Snowman/Healthbar
 	health = 100
 	healthbar.init_health(health)

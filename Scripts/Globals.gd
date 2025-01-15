@@ -7,6 +7,7 @@ const LEVEL_MENU = "LEVEL_MENU"
 
 var fullscreen = false
 var state = MAIN_MENU
+var player
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ESC"):
