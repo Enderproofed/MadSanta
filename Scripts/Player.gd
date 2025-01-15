@@ -32,8 +32,7 @@ func _process(delta):
 	if on_ground:
 		safe_ground = 0.05
 	
-	if safe_ground > 0.0:ground = true
-	else:ground = false 
+	ground = safe_ground > 0.0
 	
 	
 	shoot_cooldown = max(shoot_cooldown - delta, 0)
