@@ -11,11 +11,11 @@ func _on_play_pressed() -> void:
 	$Background/SildeCam.enabled = false
 	var intro_text = [
 		"Du bist ein Schneemann und deine Schneefrau wurde brutal von\n
-		Schrergen des wild gewordenen Weihnachtsmannes getötet.",
-		"Deine Mission ist es den Weihnachtsmann und seine fiesen\n
+		Schergen des wild gewordenen Weihnachtsmannes getötet.",
+		"Deine Mission ist es den Weihnachtsmann, seine fiesen\n
 		Machenschaften zu stoppen und dich an ihm zu rächen.",
 		"Doch sei gewarnt. Er hat bereits seine Schergen auf dich\n
-		angesetzt. Sei also auf der hut!"
+		angesetzt. Sei also auf der Hut!"
 		]
 	get_parent().start_text_sequence(intro_text)
 
