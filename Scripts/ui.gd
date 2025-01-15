@@ -48,16 +48,6 @@ func change_text(text: String):
 		$Text/Label.visible_ratio = 0
 		await Globals.timer(0.5)
 
-func _ready() -> void:
-	var intro_text = [
-		"Du bist ein Schneemann und deine Schneefrau wurde brutal von\n
-		Schrergen des wild gewordenen Weihnachtsmannes getötet.",
-		"Deine Mission ist es den Weihnachtsmann und seine fiesen\n
-		Machenschaften zu stoppen und dich an ihm zu rächen.",
-		"Doch sei gewarnt. Er hat bereits seine Schergen auf dich\n
-		angesetzt. Sei also auf der hut!"
-		]
-	start_text_sequence(intro_text)
 	
 
 func _process(delta: float) -> void:
