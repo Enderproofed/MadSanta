@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cf6ewm62kcask"]
+[gd_scene load_steps=13 format=3 uid="uid://cf6ewm62kcask"]
 
 [ext_resource type="Script" path="res://Scripts/snowball.gd" id="1_p2pia"]
 [ext_resource type="Texture2D" uid="uid://dknmtsban5tcd" path="res://Resources/Images/snowball.png" id="1_s2y8b"]
+[ext_resource type="Script" path="res://Scripts/HitBoxPlayer.gd" id="3_ik7ft"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvldb"]
 
@@ -18,6 +19,9 @@ gravity = Vector3(0, 0, 0)
 scale_min = 3.0
 scale_max = 3.0
 alpha_curve = SubResource("CurveTexture_p3la2")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ejbmi"]
+radius = 7.33333
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w88jg"]
 radius = 20.0
@@ -79,6 +83,12 @@ lifetime = 0.4
 z_index = -1
 scale = Vector2(3, 3)
 texture = ExtResource("1_s2y8b")
+
+[node name="HitBoxPlayer" type="Area2D" parent="Snowball"]
+script = ExtResource("3_ik7ft")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Snowball/HitBoxPlayer"]
+shape = SubResource("CircleShape2D_ejbmi")
 
 [node name="area" type="Area2D" parent="."]
 collision_layer = 0

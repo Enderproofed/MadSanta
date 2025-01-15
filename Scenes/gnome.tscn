@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://gv4layjcwelw"]
+[gd_scene load_steps=10 format=3 uid="uid://gv4layjcwelw"]
 
 [ext_resource type="Texture2D" uid="uid://xv0xrc5mu1a7" path="res://Resources/Images/Gnome.png" id="1_0ew41"]
 [ext_resource type="Script" path="res://Scripts/gnome.gd" id="1_18kyi"]
 [ext_resource type="Script" path="res://Scripts/HitBoxEnemy.gd" id="2_jfrr3"]
+[ext_resource type="PackedScene" uid="uid://bvl7sawjp1quy" path="res://Scenes/healthbar.tscn" id="4_0xhcf"]
+[ext_resource type="Script" path="res://Scripts/HurtBoxEnemy.gd" id="5_7jkgj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qcyav"]
 size = Vector2(21, 54)
@@ -13,6 +15,10 @@ height = 57.7758
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iimlj"]
 size = Vector2(2, 32)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bm0pq"]
+radius = 10.6667
+height = 44.0
 
 [node name="Gnome" type="RigidBody2D"]
 collision_layer = 8
@@ -50,6 +56,20 @@ collision_mask = 3
 shape = SubResource("RectangleShape2D_iimlj")
 
 [node name="floor" type="RayCast2D" parent="."]
+
+[node name="Healthbar" parent="." instance=ExtResource("4_0xhcf")]
+offset_left = -23.0
+offset_top = -47.0
+offset_right = 22.0
+offset_bottom = -43.0
+
+[node name="HurtBoxEnemy" type="Area2D" parent="."]
+position = Vector2(-1.90735e-06, -3.8147e-06)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("5_7jkgj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxEnemy"]
+shape = SubResource("CapsuleShape2D_bm0pq")
 
 [connection signal="body_entered" from="left" to="." method="left_touched"]
 [connection signal="body_entered" from="right" to="." method="right_touched"]
