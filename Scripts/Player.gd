@@ -147,5 +147,6 @@ func _ready() -> void:
 func take_damage(amount: int) -> void:
 	health = health - amount 
 	healthbar.health = health
-	
+	if health <= 0:
+		queue_free()
 	print("Damage: ", amount)
