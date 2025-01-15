@@ -17,7 +17,7 @@ var normal_v = 0
 var paused = false
 var reload = 0.25
 var shoot_cooldown = 0
-@onready var healthbar = $healthbar
+@onready var healthbar 
 @export var health = 100
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -140,9 +140,12 @@ func enemy_entered(body: Node2D) -> void:
 		velocity = (global_position - body.global_position).normalized() * 150
 		
 func _ready() -> void:
+	healthbar = $Snowman/Healthbar
 	health = 100
 	healthbar.init_health(health)
 	
-func take_damage(amount: int) -> void: 
-	healthbar.health = health - amount
+func take_damage(amount: int) -> void:
+	health = health - amount 
+	healthbar.health = health
+	
 	print("Damage: ", amount)

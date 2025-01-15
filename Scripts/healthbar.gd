@@ -8,7 +8,7 @@ func _set_health(new_health):
 	value = health
 	
 	if health <= 0:
-		queue_free()
+		hide()
 
 func init_health(_health):
 	health = _health
