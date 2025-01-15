@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddk2vh04b5n1c"]
+[gd_scene load_steps=10 format=3 uid="uid://ddk2vh04b5n1c"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_uhene"]
 [ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="1_wsnms"]
 [ext_resource type="PackedScene" uid="uid://c24638ekp5g3y" path="res://Scenes/main_menu.tscn" id="3_1edqh"]
+[ext_resource type="PackedScene" uid="uid://cq0tw86if3h4t" path="res://Scenes/pause_menu.tscn" id="4_byso1"]
 
 [sub_resource type="Gradient" id="Gradient_qrxdr"]
 colors = PackedColorArray(0, 0, 0, 0.627451, 0, 0, 0, 0)
@@ -117,3 +118,5 @@ libraries = {
 }
 
 [node name="MainMenu" parent="UI" instance=ExtResource("3_1edqh")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_byso1")]

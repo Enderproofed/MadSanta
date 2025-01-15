@@ -119,7 +119,6 @@ amount = 128
 process_material = SubResource("9")
 
 [node name="skin" type="Sprite2D" parent="."]
-visible = false
 hframes = 10
 vframes = 10
 
