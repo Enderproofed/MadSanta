@@ -8,9 +8,13 @@ var alerted = false
 var alertCountdown = 0
 
 const alertDistance = 500.0
+@onready var healthbar 
+var health
 
 func _ready() -> void:
-	pass
+	healthbar = $Healthbar
+	health = 100
+	healthbar.init_health(health)
 
 func _process(delta: float) -> void:
 	alertCountdown = max(alertCountdown - delta, 0)
@@ -60,3 +64,11 @@ func left_touched(body: Node2D) -> void:
 
 func right_touched(body: Node2D) -> void:
 	direction = -1
+	
+func take_damage(amount: int) -> void:
+	health = health - amount 
+	healthbar.health = health
+	if health <= 0:
+		queue_free()
+	
+	print("Damage: ", amount)
