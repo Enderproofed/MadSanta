@@ -7,7 +7,8 @@ const LEVEL_MENU = "LEVEL_MENU"
 
 var fullscreen = false
 var state = MAIN_MENU
-var player
+var player: RigidBody2D
+var level
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ESC"):
@@ -19,3 +20,10 @@ func _process(delta: float) -> void:
 
 func timer(seconds: float):
 	return get_tree().create_timer(seconds).timeout
+
+
+func start_level(level_scene: PackedScene):
+	get_node("/root/Main/UI").start_level(level_scene)
+
+func change_scenes(scene: String):
+	get_node("/root/Main/UI").change_scenes(scene)

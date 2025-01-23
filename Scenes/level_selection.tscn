@@ -1,13 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://c24638ekp5g3y"]
+[gd_scene load_steps=15 format=3 uid="uid://dsojbxfvy4pk8"]
 
-[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_jit5o"]
-[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_menu_buttons.tres" id="2_xauh6"]
-[ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="4_p4b6a"]
-[ext_resource type="Texture2D" uid="uid://co4dc1fhpwqs7" path="res://Resources/Images/snowflake.png" id="5_bybjb"]
-[ext_resource type="Shader" path="res://Resources/blur.gdshader" id="6_52gx7"]
+[ext_resource type="Script" path="res://Scripts/level_selection.gd" id="1_a5ygt"]
+[ext_resource type="Shader" path="res://Resources/blur.gdshader" id="3_m1au8"]
+[ext_resource type="Script" path="res://Scripts/level_button.gd" id="4_iskqh"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_menu_buttons.tres" id="4_l0owf"]
+[ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="5_hf6kd"]
+[ext_resource type="PackedScene" uid="uid://mdwboriqudwf" path="res://Scenes/level_1.tscn" id="5_t36g4"]
+[ext_resource type="PackedScene" uid="uid://cwjxb457j2bxv" path="res://Scenes/level_2.tscn" id="6_rbafn"]
+[ext_resource type="Texture2D" uid="uid://co4dc1fhpwqs7" path="res://Resources/Images/snowflake.png" id="6_vkais"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pc7b3"]
-shader = ExtResource("6_52gx7")
+shader = ExtResource("3_m1au8")
 shader_parameter/blur = 2.0
 
 [sub_resource type="Curve" id="Curve_oayoq"]
@@ -37,14 +40,14 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_xg32v")
 alpha_curve = SubResource("CurveTexture_vuq5r")
 
-[node name="MainMenu" type="Control"]
+[node name="LevelSelection" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jit5o")
+script = ExtResource("1_a5ygt")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_pc7b3")
@@ -75,30 +78,36 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Level1" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_xauh6")
-text = "    Levelauswahl    "
+theme = ExtResource("4_l0owf")
+text = "Level 1"
+script = ExtResource("4_iskqh")
+levelScene = ExtResource("5_t36g4")
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Level2" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_xauh6")
-text = "Options"
+theme = ExtResource("4_l0owf")
+text = "            Level 2            "
+script = ExtResource("4_iskqh")
+levelScene = ExtResource("6_rbafn")
 
-[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Level3" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_xauh6")
-text = "Credits"
+theme = ExtResource("4_l0owf")
+text = "Level 3"
+script = ExtResource("4_iskqh")
 
-[node name="DeleteSaveFile" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Level4" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_xauh6")
-text = "Neues Spiel"
+theme = ExtResource("4_l0owf")
+text = "Level 4"
+script = ExtResource("4_iskqh")
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_xauh6")
-text = "Quit"
+theme = ExtResource("4_l0owf")
+text = "Back"
 
 [node name="Title" type="Label" parent="."]
 z_index = 1
@@ -110,9 +119,9 @@ offset_bottom = 875.0
 grow_horizontal = 2
 scale = Vector2(0.2, 0.2)
 theme_override_constants/outline_size = 50
-theme_override_fonts/font = ExtResource("4_p4b6a")
+theme_override_fonts/font = ExtResource("5_hf6kd")
 theme_override_font_sizes/font_size = 300
-text = "Mad Santa"
+text = "Level Selection"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -135,11 +144,11 @@ z_index = -1
 position = Vector2(20, 182.5)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_ct4ax")
-texture = ExtResource("5_bybjb")
+texture = ExtResource("6_vkais")
 lifetime = 5.0
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Credits" to="." method="credits"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/DeleteSaveFile" to="." method="new_game"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level1" to="MarginContainer/VBoxContainer/Level1" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level2" to="MarginContainer/VBoxContainer/Level2" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level3" to="MarginContainer/VBoxContainer/Level3" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level4" to="MarginContainer/VBoxContainer/Level4" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
