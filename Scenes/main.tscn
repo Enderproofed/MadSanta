@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddk2vh04b5n1c"]
+[gd_scene load_steps=11 format=3 uid="uid://ddk2vh04b5n1c"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_uhene"]
 [ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="1_wsnms"]
+[ext_resource type="PackedScene" uid="uid://cvxgmcglpifqo" path="res://Scenes/background.tscn" id="2_hqxhv"]
 [ext_resource type="PackedScene" uid="uid://c24638ekp5g3y" path="res://Scenes/main_menu.tscn" id="3_1edqh"]
+[ext_resource type="PackedScene" uid="uid://dsojbxfvy4pk8" path="res://Scenes/level_selection.tscn" id="5_c8c64"]
 
 [sub_resource type="Gradient" id="Gradient_qrxdr"]
 colors = PackedColorArray(0, 0, 0, 0.627451, 0, 0, 0, 0)
@@ -77,6 +79,11 @@ _data = {
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("1_uhene")
 
+[node name="Background" parent="UI" instance=ExtResource("2_hqxhv")]
+
+[node name="SildeCam" type="Camera2D" parent="UI/Background"]
+position = Vector2(0, -208)
+
 [node name="Text" type="ColorRect" parent="UI"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 12
@@ -117,3 +124,5 @@ libraries = {
 }
 
 [node name="MainMenu" parent="UI" instance=ExtResource("3_1edqh")]
+
+[node name="LevelSelection" parent="UI" instance=ExtResource("5_c8c64")]

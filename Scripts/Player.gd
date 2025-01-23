@@ -146,6 +146,7 @@ func _ready() -> void:
 	healthbar = $Snowman/Healthbar
 	health = 100
 	healthbar.init_health(health)
+	await Globals.timer(0.017)
 	
 func take_damage(amount: int) -> void:
 	health = health - amount 

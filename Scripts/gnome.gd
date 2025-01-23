@@ -7,7 +7,7 @@ var enemy = true
 var alerted = false
 var alertCountdown = 0
 
-const alertDistance = 500.0
+const ALERT_DISTANCE = 400.0
 @onready var healthbar 
 var health
 
@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 		$skin.scale.x = 1.5
 	if linear_velocity.x > 1:
 		$skin.scale.x = -1.5
+	
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	global_rotation = 0
@@ -38,16 +39,15 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	
 	if Globals.player != null:
 		var distance_to_player = position.distance_to(Globals.player.position)
-		if distance_to_player < alertDistance:
+		if distance_to_player < ALERT_DISTANCE:
 			alert()
 			direction = 1 if position.x < Globals.player.position.x else -1
-		else: 
-			alerted = false
-			speed = base_speed
+		else: unalert()
 		
 
 func alert():
 	if !alerted:
+		$walk.stop()
 		alerted = true
 		alertCountdown = 1
 		var alertInstance = preload("res://Scenes/alert.tscn").instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
@@ -56,11 +56,18 @@ func alert():
 		linear_velocity.x = 0
 		print("ALARM")
 		speed = base_speed * 1.8
-	
+		$skin.frame = 0
+		await Globals.timer(1)
+		$walk.play("walk")
+		$walk.speed_scale = 1.8
+
+func unalert():
+	alerted = false
+	speed = base_speed
+	$walk.speed_scale = 1
 
 func left_touched(body: Node2D) -> void:
 	direction = 1
-
 
 func right_touched(body: Node2D) -> void:
 	direction = -1
@@ -71,4 +78,6 @@ func take_damage(amount: int) -> void:
 	if health <= 0:
 		queue_free()
 	
-	print("Damage: ", amount)
+	linear_velocity.x = 0
+	$hurt.stop()
+	$hurt.play("hurt")
