@@ -20,6 +20,21 @@ size = Vector2(2, 32)
 radius = 10.6667
 height = 44.0
 
+[sub_resource type="Animation" id="Animation_qmt73"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("skin:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_4646l"]
 resource_name = "hurt"
 length = 0.4
@@ -37,25 +52,25 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0.37, 0.37, 1), Color(1, 0.37, 0.37, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_qmt73"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_luvuf"]
+_data = {
+"RESET": SubResource("Animation_qmt73"),
+"hurt": SubResource("Animation_4646l")
+}
+
+[sub_resource type="Animation" id="Animation_gh0ej"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("skin:modulate")
+tracks/0/path = NodePath("skin:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_luvuf"]
-_data = {
-"RESET": SubResource("Animation_qmt73"),
-"hurt": SubResource("Animation_4646l")
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_vjcum"]
@@ -73,21 +88,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_gh0ej"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("skin:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0kd6y"]

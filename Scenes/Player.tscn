@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6lj54tqfp1fr"]
+[gd_scene load_steps=17 format=3 uid="uid://b6lj54tqfp1fr"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://b2vumwmikhr3h" path="res://Resources/Images/Snowman.png" id="2_3a8ht"]
@@ -82,6 +82,9 @@ scale_curve = SubResource("8")
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a0jrh"]
 radius = 7.66667
 height = 24.0
+
+[sub_resource type="Gradient" id="Gradient_g18uc"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Player" type="RigidBody2D"]
 z_index = 2
@@ -189,5 +192,11 @@ collision_mask = 8
 
 [node name="col" type="CollisionShape2D" parent="EnemyTracker"]
 shape = SubResource("4")
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -3
+points = PackedVector2Array(0, -3, 4, -18, 8, -40, 13, -56, 17, -71, 22, -92, 38, -113, 48, -129, 59, -139, 81, -154, 101, -157, 117, -160, 127, -161, 160, -158, 216, -131, 227, -119, 236, -92, 247, -84, 249, -66, 257, -40, 264, -22, 281, -21, 310, -28, 317, -37, 324, -65, 314, -77, 295, -89, 269, -96, 218, -84, 204, -68, 197, -48, 200, -28, 211, -7, 227, 14, 249, 21)
+gradient = SubResource("Gradient_g18uc")
+texture_mode = 1
 
 [connection signal="body_entered" from="EnemyTracker" to="." method="enemy_entered"]
