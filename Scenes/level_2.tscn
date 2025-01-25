@@ -67,3 +67,6 @@ libraries = {
 
 [node name="Gnome" parent="." instance=ExtResource("6_uxw70")]
 position = Vector2(1104, 480)
+
+[node name="LevelBorder" type="Node2D" parent="."]
+position = Vector2(0, 768)

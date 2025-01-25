@@ -21,6 +21,12 @@ var shoot_cooldown = 0
 @export var health = 100
 
 
+func _ready() -> void:
+	Globals.player = self
+	healthbar = $Snowman/Healthbar
+	health = 100
+	healthbar.init_health(health)
+
 func _process(delta):
 	if Engine.is_editor_hint():
 		$floor.position = Vector2(-$col.shape.size.x/2+1, $col.shape.size.y/2)
@@ -31,18 +37,32 @@ func _process(delta):
 		return
 	
 	safe_ground = max(safe_ground - delta,0)
-	
 	if on_ground:
 		safe_ground = 0.05
-	
 	ground = safe_ground > 0.0
 	
-	
-	shoot_cooldown = max(shoot_cooldown - delta, 0)
-	if Input.is_action_pressed("shoot") and get_parent().has_node("Projectiles"):
-		if Globals.state != Globals.PAUSED:
+	if Globals.state != Globals.PAUSED:
+		shoot_cooldown = max(shoot_cooldown - delta, 0)
+		if Input.is_action_pressed("shoot") and get_parent().has_node("Projectiles"):
 			shoot()
+		
+		if (get_global_mouse_position() - position).normalized().y < -0.2:
+			$Line2D.modulate.a = min($Line2D.modulate.a + 0.05, 1)
+		else:$Line2D.modulate.a = max($Line2D.modulate.a - 0.05, 0)
+		if $Line2D.modulate.a > 0:
+			shoot_preview_trail()
+	else:
+		$Line2D.modulate.a = 0
 	
+func shoot_preview_trail():
+	$Line2D.points = [Vector2.ZERO]
+	var direction = (get_global_mouse_position() - position).normalized()
+	var trail_velocity = direction * 32
+	var point_position = direction * 50
+	for i in range(35):
+		$Line2D.add_point(point_position)
+		trail_velocity.y += 1.85
+		point_position += trail_velocity
 
 func shoot():
 	if shoot_cooldown == 0:
@@ -96,7 +116,6 @@ func _integrate_forces(state):
 		velocity.y += gravity
 		velocity.x = lerp(velocity.x,(int(right)-int(left)) * speed,(acc/3))
 	
-	
 	normal_v = velocity.x * extra
 	linear_velocity.x = normal_v
 	linear_velocity.y = min(velocity.y ,speed+100)
@@ -128,29 +147,20 @@ func _integrate_forces(state):
 		if global_position.y < $top.get_collision_point().y+$col.shape.extents.y:
 			velocity.y = max(velocity.y,0)
 		global_position.y = max(global_position.y,$top.get_collision_point().y+$col.shape.extents.y)
-	
 
 func jump():
 	velocity.y = -jump_speed
 	extra = 1.5
 	safe_jump = 0
-	
 
 func enemy_entered(body: Node2D) -> void:
 	if body.get("enemy") == true:
 		velocity = (global_position - body.global_position).normalized() * 300
 		body.linear_velocity.x = 0
-		
-func _ready() -> void:
-	Globals.player = self
-	healthbar = $Snowman/Healthbar
-	health = 100
-	healthbar.init_health(health)
-	await Globals.timer(0.017)
-	
+
 func take_damage(amount: int) -> void:
 	health = health - amount 
 	healthbar.health = health
 	if health <= 0:
 		queue_free()
-	print("Damage: ", amount)
+	

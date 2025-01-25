@@ -6,8 +6,10 @@ var texts_to_show = []
 var text_switch_blocked = false
 
 func _ready() -> void:
-	$MainMenu.show()
-	$LevelSelection.hide()
+	change_scenes(Globals.state)
+	await Globals.timer(0.01)
+	if Globals.state == Globals.PLAYING:
+		start_level(preload("res://Scenes/level_1.tscn"))
 
 func _process(delta: float) -> void:
 	if Globals.PLAYING:
@@ -60,23 +62,28 @@ func change_text(text: String):
 		await Globals.timer(0.5)
 
 func change_scenes(sceneName: String) -> void:
-	match sceneName:
-		Globals.MAIN_MENU:
-			$MainMenu.show()
-			$LevelSelection.hide()
-		Globals.LEVEL_MENU:
-			$MainMenu.hide()
-			$LevelSelection.show()
-		Globals.PLAYING:
-			$LevelSelection.hide()
-			$Background/SildeCam.enabled = false
+	$MainMenu.visible = sceneName == Globals.MAIN_MENU
+	$LevelSelection.visible = sceneName == Globals.LEVEL_SELECTION
+	$Credits.visible = sceneName == Globals.CREDITS
+	$Background/SildeCam.enabled = sceneName != Globals.PLAYING
+	$Title.visible = sceneName == Globals.MAIN_MENU or sceneName == Globals.LEVEL_SELECTION or sceneName == Globals.CREDITS
+	if sceneName == Globals.MAIN_MENU:
+		$Title.text = "Mad Santa"
+	if sceneName == Globals.LEVEL_SELECTION:
+		$Title.text = "Level Selection"
+	if sceneName == Globals.CREDITS:
+		$Title.text = "Credits"
+	Globals.update_level_buttons()
 
 func start_level(level_scene: PackedScene):
 	var level = level_scene.instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
 	get_node("../").add_child(level)
 	Globals.level = level
-	if level.editor_description == "Level 1":
+	if level.editor_description == "Level 1" && !Globals.skip_intro_text:
 		intro_text()
+	else:
+		await Globals.timer(0.017)
+		level.zoom_out()
 
 func intro_text():
 	var intro_text = [
