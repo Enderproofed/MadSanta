@@ -23,6 +23,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j4yar"]
 
 [resource]
+Button/colors/font_color = Color(0.77, 0.77, 0.77, 1)
 Button/styles/disabled = SubResource("StyleBoxEmpty_0vd81")
 Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_50h65")
 Button/styles/focus = SubResource("StyleBoxEmpty_ukdu8")

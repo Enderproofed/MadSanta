@@ -1,10 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://gv4layjcwelw"]
+[gd_scene load_steps=17 format=3 uid="uid://gv4layjcwelw"]
 
 [ext_resource type="Texture2D" uid="uid://xv0xrc5mu1a7" path="res://Resources/Images/Gnome.png" id="1_0ew41"]
 [ext_resource type="Script" path="res://Scripts/gnome.gd" id="1_18kyi"]
 [ext_resource type="Script" path="res://Scripts/HitBoxEnemy.gd" id="2_jfrr3"]
 [ext_resource type="PackedScene" uid="uid://bvl7sawjp1quy" path="res://Scenes/healthbar.tscn" id="4_0xhcf"]
 [ext_resource type="Script" path="res://Scripts/HurtBoxEnemy.gd" id="5_7jkgj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5ypj8"]
+friction = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qcyav"]
 size = Vector2(21, 54)
@@ -98,6 +101,7 @@ _data = {
 
 [node name="Gnome" type="RigidBody2D"]
 collision_layer = 8
+physics_material_override = SubResource("PhysicsMaterial_5ypj8")
 can_sleep = false
 script = ExtResource("1_18kyi")
 
