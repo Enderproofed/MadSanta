@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 		$Background/SildeCam.position.x += 1
 
 func start_text_sequence(texts):
-	Globals.state = Globals.PAUSED
+	Globals.state = Globals.TEXT
 	text_switch_blocked = false
 	texts_to_show = texts
 	text_switch_blocked = true
@@ -40,6 +40,7 @@ func next_text():
 			Globals.state = Globals.PLAYING
 			texts_to_show = []
 			text_visible = false
+			Globals.player.show_healthbar()
 			if Globals.level != null:
 				Globals.level.zoom_out()
 		else:
@@ -61,31 +62,8 @@ func change_text(text: String):
 		$Text/Label.visible_ratio = 0
 		await Globals.timer(0.5)
 
-func change_scenes(sceneName: String) -> void:
-	$MainMenu.visible = sceneName == Globals.MAIN_MENU
-	$LevelSelection.visible = sceneName == Globals.LEVEL_SELECTION
-	$Credits.visible = sceneName == Globals.CREDITS
-	$Background/SildeCam.enabled = sceneName != Globals.PLAYING
-	$Title.visible = sceneName == Globals.MAIN_MENU or sceneName == Globals.LEVEL_SELECTION or sceneName == Globals.CREDITS
-	if sceneName == Globals.MAIN_MENU:
-		$Title.text = "Mad Santa"
-	if sceneName == Globals.LEVEL_SELECTION:
-		$Title.text = "Level Selection"
-	if sceneName == Globals.CREDITS:
-		$Title.text = "Credits"
-	Globals.update_level_buttons()
-
-func start_level(level_scene: PackedScene):
-	var level = level_scene.instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
-	get_node("../").add_child(level)
-	Globals.level = level
-	if level.editor_description == "Level 1" && !Globals.skip_intro_text:
-		intro_text()
-	else:
-		await Globals.timer(0.017)
-		level.zoom_out()
-
 func intro_text():
+	Globals.player.hide_healthbar()
 	var intro_text = [
 		"Du bist ein Schneemann und deine Schneefrau wurde brutal von\n
 		Schrergen des wild gewordenen Weihnachtsmannes getötet.",
@@ -95,3 +73,63 @@ func intro_text():
 		angesetzt. Sei also auf der hut!"
 	]
 	start_text_sequence(intro_text)
+
+func change_scenes(sceneName: String) -> void:
+	$MainMenu.visible = sceneName == Globals.MAIN_MENU
+	$LevelSelection.visible = sceneName == Globals.LEVEL_SELECTION
+	$Credits.visible = sceneName == Globals.CREDITS
+	var scenes_without_background = [Globals.PLAYING, Globals.FINISH_MENU]
+	$Background/SildeCam.enabled = sceneName not in scenes_without_background
+	var scenes_with_title = [Globals.MAIN_MENU, Globals.LEVEL_SELECTION, Globals.CREDITS, Globals.FINISH_MENU]
+	$Title.visible = sceneName in scenes_with_title
+	if sceneName == Globals.MAIN_MENU:
+		$Title.text = "Mad Santa"
+	if sceneName == Globals.LEVEL_SELECTION:
+		$Title.text = "Levelauswahl"
+		Globals.update_level_buttons()
+	if sceneName == Globals.CREDITS:
+		$Title.text = "Credits"
+	if sceneName == Globals.FINISH_MENU:
+		$Title.text = "Geschafft!"
+		$Animations.play("fade_finish_menu")
+		$FinishMenu/MarginContainer/VBoxContainer/NextLevel.visible = Globals.levels.size() > Globals.current_level
+		$FinishMenu/EnemiesKilled.text = str(Globals.enemies_killed, " / ", Globals.enemies_in_level)
+	else:
+		$Animations.play("RESET")
+	
+	Globals.state = sceneName
+
+func start_level(level_scene: PackedScene):
+	var level = level_scene.instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
+	get_node("../").add_child(level)
+	Globals.level = level
+	Globals.current_level = level.level_number
+	Globals.enemies_killed = 0
+	Globals.enemies_in_level = level.get_node("Enemies").get_child_count()
+	change_scenes(Globals.PLAYING)
+	if level.level_number == 1 && !Globals.skip_intro_text:
+		intro_text()
+	else:
+		await Globals.timer(0.017)
+		level.zoom_out()
+
+
+func finish_level():
+	change_scenes(Globals.LEVEL_SELECTION)
+	delete_level()
+
+func next_level():
+	delete_level()
+	Globals.current_level += 1
+	if Globals.levels.size() <= Globals.current_level:
+		start_level(Globals.levels[Globals.current_level-1])
+	else: change_scenes(Globals.LEVEL_SELECTION)
+
+func play_again():
+	delete_level()
+	start_level(Globals.levels[Globals.current_level-1])
+
+func delete_level():
+	if Globals.level != null:
+		Globals.level.queue_free()
+		Globals.level = null

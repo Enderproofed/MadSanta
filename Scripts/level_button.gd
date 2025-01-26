@@ -8,5 +8,4 @@ func _ready() -> void:
 
 func _on_pressed() -> void:
 	if level_scene != null:
-		Globals.change_scenes(Globals.PLAYING)
 		Globals.start_level(level_scene)

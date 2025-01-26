@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://csb5x38occ8p2"]
+
+[ext_resource type="Script" path="res://Scripts/finish_menu.gd" id="1_d50ue"]
+[ext_resource type="Shader" path="res://Resources/blur.gdshader" id="1_txix5"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_menu_buttons.tres" id="2_j6vrx"]
+[ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="3_1ye7n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_836vi"]
+shader = ExtResource("1_txix5")
+shader_parameter/blur = 2.0
+
+[node name="FinishMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d50ue")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_836vi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -442.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="LevelSelection" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_j6vrx")
+text = "      Level Selection     "
+
+[node name="NextLevel" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_j6vrx")
+text = "      Next Level     "
+
+[node name="PlayAgain" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_j6vrx")
+text = "      Play again     "
+
+[node name="EnemiesKilled" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 63.0
+offset_top = -29.0
+offset_right = 109.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_1ye7n")
+theme_override_font_sizes/font_size = 25
+text = "0 / 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemiesKilledLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -29.0
+offset_right = 51.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_1ye7n")
+theme_override_font_sizes/font_size = 25
+text = "Enemies killed:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LevelSelection" to="." method="_on_level_selection_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]

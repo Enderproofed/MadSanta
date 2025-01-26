@@ -41,7 +41,7 @@ func _process(delta):
 		safe_ground = 0.05
 	ground = safe_ground > 0.0
 	
-	if Globals.state != Globals.PAUSED:
+	if !Globals.isPaused():
 		shoot_cooldown = max(shoot_cooldown - delta, 0)
 		if Input.is_action_pressed("shoot") and get_parent().has_node("Projectiles"):
 			shoot()
@@ -89,7 +89,7 @@ func _integrate_forces(state):
 		if child.get("global_rotation"):
 			child.global_rotation = 0
 	
-	if Globals.state == "PAUSED":
+	if Globals.isPaused():
 		paused = true
 		if !save:save = velocity
 		linear_velocity = Vector2.ZERO
@@ -163,4 +163,9 @@ func take_damage(amount: int) -> void:
 	healthbar.health = health
 	if health <= 0:
 		queue_free()
-	
+
+func hide_healthbar():
+	$Snowman/Healthbar.hide()
+
+func show_healthbar():
+	$Snowman/Healthbar.show()
