@@ -74,6 +74,7 @@ tile_set = ExtResource("3_7x584")
 
 [node name="Player" parent="." instance=ExtResource("4_0fm7k")]
 position = Vector2(280, 544)
+weapon = null
 
 [node name="LevelBorder" type="Node2D" parent="."]
 position = Vector2(0, 768)

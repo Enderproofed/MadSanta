@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	alertCountdown = max(alertCountdown - delta, 0)
-	if linear_velocity.x < 1:
+	if linear_velocity.x < -1:
 		$skin.scale.x = 1.5
 	if linear_velocity.x > 1:
 		$skin.scale.x = -1.5
