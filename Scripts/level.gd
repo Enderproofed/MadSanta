@@ -8,7 +8,6 @@ func _ready() -> void:
 	$Player/Cam.limit_bottom = $Positions/LevelBorder.position.y
 	$Player/Cam.limit_right = $Positions/LevelBorder2.position.x
 	$Player/Cam.limit_top = $Positions/LevelBorder2.position.y
-	$Player.set_weapon(Globals.selected_weapon)
 
 func zoom_out():
 	$Animation.play("zoom_out")

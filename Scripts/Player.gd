@@ -18,12 +18,9 @@ var paused = false
 var reload = 0.25
 var shoot_cooldown = 0
 
-enum WEAPON { SNOWBALL, ICICLE }
-
 @onready var healthbar 
 
 @export var health = 100
-@export var weapon = WEAPON.ICICLE
 
 
 func _ready() -> void:
@@ -32,8 +29,6 @@ func _ready() -> void:
 	healthbar = $Snowman/Healthbar
 	health = 100
 	healthbar.init_health(health)
-	
-	weapon = null
 
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -53,7 +48,7 @@ func _process(delta):
 		shoot_cooldown = max(shoot_cooldown - delta, 0)
 		if Input.is_action_pressed("shoot") and get_parent().has_node("Projectiles"):
 			shoot()
-		if weapon == WEAPON.SNOWBALL:
+		if Globals.selected_weapon == Globals.CHEST_ITEMS.SNOWBALL:
 			if (get_global_mouse_position() - position).normalized().y < -0.2:
 				$Line2D.modulate.a = min($Line2D.modulate.a + 0.05, 1)
 			else:$Line2D.modulate.a = max($Line2D.modulate.a - 0.05, 0)
@@ -76,9 +71,9 @@ func shoot_preview_trail():
 func shoot():
 	if shoot_cooldown == 0:
 		shoot_cooldown = reload
-		if weapon == WEAPON.SNOWBALL:
+		if Globals.selected_weapon == Globals.CHEST_ITEMS.SNOWBALL:
 			shoot_snowball()
-		if weapon == WEAPON.ICICLE:
+		if Globals.selected_weapon == Globals.CHEST_ITEMS.ICICLE:
 			shoot_icicle()
 
 func shoot_snowball():
@@ -92,7 +87,7 @@ func shoot_icicle():
 	var icicle_projectile = preload("res://Scenes/icicle.tscn").instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
 	get_node("../Projectiles").add_child(icicle_projectile)
 	var direction = (get_global_mouse_position() - position).normalized()
-	icicle_projectile.linear_velocity = direction * 1000
+	icicle_projectile.linear_velocity = direction * 1500
 	icicle_projectile.global_position = global_position + direction*50
 	icicle_projectile.look_at(position+direction)
 
@@ -192,11 +187,3 @@ func hide_healthbar():
 
 func show_healthbar():
 	$Snowman/Healthbar.show()
-
-func set_weapon(weapon):
-	match weapon:
-		Globals.CHEST_ITEMS.SNOWBALL:
-			self.weapon = WEAPON.SNOWBALL
-		Globals.CHEST_ITEMS.ICICLE:
-			self.weapon = WEAPON.ICICLE
-		

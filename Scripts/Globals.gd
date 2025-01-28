@@ -10,11 +10,18 @@ const CREDITS = "CREDITS"
 const FINISH_MENU = "FINISH_MENU"
 const COLLECT_SCREEN = "COLLECT_SCREEN"
 
-enum CHEST_ITEMS { SNOWBALL, ICICLE }
+enum CHEST_ITEMS { 
+	SNOWBALL, #0
+	ICICLE, #1
+	#A, #1
+	#B, #2
+	#C, #3
+}
 
 #Debug 
 const debug_mode = false
 const skip_intro_text = false
+const start_with_all_items = false
 
 #Global constants
 const levels = [preload("res://Scenes/level_1.tscn"), preload("res://Scenes/level_2.tscn")]
@@ -36,12 +43,34 @@ var selected_weapon = null
 
 @onready var collect_screen = get_node("/root/Main/UI/CollectScreen")
 
+func _ready() -> void:
+	if start_with_all_items:
+		await timer(0.1)
+		for chest_item in CHEST_ITEMS.values():
+			collect_item(chest_item)
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ESC"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("F11"):
 		fullscreen = !fullscreen
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if fullscreen else DisplayServer.WINDOW_MODE_WINDOWED)
+
+func item_to_id(item: CHEST_ITEMS) -> int:
+	return item
+	#if item == CHEST_ITEMS.SNOWBALL: return 0
+	#elif item == CHEST_ITEMS.ICICLE: return 1
+	#else:
+		#print("Item/Waffe ", item, " konnte nicht gefunden werden!!!")
+		#return -1
+
+func id_to_item(id: int):
+	return id
+	#if id == 0: return CHEST_ITEMS.SNOWBALL
+	#elif id == 1: return CHEST_ITEMS.ICICLE
+	#else:
+		#print("ID ", id, " gehört keinem Item!!!")
+		#return null
 
 func isPaused() -> bool:
 	return state != PLAYING
@@ -67,5 +96,5 @@ func finish_level():
 
 func collect_item(item: CHEST_ITEMS):
 	collected_items.append(item)
-	player.set_weapon(item)
-	Globals.selected_weapon = item
+	selected_weapon = item
+	get_node("/root/Main/UI/WeaponSelection").add_selectable_weapon(item)
