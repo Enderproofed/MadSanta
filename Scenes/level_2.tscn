@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://cwjxb457j2bxv"]
+[gd_scene load_steps=10 format=4 uid="uid://cwjxb457j2bxv"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_tkyqy"]
 [ext_resource type="PackedScene" uid="uid://c2hskt6dqvqh2" path="res://Scenes/LevelBase.tscn" id="2_wj8qn"]
 [ext_resource type="TileSet" uid="uid://dcltu6sxqh3la" path="res://Resources/tileset.tres" id="3_7x584"]
 [ext_resource type="PackedScene" uid="uid://b6lj54tqfp1fr" path="res://Scenes/Player.tscn" id="4_0fm7k"]
+[ext_resource type="PackedScene" uid="uid://pph1prssartn" path="res://Scenes/chest.tscn" id="6_71rio"]
 [ext_resource type="PackedScene" uid="uid://gv4layjcwelw" path="res://Scenes/gnome.tscn" id="6_uxw70"]
 
 [sub_resource type="Animation" id="Animation_3j4tx"]
@@ -83,3 +84,7 @@ position = Vector2(0, 768)
 libraries = {
 "": SubResource("AnimationLibrary_seoic")
 }
+
+[node name="Chest" parent="." instance=ExtResource("6_71rio")]
+position = Vector2(1968, 616)
+item = 1

@@ -8,6 +8,9 @@ const MAIN_MENU = "MAIN_MENU"
 const LEVEL_SELECTION = "LEVEL_SELECTION"
 const CREDITS = "CREDITS"
 const FINISH_MENU = "FINISH_MENU"
+const COLLECT_SCREEN = "COLLECT_SCREEN"
+
+enum CHEST_ITEMS { SNOWBALL, ICICLE }
 
 #Debug 
 const debug_mode = false
@@ -28,6 +31,10 @@ var enemies_killed = 0
 
 #Savable data
 var unlocked_level = 1
+var collected_items = []
+var selected_weapon = null
+
+@onready var collect_screen = get_node("/root/Main/UI/CollectScreen")
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ESC"):
@@ -57,3 +64,8 @@ func finish_level():
 		unlocked_level += 1
 		#save data
 	get_node("/root/Main/UI").finish_level()
+
+func collect_item(item: CHEST_ITEMS):
+	collected_items.append(item)
+	player.set_weapon(item)
+	Globals.selected_weapon = item

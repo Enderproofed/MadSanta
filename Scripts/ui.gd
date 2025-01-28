@@ -91,11 +91,19 @@ func change_scenes(sceneName: String) -> void:
 		$Title.text = "Credits"
 	if sceneName == Globals.FINISH_MENU:
 		$Title.text = "Geschafft!"
+		$Animations.stop()
 		$Animations.play("fade_finish_menu")
 		$FinishMenu/MarginContainer/VBoxContainer/NextLevel.visible = Globals.levels.size() > Globals.current_level
 		$FinishMenu/EnemiesKilled.text = str(Globals.enemies_killed, " / ", Globals.enemies_in_level)
 	else:
-		$Animations.play("RESET")
+		$FinishMenu.hide()
+		$FinishMenu.modulate.a = 0
+	if sceneName == Globals.COLLECT_SCREEN:
+		$Animations.stop()
+		$Animations.play("fade_collect_screen")
+	else:
+		$CollectScreen.hide()
+		$CollectScreen.modulate.a = 0
 	
 	Globals.state = sceneName
 

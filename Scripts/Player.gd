@@ -32,6 +32,8 @@ func _ready() -> void:
 	healthbar = $Snowman/Healthbar
 	health = 100
 	healthbar.init_health(health)
+	
+	weapon = null
 
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -73,7 +75,6 @@ func shoot_preview_trail():
 
 func shoot():
 	if shoot_cooldown == 0:
-		print(weapon)
 		shoot_cooldown = reload
 		if weapon == WEAPON.SNOWBALL:
 			shoot_snowball()
@@ -191,3 +192,11 @@ func hide_healthbar():
 
 func show_healthbar():
 	$Snowman/Healthbar.show()
+
+func set_weapon(weapon):
+	match weapon:
+		Globals.CHEST_ITEMS.SNOWBALL:
+			self.weapon = WEAPON.SNOWBALL
+		Globals.CHEST_ITEMS.ICICLE:
+			self.weapon = WEAPON.ICICLE
+		
