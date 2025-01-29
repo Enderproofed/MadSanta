@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/healthbar.gd" id="1_jpfva"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yp0r2"]
-bg_color = Color(0, 0, 0, 0.133333)
+bg_color = Color(0, 0, 0, 0.388235)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3f14s"]
 bg_color = Color(0, 0.706861, 0.0435756, 1)

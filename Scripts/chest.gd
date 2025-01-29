@@ -1,0 +1,17 @@
+extends Area2D
+
+@export var item: Globals.CHEST_ITEMS
+
+var opened = false
+
+func _ready() -> void:
+	if item in Globals.collected_items:
+		$Animation.play("open")
+		opened = true
+
+func _on_body_entered(body: Node2D) -> void:
+	if body == Globals.player and !opened:
+		Globals.change_scenes(Globals.COLLECT_SCREEN)
+		Globals.collect_screen.set_item_type(item)
+		$Animation.play("open")
+		opened = true

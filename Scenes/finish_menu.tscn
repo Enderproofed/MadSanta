@@ -47,19 +47,19 @@ alignment = 1
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_j6vrx")
-text = "      Level Selection     "
+text = "      Levelauswahl     "
 
 [node name="NextLevel" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_j6vrx")
-text = "      Next Level     "
+text = "      Nächstes Level     "
 
 [node name="PlayAgain" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_j6vrx")
-text = "      Play again     "
+text = "      Noch einmal spielen     "
 
 [node name="EnemiesKilled" type="Label" parent="."]
 layout_mode = 1
@@ -68,10 +68,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 63.0
-offset_top = -29.0
-offset_right = 109.0
-offset_bottom = 7.0
+offset_left = 71.0
+offset_top = -28.0
+offset_right = 127.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 4
@@ -88,17 +88,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -112.0
+offset_left = -213.0
 offset_top = -29.0
-offset_right = 51.0
+offset_right = 62.0
 offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_1ye7n")
 theme_override_font_sizes/font_size = 25
-text = "Enemies killed:"
-horizontal_alignment = 1
+text = "Besiegte Gegner:"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/LevelSelection" to="." method="_on_level_selection_pressed"]

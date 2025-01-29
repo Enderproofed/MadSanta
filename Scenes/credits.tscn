@@ -120,5 +120,5 @@ grow_vertical = 1
 text = "Mirko Riek"
 link = "https://enderproofed.itch.io/"
 
-[connection signal="pressed" from="Back" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_quit_pressed"]

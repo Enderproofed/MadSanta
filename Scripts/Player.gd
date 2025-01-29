@@ -17,11 +17,14 @@ var normal_v = 0
 var paused = false
 var reload = 0.25
 var shoot_cooldown = 0
+
 @onready var healthbar 
+
 @export var health = 100
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint(): return
 	Globals.player = self
 	healthbar = $Snowman/Healthbar
 	health = 100
@@ -45,12 +48,13 @@ func _process(delta):
 		shoot_cooldown = max(shoot_cooldown - delta, 0)
 		if Input.is_action_pressed("shoot") and get_parent().has_node("Projectiles"):
 			shoot()
-		
-		if (get_global_mouse_position() - position).normalized().y < -0.2:
-			$Line2D.modulate.a = min($Line2D.modulate.a + 0.05, 1)
-		else:$Line2D.modulate.a = max($Line2D.modulate.a - 0.05, 0)
-		if $Line2D.modulate.a > 0:
-			shoot_preview_trail()
+		if Globals.selected_weapon == Globals.CHEST_ITEMS.SNOWBALL:
+			if (get_global_mouse_position() - position).normalized().y < -0.2:
+				$Line2D.modulate.a = min($Line2D.modulate.a + 0.05, 1)
+			else:$Line2D.modulate.a = max($Line2D.modulate.a - 0.05, 0)
+			if $Line2D.modulate.a > 0:
+				shoot_preview_trail()
+		else: $Line2D.modulate.a = 0
 	else:
 		$Line2D.modulate.a = 0
 	
@@ -67,11 +71,25 @@ func shoot_preview_trail():
 func shoot():
 	if shoot_cooldown == 0:
 		shoot_cooldown = reload
-		var snowball_projectile = preload("res://Scenes/snowball.tscn").instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
-		get_node("../Projectiles").add_child(snowball_projectile)
-		var direction = (get_global_mouse_position() - position).normalized()
-		snowball_projectile.linear_velocity = direction * 1000
-		snowball_projectile.global_position = global_position + direction*50
+		if Globals.selected_weapon == Globals.CHEST_ITEMS.SNOWBALL:
+			shoot_snowball()
+		if Globals.selected_weapon == Globals.CHEST_ITEMS.ICICLE:
+			shoot_icicle()
+
+func shoot_snowball():
+	var snowball_projectile = preload("res://Scenes/snowball.tscn").instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
+	get_node("../Projectiles").add_child(snowball_projectile)
+	var direction = (get_global_mouse_position() - position).normalized()
+	snowball_projectile.linear_velocity = direction * 1000
+	snowball_projectile.global_position = global_position + direction*50
+
+func shoot_icicle():
+	var icicle_projectile = preload("res://Scenes/icicle.tscn").instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
+	get_node("../Projectiles").add_child(icicle_projectile)
+	var direction = (get_global_mouse_position() - position).normalized()
+	icicle_projectile.linear_velocity = direction * 1500
+	icicle_projectile.global_position = global_position + direction*50
+	icicle_projectile.look_at(position+direction)
 
 func _integrate_forces(state):
 	if Engine.is_editor_hint():return

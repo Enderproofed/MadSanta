@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 		$Background/SildeCam.position.x += 1
 
 func start_text_sequence(texts):
-	Globals.state = Globals.TEXT
+	change_scenes(Globals.TEXT)
 	text_switch_blocked = false
 	texts_to_show = texts
 	text_switch_blocked = true
@@ -37,7 +37,7 @@ func next_text():
 		if text_pointer == texts_to_show.size()-1:
 			$Text/Animation.play_backwards("show_text")
 			await Globals.timer(0.85)
-			Globals.state = Globals.PLAYING
+			change_scenes(Globals.PLAYING)
 			texts_to_show = []
 			text_visible = false
 			Globals.player.show_healthbar()
@@ -82,6 +82,7 @@ func change_scenes(sceneName: String) -> void:
 	$Background/SildeCam.enabled = sceneName not in scenes_without_background
 	var scenes_with_title = [Globals.MAIN_MENU, Globals.LEVEL_SELECTION, Globals.CREDITS, Globals.FINISH_MENU]
 	$Title.visible = sceneName in scenes_with_title
+	$WeaponSelection/Animation.play("show" if sceneName == Globals.PLAYING else "hide")
 	if sceneName == Globals.MAIN_MENU:
 		$Title.text = "Mad Santa"
 	if sceneName == Globals.LEVEL_SELECTION:
@@ -90,12 +91,21 @@ func change_scenes(sceneName: String) -> void:
 	if sceneName == Globals.CREDITS:
 		$Title.text = "Credits"
 	if sceneName == Globals.FINISH_MENU:
+		Globals.finish_level()
 		$Title.text = "Geschafft!"
+		$Animations.stop()
 		$Animations.play("fade_finish_menu")
 		$FinishMenu/MarginContainer/VBoxContainer/NextLevel.visible = Globals.levels.size() > Globals.current_level
 		$FinishMenu/EnemiesKilled.text = str(Globals.enemies_killed, " / ", Globals.enemies_in_level)
 	else:
-		$Animations.play("RESET")
+		$FinishMenu.hide()
+		$FinishMenu.modulate.a = 0
+	if sceneName == Globals.COLLECT_SCREEN:
+		$Animations.stop()
+		$Animations.play("fade_collect_screen")
+	else:
+		$CollectScreen.hide()
+		$CollectScreen.modulate.a = 0
 	
 	Globals.state = sceneName
 
@@ -115,7 +125,6 @@ func start_level(level_scene: PackedScene):
 
 
 func finish_level():
-	change_scenes(Globals.LEVEL_SELECTION)
 	delete_level()
 
 func next_level():

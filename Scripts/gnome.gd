@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	alertCountdown = max(alertCountdown - delta, 0)
-	if linear_velocity.x < 1:
+	if linear_velocity.x < -1:
 		$skin.scale.x = 1.5
 	if linear_velocity.x > 1:
 		$skin.scale.x = -1.5
@@ -63,7 +63,6 @@ func alert():
 		alertInstance.position = Vector2(0, -24)
 		add_child(alertInstance)
 		linear_velocity.x = 0
-		print("ALARM")
 		speed = BASE_SPEED * 1.8
 		$skin.frame = 0
 		await Globals.timer(1)
