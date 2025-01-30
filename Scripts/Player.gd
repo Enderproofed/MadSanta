@@ -17,9 +17,18 @@ var normal_v = 0
 var paused = false
 var reload = 0.25
 var shoot_cooldown = 0
+
 @onready var healthbar 
+
 @export var health = 100
 
+
+func _ready() -> void:
+	if Engine.is_editor_hint(): return
+	Globals.player = self
+	healthbar = $Snowman/Healthbar
+	health = 100
+	healthbar.init_health(health)
 
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -31,27 +40,56 @@ func _process(delta):
 		return
 	
 	safe_ground = max(safe_ground - delta,0)
-	
 	if on_ground:
 		safe_ground = 0.05
-	
 	ground = safe_ground > 0.0
 	
-	
-	shoot_cooldown = max(shoot_cooldown - delta, 0)
-	if Input.is_action_pressed("shoot") and get_parent().has_node("Projectiles"):
-		if Globals.state != Globals.PAUSED:
+	if !Globals.isPaused():
+		shoot_cooldown = max(shoot_cooldown - delta, 0)
+		if Input.is_action_pressed("shoot") and get_parent().has_node("Projectiles"):
 			shoot()
+		if Globals.selected_weapon == Globals.CHEST_ITEMS.SNOWBALL:
+			if (get_global_mouse_position() - position).normalized().y < -0.2:
+				$Line2D.modulate.a = min($Line2D.modulate.a + 0.05, 1)
+			else:$Line2D.modulate.a = max($Line2D.modulate.a - 0.05, 0)
+			if $Line2D.modulate.a > 0:
+				shoot_preview_trail()
+		else: $Line2D.modulate.a = 0
+	else:
+		$Line2D.modulate.a = 0
 	
+func shoot_preview_trail():
+	$Line2D.points = [Vector2.ZERO]
+	var direction = (get_global_mouse_position() - position).normalized()
+	var trail_velocity = direction * 32
+	var point_position = direction * 50
+	for i in range(35):
+		$Line2D.add_point(point_position)
+		trail_velocity.y += 1.85
+		point_position += trail_velocity
 
 func shoot():
 	if shoot_cooldown == 0:
 		shoot_cooldown = reload
-		var snowball_projectile = preload("res://Scenes/snowball.tscn").instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
-		get_node("../Projectiles").add_child(snowball_projectile)
-		var direction = (get_global_mouse_position() - position).normalized()
-		snowball_projectile.linear_velocity = direction * 1000
-		snowball_projectile.global_position = global_position + direction*50
+		if Globals.selected_weapon == Globals.CHEST_ITEMS.SNOWBALL:
+			shoot_snowball()
+		if Globals.selected_weapon == Globals.CHEST_ITEMS.ICICLE:
+			shoot_icicle()
+
+func shoot_snowball():
+	var snowball_projectile = preload("res://Scenes/snowball.tscn").instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
+	get_node("../Projectiles").add_child(snowball_projectile)
+	var direction = (get_global_mouse_position() - position).normalized()
+	snowball_projectile.linear_velocity = direction * 1000
+	snowball_projectile.global_position = global_position + direction*50
+
+func shoot_icicle():
+	var icicle_projectile = preload("res://Scenes/icicle.tscn").instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
+	get_node("../Projectiles").add_child(icicle_projectile)
+	var direction = (get_global_mouse_position() - position).normalized()
+	icicle_projectile.linear_velocity = direction * 1500
+	icicle_projectile.global_position = global_position + direction*50
+	icicle_projectile.look_at(position+direction)
 
 func _integrate_forces(state):
 	if Engine.is_editor_hint():return
@@ -69,7 +107,7 @@ func _integrate_forces(state):
 		if child.get("global_rotation"):
 			child.global_rotation = 0
 	
-	if Globals.state == "PAUSED":
+	if Globals.isPaused():
 		paused = true
 		if !save:save = velocity
 		linear_velocity = Vector2.ZERO
@@ -95,7 +133,6 @@ func _integrate_forces(state):
 	else:
 		velocity.y += gravity
 		velocity.x = lerp(velocity.x,(int(right)-int(left)) * speed,(acc/3))
-	
 	
 	normal_v = velocity.x * extra
 	linear_velocity.x = normal_v
@@ -128,28 +165,25 @@ func _integrate_forces(state):
 		if global_position.y < $top.get_collision_point().y+$col.shape.extents.y:
 			velocity.y = max(velocity.y,0)
 		global_position.y = max(global_position.y,$top.get_collision_point().y+$col.shape.extents.y)
-	
 
 func jump():
 	velocity.y = -jump_speed
 	extra = 1.5
 	safe_jump = 0
-	
 
 func enemy_entered(body: Node2D) -> void:
 	if body.get("enemy") == true:
 		velocity = (global_position - body.global_position).normalized() * 300
 		body.linear_velocity.x = 0
-		
-func _ready() -> void:
-	Globals.player = self
-	healthbar = $Snowman/Healthbar
-	health = 100
-	healthbar.init_health(health)
-	
+
 func take_damage(amount: int) -> void:
 	health = health - amount 
 	healthbar.health = health
 	if health <= 0:
 		queue_free()
-	print("Damage: ", amount)
+
+func hide_healthbar():
+	$Snowman/Healthbar.hide()
+
+func show_healthbar():
+	$Snowman/Healthbar.show()
