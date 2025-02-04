@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name UI extends CanvasLayer
 
 var text_visible = false
 var text_pointer = 0
@@ -91,7 +91,6 @@ func change_scenes(sceneName: String) -> void:
 	if sceneName == Globals.CREDITS:
 		$Title.text = "Credits"
 	if sceneName == Globals.FINISH_MENU:
-		Globals.finish_level()
 		$Title.text = "Geschafft!"
 		$Animations.stop()
 		$Animations.play("fade_finish_menu")
@@ -123,9 +122,6 @@ func start_level(level_scene: PackedScene):
 		await Globals.timer(0.017)
 		level.zoom_out()
 
-
-func finish_level():
-	delete_level()
 
 func next_level():
 	delete_level()

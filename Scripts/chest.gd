@@ -6,6 +6,9 @@ var opened = false
 
 func _ready() -> void:
 	if item in Globals.collected_items:
+		for child in get_children():
+			if child is GPUParticles2D:
+				child.preprocess = 0
 		$Animation.play("open")
 		opened = true
 

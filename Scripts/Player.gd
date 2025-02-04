@@ -18,6 +18,8 @@ var paused = false
 var reload = 0.25
 var shoot_cooldown = 0
 
+const MAX_SPEED = 900.0
+
 @onready var healthbar 
 
 @export var health = 100
@@ -166,15 +168,23 @@ func _integrate_forces(state):
 			velocity.y = max(velocity.y,0)
 		global_position.y = max(global_position.y,$top.get_collision_point().y+$col.shape.extents.y)
 
+func add_impulse(impulse: Vector2):
+	velocity += impulse
+	if velocity.length() > MAX_SPEED:
+		velocity = velocity.normalized() * MAX_SPEED
+	
+func set_velocity(velocity: Vector2):
+	self.velocity = velocity
+
 func jump():
 	velocity.y = -jump_speed
 	extra = 1.5
 	safe_jump = 0
-
-func enemy_entered(body: Node2D) -> void:
-	if body.get("enemy") == true:
-		velocity = (global_position - body.global_position).normalized() * 300
-		body.linear_velocity.x = 0
+#
+#func enemy_entered(body: Node2D) -> void:
+	#if body.get("enemy") == true:
+		#velocity = (global_position - body.global_position).normalized() * 300
+		#body.linear_velocity.x = 0
 
 func take_damage(amount: int) -> void:
 	health = health - amount 

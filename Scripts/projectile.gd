@@ -1,4 +1,4 @@
-extends RigidBody2D
+class_name Projectile extends RigidBody2D
 
 func _ready() -> void:
 	await get_tree().create_timer(5).timeout

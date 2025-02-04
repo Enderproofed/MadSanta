@@ -1,0 +1,162 @@
+[gd_scene load_steps=13 format=3 uid="uid://jwqgxrh0deom"]
+
+[ext_resource type="Script" path="res://Scripts/explosion.gd" id="1_3yve1"]
+[ext_resource type="Texture2D" uid="uid://dyq43ipjirebl" path="res://Resources/Images/Explosions/explosion1.png" id="1_j7e4g"]
+[ext_resource type="Texture2D" uid="uid://bq0psmrr0tbdy" path="res://Resources/Images/Explosions/explosion2.png" id="2_aa447"]
+[ext_resource type="Texture2D" uid="uid://c6b71c160nerf" path="res://Resources/Images/Explosions/explosion3.png" id="3_uorp5"]
+[ext_resource type="Texture2D" uid="uid://dnbajeolbyqpy" path="res://Resources/Images/Explosions/explosion4.png" id="4_ke6nh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6i6yn"]
+radius = 0.1
+
+[sub_resource type="Gradient" id="Gradient_b3uoa"]
+offsets = PackedFloat32Array(0, 0.131148, 0.754098, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_582wh"]
+gradient = SubResource("Gradient_b3uoa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f4aac"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 180.0
+initial_velocity_max = 250.0
+gravity = Vector3(0, 280, 0)
+scale_min = 2.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_582wh")
+
+[sub_resource type="Animation" id="Animation_ttp7n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Collision:shape:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+
+[sub_resource type="Animation" id="Animation_3yllt"]
+resource_name = "explode"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles1:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particles2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Particles3:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Particles4:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Collision:shape:radius")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.000999987, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.1, 60.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4s51p"]
+_data = {
+"RESET": SubResource("Animation_ttp7n"),
+"explode": SubResource("Animation_3yllt")
+}
+
+[node name="Explosion" type="Area2D"]
+script = ExtResource("1_3yve1")
+knockback = 400
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+scale = Vector2(1, 0.8)
+shape = SubResource("CircleShape2D_6i6yn")
+
+[node name="Particles1" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_f4aac")
+texture = ExtResource("1_j7e4g")
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.68
+
+[node name="Particles2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_f4aac")
+texture = ExtResource("2_aa447")
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.3
+
+[node name="Particles3" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_f4aac")
+texture = ExtResource("3_uorp5")
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.2
+
+[node name="Particles4" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_f4aac")
+texture = ExtResource("4_ke6nh")
+lifetime = 0.4
+one_shot = true
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4s51p")
+}

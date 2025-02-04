@@ -292,6 +292,7 @@ libraries = {
 }
 
 [node name="MainMenu" parent="UI" instance=ExtResource("3_1edqh")]
+visible = false
 
 [node name="LevelSelection" parent="UI" instance=ExtResource("5_c8c64")]
 visible = false
