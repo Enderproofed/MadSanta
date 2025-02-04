@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cf6ewm62kcask"]
+[gd_scene load_steps=13 format=3 uid="uid://p5j6vnx6wwu1"]
 
-[ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_p2pia"]
-[ext_resource type="Texture2D" uid="uid://dknmtsban5tcd" path="res://Resources/Images/snowball.png" id="1_s2y8b"]
-[ext_resource type="Script" path="res://Scripts/HitBoxPlayer.gd" id="3_ik7ft"]
+[ext_resource type="Script" path="res://Scripts/present.gd" id="1_jybbq"]
+[ext_resource type="Texture2D" uid="uid://c0b1dovndhbv2" path="res://Resources/Images/present.png" id="2_gg3i0"]
+[ext_resource type="Script" path="res://Scripts/HitBoxEnemy.gd" id="3_h7on1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvldb"]
 
@@ -63,11 +63,10 @@ _data = {
 "die": SubResource("Animation_aove2")
 }
 
-[node name="Snowball" type="RigidBody2D"]
+[node name="Present" type="RigidBody2D"]
 collision_layer = 4
-collision_mask = 11
 gravity_scale = 1.8
-script = ExtResource("1_p2pia")
+script = ExtResource("1_jybbq")
 
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cvldb")
@@ -76,22 +75,25 @@ shape = SubResource("CircleShape2D_cvldb")
 z_index = -1
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_au3uk")
-texture = ExtResource("1_s2y8b")
+texture = ExtResource("2_gg3i0")
 lifetime = 0.4
 
-[node name="Snowball" type="Sprite2D" parent="."]
+[node name="Present" type="Sprite2D" parent="."]
 z_index = -1
 scale = Vector2(3, 3)
-texture = ExtResource("1_s2y8b")
+texture = ExtResource("2_gg3i0")
 
-[node name="HitBoxPlayer" type="Area2D" parent="Snowball"]
-script = ExtResource("3_ik7ft")
+[node name="HitBoxPlayer" type="Area2D" parent="Present"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_h7on1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Snowball/HitBoxPlayer"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Present/HitBoxPlayer"]
 shape = SubResource("CircleShape2D_ejbmi")
 
 [node name="area" type="Area2D" parent="."]
 collision_layer = 0
+collision_mask = 3
 
 [node name="collision" type="CollisionShape2D" parent="area"]
 shape = SubResource("CircleShape2D_w88jg")
@@ -100,5 +102,6 @@ shape = SubResource("CircleShape2D_w88jg")
 libraries = {
 "": SubResource("AnimationLibrary_ax0hu")
 }
+speed_scale = 3.0
 
 [connection signal="body_entered" from="area" to="." method="collision"]

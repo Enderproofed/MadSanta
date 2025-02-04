@@ -42,6 +42,7 @@ var collected_items = []
 var selected_weapon = null
 
 @onready var collect_screen = get_node("/root/Main/UI/CollectScreen")
+@onready var ui: UI = get_node("/root/Main/UI")
 
 func _ready() -> void:
 	if start_with_all_items:
@@ -83,16 +84,18 @@ func timer(seconds: float):
 	return get_tree().create_timer(seconds).timeout
 
 func start_level(level_scene: PackedScene):
-	get_node("/root/Main/UI").start_level(level_scene)
+	ui.start_level(level_scene)
 
 func change_scenes(scene: String):
-	get_node("/root/Main/UI").change_scenes(scene)
+	ui.change_scenes(scene)
 
 func finish_level():
 	if current_level == unlocked_level:
 		unlocked_level += 1
 		#save data
-	get_node("/root/Main/UI").finish_level()
+
+func delete_level():
+	ui.delete_level()
 
 func collect_item(item: CHEST_ITEMS):
 	collected_items.append(item)

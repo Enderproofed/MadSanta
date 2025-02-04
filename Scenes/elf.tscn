@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://gv4layjcwelw"]
+[gd_scene load_steps=17 format=3 uid="uid://cf5ify7hs515i"]
 
-[ext_resource type="Texture2D" uid="uid://xv0xrc5mu1a7" path="res://Resources/Images/Gnome.png" id="1_0ew41"]
-[ext_resource type="Script" path="res://Scripts/gnome.gd" id="1_18kyi"]
-[ext_resource type="Script" path="res://Scripts/HitBoxEnemy.gd" id="2_jfrr3"]
-[ext_resource type="PackedScene" uid="uid://bvl7sawjp1quy" path="res://Scenes/healthbar.tscn" id="4_0xhcf"]
-[ext_resource type="Script" path="res://Scripts/HurtBoxEnemy.gd" id="5_7jkgj"]
+[ext_resource type="Script" path="res://Scripts/elf.gd" id="1_1q1f5"]
+[ext_resource type="Script" path="res://Scripts/HitBoxEnemy.gd" id="2_vo32s"]
+[ext_resource type="Texture2D" uid="uid://dl8y7lnmfwgq4" path="res://Resources/Images/Elf.png" id="3_d6orc"]
+[ext_resource type="PackedScene" uid="uid://bvl7sawjp1quy" path="res://Scenes/healthbar.tscn" id="4_osvay"]
+[ext_resource type="Script" path="res://Scripts/HurtBoxEnemy.gd" id="5_xbead"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5ypj8"]
 friction = 0.0
@@ -99,19 +99,18 @@ _data = {
 "walk": SubResource("Animation_vjcum")
 }
 
-[node name="Gnome" type="RigidBody2D"]
+[node name="Elf" type="RigidBody2D"]
 collision_layer = 8
 collision_mask = 9
 physics_material_override = SubResource("PhysicsMaterial_5ypj8")
 can_sleep = false
-script = ExtResource("1_18kyi")
+script = ExtResource("1_1q1f5")
 
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qcyav")
 
 [node name="HitBoxEnemy" type="Area2D" parent="collision"]
-script = ExtResource("2_jfrr3")
-knockback = 1000
+script = ExtResource("2_vo32s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collision/HitBoxEnemy"]
 rotation = -3.16724
@@ -119,7 +118,7 @@ shape = SubResource("CapsuleShape2D_aa4cj")
 
 [node name="skin" type="Sprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_0ew41")
+texture = ExtResource("3_d6orc")
 hframes = 3
 frame = 1
 
@@ -141,7 +140,7 @@ shape = SubResource("RectangleShape2D_iimlj")
 
 [node name="floor" type="RayCast2D" parent="."]
 
-[node name="Healthbar" parent="." instance=ExtResource("4_0xhcf")]
+[node name="Healthbar" parent="." instance=ExtResource("4_osvay")]
 offset_left = -23.0
 offset_top = -47.0
 offset_right = 22.0
@@ -150,7 +149,7 @@ offset_bottom = -43.0
 [node name="HurtBoxEnemy" type="Area2D" parent="."]
 position = Vector2(-1.90735e-06, -3.8147e-06)
 scale = Vector2(1.5, 1.5)
-script = ExtResource("5_7jkgj")
+script = ExtResource("5_xbead")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxEnemy"]
 shape = SubResource("CapsuleShape2D_bm0pq")

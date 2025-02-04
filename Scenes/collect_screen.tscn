@@ -140,6 +140,7 @@ grow_vertical = 2
 script = ExtResource("1_sv3vy")
 
 [node name="Blur" type="ColorRect" parent="."]
+show_behind_parent = true
 material = SubResource("ShaderMaterial_836vi")
 layout_mode = 1
 anchors_preset = 15
@@ -182,6 +183,32 @@ text = "Du hast ... erhalten!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Particles" type="GPUParticles2D" parent="."]
+position = Vector2(576, 296.57)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_re7kw")
+texture = ExtResource("5_xbmpn")
+lifetime = 5.0
+preprocess = 5.0
+
+[node name="ParticlesBlue" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+position = Vector2(576, 296.57)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_ysbsj")
+texture = ExtResource("6_a8m8d")
+lifetime = 5.0
+preprocess = 5.0
+
+[node name="ParticlesBlue2" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+position = Vector2(576, 296.57)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_uwkbw")
+texture = ExtResource("6_a8m8d")
+lifetime = 5.0
+preprocess = 5.0
+
 [node name="Pivot" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -189,33 +216,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -27.4304
-offset_bottom = -27.4304
+offset_top = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Particles" type="GPUParticles2D" parent="Pivot"]
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_re7kw")
-texture = ExtResource("5_xbmpn")
-lifetime = 5.0
-preprocess = 5.0
-
-[node name="ParticlesBlue" type="GPUParticles2D" parent="Pivot"]
-show_behind_parent = true
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_ysbsj")
-texture = ExtResource("6_a8m8d")
-lifetime = 5.0
-preprocess = 5.0
-
-[node name="ParticlesBlue2" type="GPUParticles2D" parent="Pivot"]
-show_behind_parent = true
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_uwkbw")
-texture = ExtResource("6_a8m8d")
-lifetime = 5.0
-preprocess = 5.0
 
 [node name="Snowball" type="Control" parent="Pivot"]
 anchors_preset = 0
