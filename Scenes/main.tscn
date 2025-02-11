@@ -119,4 +119,4 @@ libraries = {
 
 [node name="MainMenu" parent="UI" instance=ExtResource("3_1edqh")]
 
-[node name="PauseMenu" parent="." instance=ExtResource("4_byso1")]
+[node name="PauseMenu" parent="UI" instance=ExtResource("4_byso1")]
