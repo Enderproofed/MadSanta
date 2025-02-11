@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsojbxfvy4pk8"]
+
+[ext_resource type="Script" path="res://Scripts/level_selection.gd" id="1_a5ygt"]
+[ext_resource type="Shader" path="res://Resources/blur.gdshader" id="3_m1au8"]
+[ext_resource type="Script" path="res://Scripts/level_button.gd" id="4_iskqh"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_menu_buttons.tres" id="4_l0owf"]
+[ext_resource type="PackedScene" uid="uid://mdwboriqudwf" path="res://Scenes/level_1.tscn" id="5_t36g4"]
+[ext_resource type="PackedScene" uid="uid://cwjxb457j2bxv" path="res://Scenes/level_2.tscn" id="6_rbafn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pc7b3"]
+shader = ExtResource("3_m1au8")
+shader_parameter/blur = 2.0
+
+[node name="LevelSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a5ygt")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_pc7b3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.5
+offset_top = -58.0
+offset_right = 90.5
+offset_bottom = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Level1" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_l0owf")
+text = "Level 1"
+script = ExtResource("4_iskqh")
+level_scene = ExtResource("5_t36g4")
+level_number = 1
+
+[node name="Level2" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_l0owf")
+text = "            Level 2            "
+script = ExtResource("4_iskqh")
+level_scene = ExtResource("6_rbafn")
+level_number = 2
+
+[node name="Level3" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_l0owf")
+text = "Level 3"
+script = ExtResource("4_iskqh")
+level_number = 3
+
+[node name="Level4" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_l0owf")
+text = "Level 4"
+script = ExtResource("4_iskqh")
+level_number = 4
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_l0owf")
+text = "Zurück"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level1" to="MarginContainer/VBoxContainer/Level1" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level2" to="MarginContainer/VBoxContainer/Level2" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level3" to="MarginContainer/VBoxContainer/Level3" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level4" to="MarginContainer/VBoxContainer/Level4" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

@@ -1,0 +1,281 @@
+[gd_scene load_steps=24 format=3 uid="uid://c5kxstyjgvo6b"]
+
+[ext_resource type="Script" path="res://Scripts/collect_screen.gd" id="1_sv3vy"]
+[ext_resource type="Shader" path="res://Resources/blur.gdshader" id="2_wndp2"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_menu_buttons.tres" id="3_13dab"]
+[ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="4_8a175"]
+[ext_resource type="Texture2D" uid="uid://dknmtsban5tcd" path="res://Resources/Images/snowball.png" id="5_cgp88"]
+[ext_resource type="Texture2D" uid="uid://b5k3is810ayhk" path="res://Resources/Images/white_glow.png" id="5_xbmpn"]
+[ext_resource type="Texture2D" uid="uid://bxr6iajdvj1tr" path="res://Resources/Images/blue_glow.png" id="6_a8m8d"]
+[ext_resource type="Texture2D" uid="uid://8v2til5u0c6l" path="res://Resources/Images/Icicle.png" id="8_t038k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_836vi"]
+shader = ExtResource("2_wndp2")
+shader_parameter/blur = 2.0
+
+[sub_resource type="Gradient" id="Gradient_ppd36"]
+offsets = PackedFloat32Array(0, 0.491803, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bhav1"]
+gradient = SubResource("Gradient_ppd36")
+
+[sub_resource type="Curve" id="Curve_x6i0b"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.293333, 1), 0.0, 0.0, 0, 0, Vector2(0.753333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ee3rj"]
+curve = SubResource("Curve_x6i0b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_re7kw"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(160, 80, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 1.0
+damping_max = 3.0
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_ee3rj")
+color_ramp = SubResource("GradientTexture1D_bhav1")
+
+[sub_resource type="Gradient" id="Gradient_mmb3q"]
+offsets = PackedFloat32Array(0, 0.491803, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bawbi"]
+gradient = SubResource("Gradient_mmb3q")
+
+[sub_resource type="Curve" id="Curve_ofh8d"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.293333, 1), 0.0, 0.0, 0, 0, Vector2(0.753333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_fkfn7"]
+curve = SubResource("Curve_ofh8d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ysbsj"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(120, 60, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 1.0
+damping_max = 3.0
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_fkfn7")
+color_ramp = SubResource("GradientTexture1D_bawbi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uwkbw"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 30, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 1.0
+damping_max = 3.0
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_fkfn7")
+color_ramp = SubResource("GradientTexture1D_bawbi")
+
+[sub_resource type="Animation" id="Animation_icb1a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 320)]
+}
+
+[sub_resource type="Animation" id="Animation_6igpi"]
+resource_name = "float"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [Vector2(576, 340), Vector2(576, 296), Vector2(576, 340)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e31r2"]
+_data = {
+"RESET": SubResource("Animation_icb1a"),
+"float": SubResource("Animation_6igpi")
+}
+
+[node name="CollectScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sv3vy")
+
+[node name="Blur" type="ColorRect" parent="."]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_836vi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Claim" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = 124.0
+offset_right = 112.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_13dab")
+text = "      Einsammeln     "
+
+[node name="CollectLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -324.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_8a175")
+theme_override_font_sizes/font_size = 40
+text = "Du hast ... erhalten!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+position = Vector2(576, 296.57)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_re7kw")
+texture = ExtResource("5_xbmpn")
+lifetime = 5.0
+preprocess = 5.0
+
+[node name="ParticlesBlue" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+position = Vector2(576, 296.57)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_ysbsj")
+texture = ExtResource("6_a8m8d")
+lifetime = 5.0
+preprocess = 5.0
+
+[node name="ParticlesBlue2" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+position = Vector2(576, 296.57)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_uwkbw")
+texture = ExtResource("6_a8m8d")
+lifetime = 5.0
+preprocess = 5.0
+
+[node name="Pivot" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Snowball" type="Control" parent="Pivot"]
+anchors_preset = 0
+
+[node name="Snowball6" type="Sprite2D" parent="Pivot/Snowball"]
+visible = false
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(-88, 10)
+scale = Vector2(5, 5)
+texture = ExtResource("5_cgp88")
+
+[node name="Snowball5" type="Sprite2D" parent="Pivot/Snowball"]
+visible = false
+modulate = Color(1, 1, 1, 0.4)
+position = Vector2(-47, -12)
+scale = Vector2(5, 5)
+texture = ExtResource("5_cgp88")
+
+[node name="Snowball4" type="Sprite2D" parent="Pivot/Snowball"]
+visible = false
+modulate = Color(1, 1, 1, 0.6)
+position = Vector2(-3.99997, -16)
+scale = Vector2(5, 5)
+texture = ExtResource("5_cgp88")
+
+[node name="Snowball3" type="Sprite2D" parent="Pivot/Snowball"]
+visible = false
+modulate = Color(1, 1, 1, 0.8)
+position = Vector2(42, -10)
+scale = Vector2(5, 5)
+texture = ExtResource("5_cgp88")
+
+[node name="Snowball2" type="Sprite2D" parent="Pivot/Snowball"]
+visible = false
+position = Vector2(83, 6)
+scale = Vector2(5, 5)
+texture = ExtResource("5_cgp88")
+
+[node name="SnowballMiddle" type="Sprite2D" parent="Pivot/Snowball"]
+position = Vector2(7.62939e-06, 3.8147e-06)
+scale = Vector2(6, 6)
+texture = ExtResource("5_cgp88")
+
+[node name="Icicle" type="Control" parent="Pivot"]
+visible = false
+anchors_preset = 0
+
+[node name="Icicle2" type="Sprite2D" parent="Pivot/Icicle"]
+rotation = -1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("8_t038k")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e31r2")
+}
+autoplay = "float"
+
+[connection signal="pressed" from="Claim" to="." method="_on_claim_pressed"]

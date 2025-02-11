@@ -1,0 +1,107 @@
+[gd_scene load_steps=13 format=3 uid="uid://p5j6vnx6wwu1"]
+
+[ext_resource type="Script" path="res://Scripts/present.gd" id="1_jybbq"]
+[ext_resource type="Texture2D" uid="uid://c0b1dovndhbv2" path="res://Resources/Images/present.png" id="2_gg3i0"]
+[ext_resource type="Script" path="res://Scripts/HitBoxEnemy.gd" id="3_h7on1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvldb"]
+
+[sub_resource type="Curve" id="Curve_bugcl"]
+_data = [Vector2(0, 0.43956), 0.0, -0.865385, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p3la2"]
+curve = SubResource("Curve_bugcl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_au3uk"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
+alpha_curve = SubResource("CurveTexture_p3la2")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ejbmi"]
+radius = 7.33333
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w88jg"]
+radius = 20.0
+
+[sub_resource type="Animation" id="Animation_p4ity"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aove2"]
+resource_name = "die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ax0hu"]
+_data = {
+"RESET": SubResource("Animation_p4ity"),
+"die": SubResource("Animation_aove2")
+}
+
+[node name="Present" type="RigidBody2D"]
+collision_layer = 4
+gravity_scale = 1.8
+script = ExtResource("1_jybbq")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cvldb")
+
+[node name="trail" type="GPUParticles2D" parent="."]
+z_index = -1
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_au3uk")
+texture = ExtResource("2_gg3i0")
+lifetime = 0.4
+
+[node name="Present" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(3, 3)
+texture = ExtResource("2_gg3i0")
+
+[node name="HitBoxPlayer" type="Area2D" parent="Present"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_h7on1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Present/HitBoxPlayer"]
+shape = SubResource("CircleShape2D_ejbmi")
+
+[node name="area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="collision" type="CollisionShape2D" parent="area"]
+shape = SubResource("CircleShape2D_w88jg")
+
+[node name="Animations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ax0hu")
+}
+speed_scale = 3.0
+
+[connection signal="body_entered" from="area" to="." method="collision"]
