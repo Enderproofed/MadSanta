@@ -1,38 +1,76 @@
-[gd_scene load_steps=2 format=3 uid="uid://cq0tw86if3h4t"]
+[gd_scene load_steps=5 format=3 uid="uid://cq0tw86if3h4t"]
 
 [ext_resource type="Script" path="res://Scripts/pause.gd" id="1_d55t3"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_menu_buttons.tres" id="2_68dhi"]
+[ext_resource type="Shader" path="res://Resources/blur.gdshader" id="2_rk67h"]
 
-[node name="PauseMenu" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5j77a"]
+shader = ExtResource("2_rk67h")
+shader_parameter/blur = 2.0
+
+[node name="PauseMenu" type="Control"]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_d55t3")
 
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5j77a")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 1173.0
-offset_bottom = 521.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
+alignment = 1
 
 [node name="Resume" type="Button" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
+theme = ExtResource("2_68dhi")
 text = "Weiter"
 
 [node name="Options" type="Button" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
+theme = ExtResource("2_68dhi")
 text = "Optionen"
 
-[node name="Exit Level" type="Button" parent="MarginContainer/VBoxContainer2"]
+[node name="Return to Menu" type="Button" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
-text = "Level Verlassen"
+theme = ExtResource("2_68dhi")
+text = " Hauptmenü "
 
 [node name="Quit Game" type="Button" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
-text = "Spiel Beenden >:("
+theme = ExtResource("2_68dhi")
+text = " Rage Quit "
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer2/Exit Level" to="." method="_on_exit_level_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/Return to Menu" to="." method="_on_exit_level_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/Quit Game" to="." method="_on_quit_game_pressed"]
