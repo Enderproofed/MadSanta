@@ -86,7 +86,6 @@ func change_scenes(sceneName: String) -> void:
 	$gameOverMenu.visible = sceneName == Globals.DEATH_SCREEN
 	if sceneName == Globals.MAIN_MENU:
 		$Title.text = "Mad Santa"
-		delete_level()
 	if sceneName == Globals.DEATH_SCREEN:
 		$Title.text = "Game Over"
 	if sceneName == Globals.LEVEL_SELECTION:
