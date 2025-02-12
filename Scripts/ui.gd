@@ -76,13 +76,14 @@ func intro_text():
 	start_text_sequence(intro_text)
 
 func change_scenes(sceneName: String) -> void:
+	$PauseMenu.visible = sceneName == Globals.PAUSED and Globals.state == Globals.PLAYING
 	$MainMenu.visible = sceneName == Globals.MAIN_MENU
 	$LevelSelection.visible = sceneName == Globals.LEVEL_SELECTION
 	$SettingsMenu.visible = sceneName == Globals.SETTINGS
 	$Credits.visible = sceneName == Globals.CREDITS
 	var scenes_without_background = [Globals.PLAYING, Globals.FINISH_MENU]
 	$Background/SildeCam.enabled = sceneName not in scenes_without_background
-	var scenes_with_title = [Globals.MAIN_MENU, Globals.LEVEL_SELECTION, Globals.CREDITS, Globals.FINISH_MENU, Globals.SETTINGS]
+	var scenes_with_title = [Globals.MAIN_MENU, Globals.LEVEL_SELECTION, Globals.CREDITS, Globals.FINISH_MENU, Globals.PAUSED, Globals.SETTINGS]
 	$Title.visible = sceneName in scenes_with_title
 	$WeaponSelection/Animation.play("show" if sceneName == Globals.PLAYING else "hide")
 	if sceneName == Globals.MAIN_MENU:
@@ -94,6 +95,8 @@ func change_scenes(sceneName: String) -> void:
 		$Title.text = "Credits"
 	if sceneName == Globals.SETTINGS:
 		$Title.text = "Einstellungen"
+	if sceneName == Globals.PAUSED:
+		$Title.text = "Pause"
 	if sceneName == Globals.FINISH_MENU:
 		$Title.text = "Geschafft!"
 		$Animations.stop()
@@ -109,7 +112,9 @@ func change_scenes(sceneName: String) -> void:
 	else:
 		$CollectScreen.hide()
 		$CollectScreen.modulate.a = 0
-	
+		#TODO might need check for current game state
+	if  sceneName in [Globals.MAIN_MENU, Globals.LEVEL_SELECTION] :
+		delete_level()
 	Globals.state = sceneName
 
 func start_level(level_scene: PackedScene):
