@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://ddk2vh04b5n1c"]
+[gd_scene load_steps=26 format=3 uid="uid://ddk2vh04b5n1c"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_uhene"]
 [ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="1_wsnms"]
 [ext_resource type="PackedScene" uid="uid://cvxgmcglpifqo" path="res://Scenes/background.tscn" id="2_hqxhv"]
 [ext_resource type="PackedScene" uid="uid://c24638ekp5g3y" path="res://Scenes/main_menu.tscn" id="3_1edqh"]
 [ext_resource type="Texture2D" uid="uid://co4dc1fhpwqs7" path="res://Resources/Images/snowflake.png" id="4_68vjy"]
+[ext_resource type="PackedScene" uid="uid://cq0tw86if3h4t" path="res://Scenes/pause_menu.tscn" id="4_byso1"]
 [ext_resource type="PackedScene" uid="uid://dsojbxfvy4pk8" path="res://Scenes/level_selection.tscn" id="5_c8c64"]
 [ext_resource type="PackedScene" uid="uid://bqtytgj7d7p1u" path="res://Scenes/credits.tscn" id="7_2quxs"]
 [ext_resource type="PackedScene" uid="uid://csb5x38occ8p2" path="res://Scenes/finish_menu.tscn" id="8_1b1gn"]
@@ -244,6 +245,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Particles" type="GPUParticles2D" parent="UI/Title"]
+process_mode = 3
 show_behind_parent = true
 position = Vector2(2880, 600)
 amount = 16
@@ -292,6 +294,8 @@ libraries = {
 }
 
 [node name="MainMenu" parent="UI" instance=ExtResource("3_1edqh")]
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("4_byso1")]
 visible = false
 
 [node name="LevelSelection" parent="UI" instance=ExtResource("5_c8c64")]
