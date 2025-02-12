@@ -14,6 +14,6 @@ func _on_area_entered(hitbox: Area2D) -> void:
 	
 	if owner.has_method("take_damage") and hitbox is HitBoxEnemy and hitbox.can_hit():
 		owner.take_damage(hitbox.damage)
-		hitbox.hit = true
+		hitbox._hit()
 		if owner.has_method("set_velocity") and hitbox.get("knockback") != null:
 			owner.set_velocity((owner.global_position - hitbox.global_position).normalized() * hitbox.knockback)
