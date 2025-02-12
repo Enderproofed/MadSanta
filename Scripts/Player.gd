@@ -190,7 +190,9 @@ func take_damage(amount: int) -> void:
 	health = health - amount 
 	healthbar.health = health
 	if health <= 0:
-		queue_free()
+		Globals.playerDied()
+		
+		
 
 func hide_healthbar():
 	$Snowman/Healthbar.hide()
