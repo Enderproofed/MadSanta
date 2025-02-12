@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ddk2vh04b5n1c"]
+[gd_scene load_steps=26 format=3 uid="uid://ddk2vh04b5n1c"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_uhene"]
 [ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="1_wsnms"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bqtytgj7d7p1u" path="res://Scenes/credits.tscn" id="7_2quxs"]
 [ext_resource type="PackedScene" uid="uid://csb5x38occ8p2" path="res://Scenes/finish_menu.tscn" id="8_1b1gn"]
 [ext_resource type="PackedScene" uid="uid://c5kxstyjgvo6b" path="res://Scenes/collect_screen.tscn" id="9_7yup1"]
+[ext_resource type="PackedScene" uid="uid://beygl7farnit4" path="res://Scenes/settings_menu.tscn" id="10_on1yh"]
 [ext_resource type="PackedScene" uid="uid://cvksbkhweo1kg" path="res://Scenes/weapon_selection.tscn" id="10_x0ftc"]
 
 [sub_resource type="Curve" id="Curve_jrul4"]
@@ -307,6 +308,9 @@ modulate = Color(1, 1, 1, 0)
 [node name="CollectScreen" parent="UI" instance=ExtResource("9_7yup1")]
 visible = false
 modulate = Color(1, 1, 1, 0)
+
+[node name="SettingsMenu" parent="UI" instance=ExtResource("10_on1yh")]
+visible = false
 
 [node name="Animations" type="AnimationPlayer" parent="UI"]
 libraries = {

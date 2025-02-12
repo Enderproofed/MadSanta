@@ -56,7 +56,6 @@ text = "    Levelauswahl    "
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_xauh6")
-disabled = true
 text = "Einstellungen"
 
 [node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]

@@ -41,6 +41,7 @@ func next_text():
 			texts_to_show = []
 			text_visible = false
 			Globals.player.show_healthbar()
+			Globals.level1_played = true
 			if Globals.level != null:
 				Globals.level.zoom_out()
 		else:
@@ -77,10 +78,11 @@ func intro_text():
 func change_scenes(sceneName: String) -> void:
 	$MainMenu.visible = sceneName == Globals.MAIN_MENU
 	$LevelSelection.visible = sceneName == Globals.LEVEL_SELECTION
+	$SettingsMenu.visible = sceneName == Globals.SETTINGS
 	$Credits.visible = sceneName == Globals.CREDITS
 	var scenes_without_background = [Globals.PLAYING, Globals.FINISH_MENU]
 	$Background/SildeCam.enabled = sceneName not in scenes_without_background
-	var scenes_with_title = [Globals.MAIN_MENU, Globals.LEVEL_SELECTION, Globals.CREDITS, Globals.FINISH_MENU]
+	var scenes_with_title = [Globals.MAIN_MENU, Globals.LEVEL_SELECTION, Globals.CREDITS, Globals.FINISH_MENU, Globals.SETTINGS]
 	$Title.visible = sceneName in scenes_with_title
 	$WeaponSelection/Animation.play("show" if sceneName == Globals.PLAYING else "hide")
 	if sceneName == Globals.MAIN_MENU:
@@ -90,6 +92,8 @@ func change_scenes(sceneName: String) -> void:
 		Globals.update_level_buttons()
 	if sceneName == Globals.CREDITS:
 		$Title.text = "Credits"
+	if sceneName == Globals.SETTINGS:
+		$Title.text = "Einstellungen"
 	if sceneName == Globals.FINISH_MENU:
 		$Title.text = "Geschafft!"
 		$Animations.stop()
@@ -116,7 +120,7 @@ func start_level(level_scene: PackedScene):
 	Globals.enemies_killed = 0
 	Globals.enemies_in_level = level.get_node("Enemies").get_child_count()
 	change_scenes(Globals.PLAYING)
-	if level.level_number == 1 && !Globals.skip_intro_text:
+	if level.level_number == 1 and !Globals.level1_played and !Globals.skip_intro_text:
 		intro_text()
 	else:
 		await Globals.timer(0.017)
