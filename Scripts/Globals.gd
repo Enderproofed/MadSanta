@@ -8,6 +8,7 @@ const MAIN_MENU = "MAIN_MENU"
 const LEVEL_SELECTION = "LEVEL_SELECTION"
 const CREDITS = "CREDITS"
 const FINISH_MENU = "FINISH_MENU"
+const SETTINGS = "SETTINGS"
 const COLLECT_SCREEN = "COLLECT_SCREEN"
 
 enum CHEST_ITEMS { 
@@ -40,6 +41,7 @@ var enemies_killed = 0
 var unlocked_level = 1
 var collected_items = []
 var selected_weapon = null
+var level1_played = false
 
 @onready var collect_screen = get_node("/root/Main/UI/CollectScreen")
 @onready var ui: UI = get_node("/root/Main/UI")
