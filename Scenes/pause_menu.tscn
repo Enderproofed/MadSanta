@@ -55,6 +55,11 @@ layout_mode = 2
 theme = ExtResource("2_68dhi")
 text = "Weiter"
 
+[node name="Restart" type="Button" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_68dhi")
+text = " Levelneustart "
+
 [node name="Options" type="Button" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_68dhi")
@@ -71,6 +76,7 @@ theme = ExtResource("2_68dhi")
 text = " Rage Quit "
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/Return to Menu" to="." method="_on_exit_level_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/Quit Game" to="." method="_on_quit_game_pressed"]

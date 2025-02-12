@@ -15,6 +15,11 @@ func _on_resume_pressed() -> void:
 	get_tree().paused = false
 	get_parent().change_scenes(Globals.PLAYING)
 
+func _on_restart_pressed() -> void:
+	get_tree().paused = false
+	get_parent().play_again()
+
+
 func _on_options_pressed() -> void:
 	get_tree().paused = false
 	pass
