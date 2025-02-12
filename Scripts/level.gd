@@ -15,3 +15,7 @@ func zoom_out():
 
 func _process(delta: float) -> void:
 	pass
+	
+func get_bottom():
+	return $Positions/LevelBorder.position.y 
+	
