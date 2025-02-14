@@ -40,7 +40,9 @@ func _process(delta):
 		$left.position.x = -$col.shape.size.x/2
 		$top.position.y = -$col.shape.size.y/2
 		return
-	
+	if Globals.level != null:
+		if position.y >= Globals.level.get_bottom():
+			Globals.playerDied()
 	safe_ground = max(safe_ground - delta,0)
 	if on_ground:
 		safe_ground = 0.05
@@ -191,7 +193,9 @@ func take_damage(amount: int) -> void:
 	health = health - amount 
 	healthbar.health = health
 	if health <= 0:
-		queue_free()
+		Globals.playerDied()
+		
+		
 
 func hide_healthbar():
 	$Snowman/Healthbar.hide()

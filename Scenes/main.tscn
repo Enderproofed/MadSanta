@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bqtytgj7d7p1u" path="res://Scenes/credits.tscn" id="7_2quxs"]
 [ext_resource type="PackedScene" uid="uid://csb5x38occ8p2" path="res://Scenes/finish_menu.tscn" id="8_1b1gn"]
 [ext_resource type="PackedScene" uid="uid://c5kxstyjgvo6b" path="res://Scenes/collect_screen.tscn" id="9_7yup1"]
+[ext_resource type="PackedScene" uid="uid://d2nvm0a1eb11t" path="res://Scenes/game_over_menu.tscn" id="10_ajnyx"]
 [ext_resource type="PackedScene" uid="uid://beygl7farnit4" path="res://Scenes/settings_menu.tscn" id="10_on1yh"]
 [ext_resource type="PackedScene" uid="uid://cvksbkhweo1kg" path="res://Scenes/weapon_selection.tscn" id="10_x0ftc"]
 [ext_resource type="AudioStream" uid="uid://cv2mosluvx1ys" path="res://Resources/Sounds/title_melody.wav" id="13_g6dpr"]
@@ -313,6 +314,9 @@ modulate = Color(1, 1, 1, 0)
 [node name="CollectScreen" parent="UI" instance=ExtResource("9_7yup1")]
 visible = false
 modulate = Color(1, 1, 1, 0)
+
+[node name="gameOverMenu" parent="UI" instance=ExtResource("10_ajnyx")]
+visible = false
 
 [node name="SettingsMenu" parent="UI" instance=ExtResource("10_on1yh")]
 visible = false

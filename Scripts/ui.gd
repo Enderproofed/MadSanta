@@ -81,13 +81,16 @@ func change_scenes(sceneName: String) -> void:
 	$LevelSelection.visible = sceneName == Globals.LEVEL_SELECTION
 	$SettingsMenu.visible = sceneName == Globals.SETTINGS
 	$Credits.visible = sceneName == Globals.CREDITS
-	var scenes_without_background = [Globals.PLAYING, Globals.FINISH_MENU]
+	var scenes_without_background = [Globals.PLAYING, Globals.FINISH_MENU, Globals.DEATH_SCREEN]
 	$Background/SildeCam.enabled = sceneName not in scenes_without_background
-	var scenes_with_title = [Globals.MAIN_MENU, Globals.LEVEL_SELECTION, Globals.CREDITS, Globals.FINISH_MENU, Globals.PAUSED, Globals.SETTINGS]
+	var scenes_with_title = [Globals.MAIN_MENU, Globals.LEVEL_SELECTION, Globals.CREDITS, Globals.FINISH_MENU, Globals.PAUSED, Globals.SETTINGS, Globals.DEATH_SCREEN]
 	$Title.visible = sceneName in scenes_with_title
 	$WeaponSelection/Animation.play("show" if sceneName == Globals.PLAYING else "hide")
+	$gameOverMenu.visible = sceneName == Globals.DEATH_SCREEN
 	if sceneName == Globals.MAIN_MENU:
 		$Title.text = "Mad Santa"
+	if sceneName == Globals.DEATH_SCREEN:
+		$Title.text = "Game Over"
 	if sceneName == Globals.LEVEL_SELECTION:
 		$Title.text = "Levelauswahl"
 		Globals.update_level_buttons()

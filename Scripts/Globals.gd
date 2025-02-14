@@ -10,6 +10,7 @@ const CREDITS = "CREDITS"
 const FINISH_MENU = "FINISH_MENU"
 const SETTINGS = "SETTINGS"
 const COLLECT_SCREEN = "COLLECT_SCREEN"
+const DEATH_SCREEN = "DEATH_SCREEN"
 
 enum CHEST_ITEMS { 
 	SNOWBALL, #0
@@ -106,3 +107,6 @@ func collect_item(item: CHEST_ITEMS):
 	collected_items.append(item)
 	selected_weapon = item
 	get_node("/root/Main/UI/WeaponSelection").add_selectable_weapon(item)
+	
+func playerDied():
+	ui.change_scenes(DEATH_SCREEN)
