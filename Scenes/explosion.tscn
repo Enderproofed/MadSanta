@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://jwqgxrh0deom"]
+[gd_scene load_steps=14 format=3 uid="uid://jwqgxrh0deom"]
 
 [ext_resource type="Script" path="res://Scripts/explosion.gd" id="1_3yve1"]
 [ext_resource type="Texture2D" uid="uid://dyq43ipjirebl" path="res://Resources/Images/Explosions/explosion1.png" id="1_j7e4g"]
 [ext_resource type="Texture2D" uid="uid://bq0psmrr0tbdy" path="res://Resources/Images/Explosions/explosion2.png" id="2_aa447"]
 [ext_resource type="Texture2D" uid="uid://c6b71c160nerf" path="res://Resources/Images/Explosions/explosion3.png" id="3_uorp5"]
 [ext_resource type="Texture2D" uid="uid://dnbajeolbyqpy" path="res://Resources/Images/Explosions/explosion4.png" id="4_ke6nh"]
+[ext_resource type="AudioStream" uid="uid://ddkdxa65cmmxg" path="res://Resources/Sounds/explosion.wav" id="6_5uiku"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6i6yn"]
 radius = 0.1
@@ -160,3 +161,8 @@ one_shot = true
 libraries = {
 "": SubResource("AnimationLibrary_4s51p")
 }
+
+[node name="BOOM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_5uiku")
+autoplay = true
+bus = &"Effects"
