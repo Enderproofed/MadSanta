@@ -182,6 +182,7 @@ func jump():
 	velocity.y = -jump_speed
 	extra = 1.5
 	safe_jump = 0
+	$Jump.play()
 #
 #func enemy_entered(body: Node2D) -> void:
 	#if body.get("enemy") == true:

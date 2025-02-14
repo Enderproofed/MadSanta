@@ -8,6 +8,7 @@ const MAIN_MENU = "MAIN_MENU"
 const LEVEL_SELECTION = "LEVEL_SELECTION"
 const CREDITS = "CREDITS"
 const FINISH_MENU = "FINISH_MENU"
+const SETTINGS = "SETTINGS"
 const COLLECT_SCREEN = "COLLECT_SCREEN"
 const DEATH_SCREEN = "DEATH_SCREEN"
 
@@ -41,6 +42,7 @@ var enemies_killed = 0
 var unlocked_level = 1
 var collected_items = []
 var selected_weapon = null
+var level1_played = false
 
 @onready var collect_screen = get_node("/root/Main/UI/CollectScreen")
 @onready var ui: UI = get_node("/root/Main/UI")
@@ -52,6 +54,9 @@ func _ready() -> void:
 			collect_item(chest_item)
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("pause") && Globals.state == Globals.PLAYING:
+		change_scenes(Globals.PAUSED)
+		get_tree().paused = true 
 	if Input.is_action_just_pressed("ESC"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("F11"):

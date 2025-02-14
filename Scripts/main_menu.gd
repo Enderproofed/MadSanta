@@ -8,3 +8,6 @@ func _on_quit_pressed() -> void:
 
 func _on_credits_pressed() -> void:
 	get_parent().change_scenes(Globals.CREDITS)
+
+func _on_options_pressed() -> void:
+	get_parent().change_scenes(Globals.SETTINGS)

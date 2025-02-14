@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://beygl7farnit4"]
+
+[ext_resource type="Script" path="res://Scripts/settings_menu.gd" id="1_vjuf2"]
+[ext_resource type="Shader" path="res://Resources/blur.gdshader" id="2_j3iwa"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_menu_buttons.tres" id="3_dt7j5"]
+[ext_resource type="PackedScene" uid="uid://br7td7lkiiqj1" path="res://Scenes/SoundSlider.tscn" id="4_yp0th"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pc7b3"]
+shader = ExtResource("2_j3iwa")
+shader_parameter/blur = 2.0
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjuf2")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_pc7b3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 481.5
+offset_top = 500.0
+offset_right = 670.5
+offset_bottom = 540.0
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_dt7j5")
+text = "Zurück"
+
+[node name="Master" parent="." instance=ExtResource("4_yp0th")]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 208.0
+offset_right = 1007.0
+offset_bottom = 238.0
+
+[node name="Music" parent="." instance=ExtResource("4_yp0th")]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 248.0
+offset_right = 1007.0
+offset_bottom = 278.0
+text = "Musik"
+bus_name = "Music"
+
+[node name="SoundEffects" parent="." instance=ExtResource("4_yp0th")]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 288.0
+offset_right = 1007.0
+offset_bottom = 318.0
+text = "Sound Effekte"
+bus_name = "Effects"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
