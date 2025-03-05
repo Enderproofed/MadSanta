@@ -26,7 +26,7 @@ const skip_intro_text = false
 const start_with_all_items = false
 
 #Global constants
-const levels = [preload("res://Scenes/level_1.tscn"), preload("res://Scenes/level_2.tscn")]
+const levels = [preload("res://Scenes/level_1.tscn"), preload("res://Scenes/level_2.tscn"), preload("res://Scenes/level_nico.tscn")]
 
 #Global variables
 var fullscreen = false
