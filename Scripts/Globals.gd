@@ -82,6 +82,9 @@ func id_to_item(id: int):
 func isPaused() -> bool:
 	return state != PLAYING
 
+func isInMenu() -> bool:
+	return state in [MAIN_MENU, LEVEL_SELECTION, SETTINGS, CREDITS]
+
 func update_level_buttons():
 	for level_button in level_buttons:
 		level_button.disabled = unlocked_level < level_button.level_number or level_button.level_number > levels.size()

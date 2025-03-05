@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ddk2vh04b5n1c"]
+[gd_scene load_steps=31 format=3 uid="uid://ddk2vh04b5n1c"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_uhene"]
 [ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="1_wsnms"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://beygl7farnit4" path="res://Scenes/settings_menu.tscn" id="10_on1yh"]
 [ext_resource type="PackedScene" uid="uid://cvksbkhweo1kg" path="res://Scenes/weapon_selection.tscn" id="10_x0ftc"]
 [ext_resource type="AudioStream" uid="uid://cv2mosluvx1ys" path="res://Resources/Sounds/title_melody.wav" id="13_g6dpr"]
+[ext_resource type="Script" path="res://Scripts/music.gd" id="14_mvmjm"]
+[ext_resource type="AudioStream" uid="uid://fhlg73ytwd2l" path="res://Resources/Sounds/snow_level.wav" id="16_msmy0"]
 
 [sub_resource type="Curve" id="Curve_jrul4"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.446667, 1), 0.0749247, 0.0749247, 0, 0, Vector2(0.566667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -329,7 +331,13 @@ libraries = {
 [node name="WeaponSelection" parent="UI" instance=ExtResource("10_x0ftc")]
 position = Vector2(1056, 584)
 
-[node name="TitleMelody" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="Node" parent="."]
+script = ExtResource("14_mvmjm")
+
+[node name="TitleMelody" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("13_g6dpr")
-autoplay = true
+bus = &"Music"
+
+[node name="LevelMelody" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("16_msmy0")
 bus = &"Music"

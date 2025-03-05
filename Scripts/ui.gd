@@ -4,6 +4,7 @@ var text_visible = false
 var text_pointer = 0
 var texts_to_show = []
 var text_switch_blocked = false
+var menu = true
 
 func _ready() -> void:
 	change_scenes(Globals.state)

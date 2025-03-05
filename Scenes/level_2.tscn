@@ -53,7 +53,7 @@ level_number = 2
 position = Vector2(0, 680)
 
 [node name="LevelBorder2" type="Node2D" parent="Positions"]
-position = Vector2(3224, 0)
+position = Vector2(3392, 0)
 
 [node name="LevelBase" parent="." instance=ExtResource("2_wj8qn")]
 show_behind_parent = true
