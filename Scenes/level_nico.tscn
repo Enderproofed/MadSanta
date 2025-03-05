@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://waxamh61b5up"]
+[gd_scene load_steps=10 format=4 uid="uid://waxamh61b5up"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_kpg4g"]
 [ext_resource type="PackedScene" uid="uid://c2hskt6dqvqh2" path="res://Scenes/LevelBase.tscn" id="2_yf2nr"]
@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cf5ify7hs515i" path="res://Scenes/elf.tscn" id="4_o1vyd"]
 [ext_resource type="TileSet" uid="uid://dcltu6sxqh3la" path="res://Resources/tileset.tres" id="5_iuequ"]
 [ext_resource type="PackedScene" uid="uid://b6lj54tqfp1fr" path="res://Scenes/Player.tscn" id="6_w2vmf"]
-[ext_resource type="Texture2D" uid="uid://dmfuxcim4k6df" path="res://Resources/Images/MeltingSnowman.png" id="7_elll7"]
-[ext_resource type="PackedScene" uid="uid://pph1prssartn" path="res://Scenes/chest.tscn" id="8_cw4r3"]
 
 [sub_resource type="Animation" id="Animation_3j4tx"]
 length = 0.001
@@ -44,9 +42,6 @@ _data = {
 "RESET": SubResource("Animation_3j4tx"),
 "zoom_out": SubResource("Animation_d4xsb")
 }
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ou32v"]
-radius = 17.2
 
 [node name="LevelNico" type="Node2D"]
 editor_description = "Level 1"
@@ -105,17 +100,3 @@ position = Vector2(280, 544)
 libraries = {
 "": SubResource("AnimationLibrary_seoic")
 }
-
-[node name="girlfriend" type="StaticBody2D" parent="."]
-position = Vector2(128, 560)
-
-[node name="collision" type="CollisionShape2D" parent="girlfriend"]
-shape = SubResource("CircleShape2D_ou32v")
-
-[node name="snowgirlfriend" type="Sprite2D" parent="girlfriend"]
-position = Vector2(0, -3.015)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("7_elll7")
-
-[node name="Chest" parent="." instance=ExtResource("8_cw4r3")]
-position = Vector2(568, 568)
