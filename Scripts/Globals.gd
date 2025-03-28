@@ -26,7 +26,7 @@ const skip_intro_text = false
 const start_with_all_items = false
 
 #Global constants
-const levels = [preload("res://Scenes/level_1.tscn"), preload("res://Scenes/level_2.tscn")]
+const levels = [preload("res://Scenes/level_1.tscn"), preload("res://Scenes/level_mirko.tscn"), preload("res://Scenes/level_2.tscn")]
 
 #Global variables
 var fullscreen = false
@@ -43,22 +43,23 @@ var unlocked_level = 1
 var collected_items = []
 var selected_weapon = null
 var level1_played = false
+var triggered_texts = []
 
 @onready var collect_screen = get_node("/root/Main/UI/CollectScreen")
 @onready var ui: UI = get_node("/root/Main/UI")
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	if start_with_all_items:
 		await timer(0.1)
 		for chest_item in CHEST_ITEMS.values():
 			collect_item(chest_item)
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("pause") && Globals.state == Globals.PLAYING:
-		change_scenes(Globals.PAUSED)
-		get_tree().paused = true 
+	if Input.is_action_just_pressed("pause") and !isPaused():
+		change_scenes(Globals.PAUSED) 
 	if Input.is_action_just_pressed("ESC"):
-		get_tree().quit()
+		ui.back()
 	if Input.is_action_just_pressed("F11"):
 		fullscreen = !fullscreen
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if fullscreen else DisplayServer.WINDOW_MODE_WINDOWED)

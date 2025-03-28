@@ -9,7 +9,7 @@ func _ready() -> void:
 		for child in get_children():
 			if child is GPUParticles2D:
 				child.preprocess = 0
-		$Animation.play("open")
+		$Animation.play("open_without_sound")
 		opened = true
 
 func _on_body_entered(body: Node2D) -> void:

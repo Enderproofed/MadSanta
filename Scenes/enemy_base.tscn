@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cnau3rqgkdp0"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_base.gd" id="1_3x4pc"]
+[ext_resource type="Script" path="res://Scripts/HitBoxEnemy.gd" id="1_cakg6"]
+[ext_resource type="Script" path="res://Scripts/HurtBoxEnemy.gd" id="2_7tudt"]
+[ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="4_byoyd"]
+[ext_resource type="PackedScene" uid="uid://bvl7sawjp1quy" path="res://Scenes/healthbar.tscn" id="5_bdfm4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aa4cj"]
+radius = 11.9961
+height = 57.7758
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bm0pq"]
+radius = 10.6667
+height = 44.0
+
+[node name="EnemyBase" type="Node2D"]
+script = ExtResource("1_3x4pc")
+
+[node name="HitBoxEnemy" type="Area2D" parent="."]
+script = ExtResource("1_cakg6")
+knockback = 1000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxEnemy"]
+shape = SubResource("CapsuleShape2D_aa4cj")
+
+[node name="HurtBoxEnemy" type="Area2D" parent="."]
+position = Vector2(-1.90735e-06, -3.8147e-06)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("2_7tudt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxEnemy"]
+shape = SubResource("CapsuleShape2D_bm0pq")
+
+[node name="Left" type="RayCast2D" parent="."]
+position = Vector2(-16, 0)
+collision_mask = 17
+
+[node name="Right" type="RayCast2D" parent="."]
+position = Vector2(16, 0)
+collision_mask = 17
+
+[node name="Label" type="Label" parent="."]
+offset_left = -160.0
+offset_top = -72.0
+offset_right = 160.0
+offset_bottom = -48.0
+theme_override_fonts/font = ExtResource("4_byoyd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Healthbar" parent="." instance=ExtResource("5_bdfm4")]
+offset_left = -18.0
+offset_top = -40.0
+offset_right = 18.0
+offset_bottom = -35.0

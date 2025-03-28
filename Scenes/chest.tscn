@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://pph1prssartn"]
+[gd_scene load_steps=17 format=3 uid="uid://pph1prssartn"]
 
 [ext_resource type="Texture2D" uid="uid://bm7yjrxo4d3em" path="res://Resources/Images/08 - Chest.png" id="1_qtw4c"]
 [ext_resource type="Script" path="res://Scripts/chest.gd" id="1_t10dv"]
@@ -8,6 +8,202 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dv3ys"]
 size = Vector2(16, 13)
+
+[sub_resource type="Animation" id="Animation_gaunn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles/Particles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particles/ParticlesBlue:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Chest:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Particles/Particles2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Particles/ParticlesBlue2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Audio:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Particles:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_80axf"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles/Particles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particles/ParticlesBlue:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Chest:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Particles/Particles2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Particles/ParticlesBlue2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Audio:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ngttx"]
+resource_name = "open_without_sound"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Chest:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particles:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x7q3j"]
+_data = {
+"RESET": SubResource("Animation_gaunn"),
+"open": SubResource("Animation_80axf"),
+"open_without_sound": SubResource("Animation_ngttx")
+}
 
 [sub_resource type="Gradient" id="Gradient_nint2"]
 offsets = PackedFloat32Array(0, 0.491803, 1)
@@ -52,166 +248,10 @@ angular_velocity_max = 50.0
 gravity = Vector3(0, 0, 0)
 damping_min = 1.0
 damping_max = 3.0
-scale_min = 0.05
-scale_max = 0.1
+scale_min = 0.08
+scale_max = 0.2
 scale_curve = SubResource("CurveTexture_e551q")
 color_ramp = SubResource("GradientTexture1D_52b2x")
-
-[sub_resource type="Animation" id="Animation_gaunn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Particles:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ParticlesBlue:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Chest:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Particles2:emitting")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ParticlesBlue2:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Audio:playing")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_80axf"]
-resource_name = "open"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Particles:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ParticlesBlue:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Chest:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Particles2:emitting")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ParticlesBlue2:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Audio:playing")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_x7q3j"]
-_data = {
-"RESET": SubResource("Animation_gaunn"),
-"open": SubResource("Animation_80axf")
-}
 
 [node name="Chest" type="Area2D"]
 scale = Vector2(3, 3)
@@ -228,40 +268,6 @@ position = Vector2(0, -7)
 texture = ExtResource("1_qtw4c")
 hframes = 2
 
-[node name="Particles" type="GPUParticles2D" parent="."]
-position = Vector2(0, -8)
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_cuvph")
-texture = ExtResource("3_cluhc")
-lifetime = 5.0
-preprocess = 5.0
-
-[node name="Particles2" type="GPUParticles2D" parent="."]
-show_behind_parent = true
-position = Vector2(0, -8)
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_cuvph")
-texture = ExtResource("3_cluhc")
-lifetime = 5.0
-preprocess = 5.0
-
-[node name="ParticlesBlue" type="GPUParticles2D" parent="."]
-show_behind_parent = true
-position = Vector2(0, -8)
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_w03c4")
-texture = ExtResource("4_66mjv")
-lifetime = 5.0
-preprocess = 5.0
-
-[node name="ParticlesBlue2" type="GPUParticles2D" parent="."]
-position = Vector2(0, -8)
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_w03c4")
-texture = ExtResource("4_66mjv")
-lifetime = 5.0
-preprocess = 5.0
-
 [node name="Audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qytcj")
 bus = &"Effects"
@@ -270,5 +276,41 @@ bus = &"Effects"
 libraries = {
 "": SubResource("AnimationLibrary_x7q3j")
 }
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="Particles" type="GPUParticles2D" parent="Particles"]
+position = Vector2(0, -8)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_cuvph")
+texture = ExtResource("3_cluhc")
+lifetime = 5.0
+preprocess = 5.0
+
+[node name="Particles2" type="GPUParticles2D" parent="Particles"]
+show_behind_parent = true
+position = Vector2(0, -8)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_cuvph")
+texture = ExtResource("3_cluhc")
+lifetime = 5.0
+preprocess = 5.0
+
+[node name="ParticlesBlue" type="GPUParticles2D" parent="Particles"]
+show_behind_parent = true
+position = Vector2(0, -8)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_w03c4")
+texture = ExtResource("4_66mjv")
+lifetime = 5.0
+preprocess = 5.0
+
+[node name="ParticlesBlue2" type="GPUParticles2D" parent="Particles"]
+position = Vector2(0, -8)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_w03c4")
+texture = ExtResource("4_66mjv")
+lifetime = 5.0
+preprocess = 5.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

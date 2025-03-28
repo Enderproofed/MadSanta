@@ -14,10 +14,17 @@ var alerted = false
 var active = false
 var alertCountdown = 0
 var acceleration = BASE_ACCELERATION
+var left_edge = false
+var right_edge = false
 
-@onready var healthbar = $Healthbar
+@onready var healthbar: HealthBar = $EnemyBase/Healthbar
 var health
 var max_health
+
+@export var door: Door
+
+func get_enemy_name() -> String:
+	return $EnemyBase/Label.text
 
 func set_health(health: float):
 	self.health = health
@@ -26,10 +33,28 @@ func set_health(health: float):
 
 func _process(delta: float) -> void:
 	alertCountdown = max(alertCountdown - delta, 0)
-	if linear_velocity.x < -1:
+	if linear_velocity.x < -2:
 		$skin.scale.x = 1.5
-	if linear_velocity.x > 1:
+		$walk.speed_scale = linear_velocity.x/100.0
+		$walk.play("walk")
+	elif linear_velocity.x > 2:
 		$skin.scale.x = -1.5
+		$walk.speed_scale = linear_velocity.x/100.0
+		$walk.play("walk")
+	else:
+		$walk.stop()
+		if self is Gnome:
+			$skin/skin.frame = 0
+		else: $skin.frame = 0
+	
+	left_edge = !$EnemyBase/Left.is_colliding()
+	right_edge = !$EnemyBase/Right.is_colliding()
+	
+	var distance_to_player = Globals.player.global_position - global_position
+	if left_edge and distance_to_player.y > -distance_to_player.x:
+		left_edge = false
+	if right_edge and distance_to_player.y > distance_to_player.x:
+		right_edge = false
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	global_rotation = 0
@@ -40,11 +65,13 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 			alert()
 			direction = 1 if position.x < Globals.player.position.x else -1
 			$skin.scale.x = -1.5 if direction == 1 else 1.5
-		else: unalert()
+		if distance_to_player > ALERT_DISTANCE * 1.5: unalert()
 	
 	if !Globals.isPaused() and active:
 		if alertCountdown <= 0:
 			linear_velocity.x = lerp(linear_velocity.x, speed * direction, acceleration)
+			if left_edge: linear_velocity.x = max(0, linear_velocity.x)
+			if right_edge: linear_velocity.x = min(linear_velocity.x, 0)
 	else: linear_velocity = Vector2.ZERO
 	
 	if $floor.is_colliding() and alertCountdown <= 0:
@@ -73,12 +100,13 @@ func take_damage(amount: int) -> void:
 	$hurt.play("hurt")
 
 func die():
+	if door != null:
+		door.open()
 	Globals.enemies_killed += 1
 	queue_free()
 
 func alert():
 	if !alerted:
-		$walk.stop()
 		alerted = true
 		alertCountdown = 1
 		var alertInstance = preload("res://Scenes/alert.tscn").instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
@@ -86,12 +114,7 @@ func alert():
 		add_child(alertInstance)
 		linear_velocity.x = 0
 		speed = base_speed * alerted_speed_aplifier
-		$skin.frame = 0
-		await Globals.timer(1)
-		$walk.play("walk")
-		$walk.speed_scale = alerted_speed_aplifier
 
 func unalert():
 	alerted = false
 	speed = base_speed
-	$walk.speed_scale = 1

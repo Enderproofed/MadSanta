@@ -20,7 +20,7 @@ var shoot_cooldown = 0
 
 const MAX_SPEED = 900.0
 
-@onready var healthbar 
+@onready var healthbar = $Snowman/Healthbar
 
 @export var health = 100
 
@@ -28,7 +28,6 @@ const MAX_SPEED = 900.0
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	Globals.player = self
-	healthbar = $Snowman/Healthbar
 	health = 100
 	healthbar.init_health(health)
 
@@ -91,6 +90,7 @@ func shoot_icicle():
 	var icicle_projectile = preload("res://Scenes/icicle.tscn").instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
 	get_node("../Projectiles").add_child(icicle_projectile)
 	var direction = (get_global_mouse_position() - position).normalized()
+	direction = direction.rotated((randf()-0.5)*0.1)
 	icicle_projectile.linear_velocity = direction * 1500
 	icicle_projectile.global_position = global_position + direction*50
 	icicle_projectile.look_at(position+direction)
@@ -165,7 +165,7 @@ func _integrate_forces(state):
 			global_position.x = rightPosition
 			linear_velocity.x = 0
 			velocity.x = 0
-	if $top.is_colliding():
+	if $top.is_colliding() and !($top.get_collider() is StaticBody2D and $top.get_collider().name == "OneWayBody"):
 		if global_position.y < $top.get_collision_point().y+$col.shape.extents.y:
 			velocity.y = max(velocity.y,0)
 		global_position.y = max(global_position.y,$top.get_collision_point().y+$col.shape.extents.y)
@@ -198,7 +198,7 @@ func take_damage(amount: int) -> void:
 		
 
 func hide_healthbar():
-	$Snowman/Healthbar.hide()
+	healthbar.hide()
 
 func show_healthbar():
-	$Snowman/Healthbar.show()
+	healthbar.show()
