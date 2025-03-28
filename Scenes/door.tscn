@@ -1,0 +1,150 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddcbjy22olucd"]
+
+[ext_resource type="Script" path="res://Scripts/door.gd" id="1_740r6"]
+[ext_resource type="Texture2D" uid="uid://bkhc8fjsi7woq" path="res://Resources/Images/stone_door1.png" id="1_fnvkk"]
+[ext_resource type="Texture2D" uid="uid://bhgb51s66kenm" path="res://Resources/Images/stone_door2.png" id="2_6x2vy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h247e"]
+size = Vector2(96, 48)
+
+[sub_resource type="Animation" id="Animation_cgohh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bottom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Top:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("cam:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1hywk"]
+resource_name = "open"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bottom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2, 2.63333),
+"transitions": PackedFloat32Array(1, 2, 0.5, 2, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 48), Vector2(0, 24), Vector2(0, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Top:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2, 2.63333),
+"transitions": PackedFloat32Array(1, 2, 0.5, 2, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -48), Vector2(0, -24), Vector2(0, -48)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("cam:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 2.83333, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxi6c"]
+_data = {
+"RESET": SubResource("Animation_cgohh"),
+"open": SubResource("Animation_1hywk")
+}
+
+[node name="Door" type="Node2D"]
+process_mode = 3
+z_index = -1
+script = ExtResource("1_740r6")
+
+[node name="Bottom" type="Node2D" parent="."]
+
+[node name="StoneDoor1" type="Sprite2D" parent="Bottom"]
+position = Vector2(-24, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("1_fnvkk")
+
+[node name="StoneDoor2" type="Sprite2D" parent="Bottom"]
+position = Vector2(24, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("2_6x2vy")
+
+[node name="Colission" type="StaticBody2D" parent="Bottom"]
+collision_mask = 15
+
+[node name="col" type="CollisionShape2D" parent="Bottom/Colission"]
+z_index = -1
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_h247e")
+
+[node name="Top" type="Node2D" parent="."]
+
+[node name="StoneDoor1" type="Sprite2D" parent="Top"]
+position = Vector2(-24, -24)
+scale = Vector2(3, 3)
+texture = ExtResource("1_fnvkk")
+flip_v = true
+
+[node name="StoneDoor2" type="Sprite2D" parent="Top"]
+position = Vector2(24, -24)
+scale = Vector2(3, 3)
+texture = ExtResource("2_6x2vy")
+flip_v = true
+
+[node name="Colission" type="StaticBody2D" parent="Top"]
+collision_mask = 15
+
+[node name="col" type="CollisionShape2D" parent="Top/Colission"]
+z_index = -1
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_h247e")
+
+[node name="cam" type="Camera2D" parent="."]
+enabled = false
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mxi6c")
+}

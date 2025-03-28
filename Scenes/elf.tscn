@@ -1,10 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://cf5ify7hs515i"]
+[gd_scene load_steps=13 format=3 uid="uid://cf5ify7hs515i"]
 
 [ext_resource type="Script" path="res://Scripts/elf.gd" id="1_1q1f5"]
-[ext_resource type="Script" path="res://Scripts/HitBoxEnemy.gd" id="2_vo32s"]
+[ext_resource type="PackedScene" uid="uid://cnau3rqgkdp0" path="res://Scenes/enemy_base.tscn" id="2_v5vy6"]
 [ext_resource type="Texture2D" uid="uid://dl8y7lnmfwgq4" path="res://Resources/Images/Elf.png" id="3_d6orc"]
-[ext_resource type="PackedScene" uid="uid://bvl7sawjp1quy" path="res://Scenes/healthbar.tscn" id="4_osvay"]
-[ext_resource type="Script" path="res://Scripts/HurtBoxEnemy.gd" id="5_xbead"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5ypj8"]
 friction = 0.0
@@ -12,16 +10,8 @@ friction = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qcyav"]
 size = Vector2(21, 54)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aa4cj"]
-radius = 11.9961
-height = 57.7758
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iimlj"]
 size = Vector2(2, 32)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bm0pq"]
-radius = 10.6667
-height = 44.0
 
 [sub_resource type="Animation" id="Animation_qmt73"]
 length = 0.001
@@ -101,20 +91,15 @@ _data = {
 
 [node name="Elf" type="RigidBody2D"]
 collision_layer = 8
-collision_mask = 9
+collision_mask = 25
 physics_material_override = SubResource("PhysicsMaterial_5ypj8")
 can_sleep = false
 script = ExtResource("1_1q1f5")
 
+[node name="EnemyBase" parent="." instance=ExtResource("2_v5vy6")]
+
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qcyav")
-
-[node name="HitBoxEnemy" type="Area2D" parent="collision"]
-script = ExtResource("2_vo32s")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collision/HitBoxEnemy"]
-rotation = -3.16724
-shape = SubResource("CapsuleShape2D_aa4cj")
 
 [node name="skin" type="Sprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
@@ -139,20 +124,6 @@ collision_mask = 3
 shape = SubResource("RectangleShape2D_iimlj")
 
 [node name="floor" type="RayCast2D" parent="."]
-
-[node name="Healthbar" parent="." instance=ExtResource("4_osvay")]
-offset_left = -23.0
-offset_top = -47.0
-offset_right = 22.0
-offset_bottom = -43.0
-
-[node name="HurtBoxEnemy" type="Area2D" parent="."]
-position = Vector2(-1.90735e-06, -3.8147e-06)
-scale = Vector2(1.5, 1.5)
-script = ExtResource("5_xbead")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxEnemy"]
-shape = SubResource("CapsuleShape2D_bm0pq")
 
 [node name="hurt" type="AnimationPlayer" parent="."]
 libraries = {

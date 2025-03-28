@@ -32,19 +32,23 @@ func _input(event: InputEvent) -> void:
 			$Text/Label.visible_ratio = 1
 		else: next_text()
 
+func end_text():
+	$Text/Animation.play_backwards("show_text")
+	await Globals.timer(0.85)
+	change_scenes(Globals.PLAYING)
+	texts_to_show = []
+	text_pointer = 0
+	text_visible = false
+	Globals.player.show_healthbar()
+	Globals.level1_played = true
+	if Globals.level != null:
+		Globals.level.zoom_out()
+
 func next_text():
 	if !text_switch_blocked and !texts_to_show.is_empty():
 		text_switch_blocked = true
 		if text_pointer == texts_to_show.size()-1:
-			$Text/Animation.play_backwards("show_text")
-			await Globals.timer(0.85)
-			change_scenes(Globals.PLAYING)
-			texts_to_show = []
-			text_visible = false
-			Globals.player.show_healthbar()
-			Globals.level1_played = true
-			if Globals.level != null:
-				Globals.level.zoom_out()
+			end_text()
 		else:
 			text_pointer += 1
 			change_text(texts_to_show[text_pointer])
@@ -76,6 +80,27 @@ func intro_text():
 	]
 	start_text_sequence(intro_text)
 
+func back():
+	match Globals.state:
+		Globals.FINISH_MENU:
+			change_scenes(Globals.LEVEL_SELECTION)
+		Globals.LEVEL_SELECTION:
+			change_scenes(Globals.MAIN_MENU)
+		Globals.CREDITS:
+			change_scenes(Globals.MAIN_MENU)
+		Globals.SETTINGS:
+			change_scenes(Globals.MAIN_MENU)
+		Globals.DEATH_SCREEN:
+			change_scenes(Globals.MAIN_MENU)
+		Globals.MAIN_MENU:
+			get_tree().quit()
+		Globals.PAUSED:
+			get_tree().quit()
+		Globals.PLAYING:
+			change_scenes(Globals.PAUSED)
+		Globals.TEXT:
+			next_text()
+
 func change_scenes(sceneName: String) -> void:
 	$PauseMenu.visible = sceneName == Globals.PAUSED and Globals.state == Globals.PLAYING
 	$MainMenu.visible = sceneName == Globals.MAIN_MENU
@@ -101,6 +126,7 @@ func change_scenes(sceneName: String) -> void:
 		$Title.text = "Einstellungen"
 	if sceneName == Globals.PAUSED:
 		$Title.text = "Pause"
+		get_tree().paused = true
 	if sceneName == Globals.FINISH_MENU:
 		$Title.text = "Geschafft!"
 		$Animations.stop()
@@ -133,15 +159,16 @@ func start_level(level_scene: PackedScene):
 		intro_text()
 	else:
 		await Globals.timer(0.017)
-		level.zoom_out()
+		if level != null: level.zoom_out()
 
 
 func next_level():
 	delete_level()
 	Globals.current_level += 1
-	if Globals.levels.size() <= Globals.current_level:
+	if Globals.levels.size() >= Globals.current_level:
 		start_level(Globals.levels[Globals.current_level-1])
-	else: change_scenes(Globals.LEVEL_SELECTION)
+	else: 
+		change_scenes(Globals.LEVEL_SELECTION)
 
 func play_again():
 	delete_level()

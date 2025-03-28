@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://2orvl78ydeks"]
+
+[ext_resource type="Script" path="res://Scripts/one_way_platform.gd" id="1_d5wxl"]
+[ext_resource type="Texture2D" uid="uid://cgi2wbm0m7o8p" path="res://Resources/Images/OnewayColissionPlatform.png" id="2_b0px5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1douh"]
+size = Vector2(48, 10)
+
+[node name="OneWayPlatform" type="Node2D"]
+script = ExtResource("1_d5wxl")
+
+[node name="OneWayBody" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape2D" parent="OneWayBody"]
+position = Vector2(24, 5)
+shape = SubResource("RectangleShape2D_1douh")
+one_way_collision = true
+one_way_collision_margin = 128.0
+
+[node name="Texture" type="TextureRect" parent="."]
+z_index = -1
+offset_right = 16.0
+offset_bottom = 16.0
+scale = Vector2(3, 3)
+texture = ExtResource("2_b0px5")
+stretch_mode = 1
+
+[node name="Playerdetect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="Playerdetect"]
+position = Vector2(24, -5)
+shape = SubResource("RectangleShape2D_1douh")
+
+[connection signal="body_entered" from="Playerdetect" to="." method="_on_playerdetect_body_entered"]
+[connection signal="body_exited" from="Playerdetect" to="." method="_on_playerdetect_body_exited"]

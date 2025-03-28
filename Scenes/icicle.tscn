@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/HitBoxPlayer.gd" id="3_apkow"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_kronj"]
-points = PackedVector2Array(-12.595, 0, 8.46, 6.38, 11.455, 0, 8.46, -6.38)
+points = PackedVector2Array(-12.595, 0, 8.46, 6.38, 30.645, 0, 8.46, -6.38)
 
 [sub_resource type="Curve" id="Curve_6k4dy"]
 _data = [Vector2(0, 0.43956), 0.0, -0.865385, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -60,7 +60,7 @@ _data = {
 
 [node name="Icicle" type="RigidBody2D"]
 collision_layer = 4
-collision_mask = 11
+collision_mask = 27
 gravity_scale = 0.0
 script = ExtResource("1_ssx5l")
 
@@ -91,6 +91,7 @@ texture = ExtResource("3_73gxm")
 
 [node name="area" type="Area2D" parent="."]
 collision_layer = 0
+collision_mask = 25
 
 [node name="collision" type="CollisionShape2D" parent="area"]
 shape = SubResource("ConvexPolygonShape2D_kronj")

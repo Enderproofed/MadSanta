@@ -4,18 +4,15 @@ extends Node2D
 
 func _ready() -> void:
 	$Player/Cam.position.y = 60
-	$Player/Cam.limit_left = $Positions/LevelBorder.position.x
-	$Player/Cam.limit_bottom = $Positions/LevelBorder.position.y
-	$Player/Cam.limit_right = $Positions/LevelBorder2.position.x
-	$Player/Cam.limit_top = $Positions/LevelBorder2.position.y
+	$Player/Cam.limit_left = $LevelBase.border_left
+	$Player/Cam.limit_top = $LevelBase.border_top
+	$Player/Cam.limit_right = $LevelBase.finish_position
+	$Player/Cam.limit_bottom = $LevelBase.border_bottom
 
 func zoom_out():
 	$Animation.play("zoom_out")
 	$Player/Cam.position.y = 0
 
-func _process(delta: float) -> void:
-	pass
-	
 func get_bottom():
-	return $Positions/LevelBorder.position.y 
+	return $LevelBase.get_bottom()
 	

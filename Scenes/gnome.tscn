@@ -1,10 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://gv4layjcwelw"]
+[gd_scene load_steps=13 format=3 uid="uid://gv4layjcwelw"]
 
 [ext_resource type="Texture2D" uid="uid://xv0xrc5mu1a7" path="res://Resources/Images/Gnome.png" id="1_0ew41"]
 [ext_resource type="Script" path="res://Scripts/gnome.gd" id="1_18kyi"]
-[ext_resource type="Script" path="res://Scripts/HitBoxEnemy.gd" id="2_jfrr3"]
-[ext_resource type="PackedScene" uid="uid://bvl7sawjp1quy" path="res://Scenes/healthbar.tscn" id="4_0xhcf"]
-[ext_resource type="Script" path="res://Scripts/HurtBoxEnemy.gd" id="5_7jkgj"]
+[ext_resource type="PackedScene" uid="uid://cnau3rqgkdp0" path="res://Scenes/enemy_base.tscn" id="2_vjr62"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5ypj8"]
 friction = 0.0
@@ -12,23 +10,15 @@ friction = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qcyav"]
 size = Vector2(21, 54)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aa4cj"]
-radius = 11.9961
-height = 57.7758
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iimlj"]
 size = Vector2(2, 32)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bm0pq"]
-radius = 10.6667
-height = 44.0
 
 [sub_resource type="Animation" id="Animation_qmt73"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("skin:modulate")
+tracks/0/path = NodePath("skin/skin:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +35,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("skin:modulate")
+tracks/0/path = NodePath("skin/skin:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -66,7 +56,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("skin:frame")
+tracks/0/path = NodePath("skin/skin:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +73,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("skin:frame")
+tracks/0/path = NodePath("skin/skin:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -101,24 +91,20 @@ _data = {
 
 [node name="Gnome" type="RigidBody2D"]
 collision_layer = 8
-collision_mask = 9
+collision_mask = 25
 physics_material_override = SubResource("PhysicsMaterial_5ypj8")
 can_sleep = false
 script = ExtResource("1_18kyi")
 
+[node name="EnemyBase" parent="." instance=ExtResource("2_vjr62")]
+
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qcyav")
 
-[node name="HitBoxEnemy" type="Area2D" parent="collision"]
-script = ExtResource("2_jfrr3")
-knockback = 1000
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collision/HitBoxEnemy"]
-rotation = -3.16724
-shape = SubResource("CapsuleShape2D_aa4cj")
-
-[node name="skin" type="Sprite2D" parent="."]
+[node name="skin" type="Node2D" parent="."]
 scale = Vector2(1.5, 1.5)
+
+[node name="skin" type="Sprite2D" parent="skin"]
 texture = ExtResource("1_0ew41")
 hframes = 3
 frame = 1
@@ -140,20 +126,6 @@ collision_mask = 3
 shape = SubResource("RectangleShape2D_iimlj")
 
 [node name="floor" type="RayCast2D" parent="."]
-
-[node name="Healthbar" parent="." instance=ExtResource("4_0xhcf")]
-offset_left = -23.0
-offset_top = -47.0
-offset_right = 22.0
-offset_bottom = -43.0
-
-[node name="HurtBoxEnemy" type="Area2D" parent="."]
-position = Vector2(-1.90735e-06, -3.8147e-06)
-scale = Vector2(1.5, 1.5)
-script = ExtResource("5_7jkgj")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxEnemy"]
-shape = SubResource("CapsuleShape2D_bm0pq")
 
 [node name="hurt" type="AnimationPlayer" parent="."]
 libraries = {
