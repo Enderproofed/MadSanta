@@ -1,0 +1,105 @@
+[gd_scene load_steps=13 format=3 uid="uid://cthvhrblbqf3k"]
+
+[ext_resource type="Texture2D" uid="uid://b5k3is810ayhk" path="res://Resources/Images/white_glow.png" id="1_rycim"]
+[ext_resource type="Texture2D" uid="uid://c21ed1cn0erg5" path="res://Resources/Images/SnowyMountainsBackground/4.png" id="2_thro7"]
+[ext_resource type="Texture2D" uid="uid://f53fdfjrgxv7" path="res://Resources/Images/SnowyMountainsBackground/3.png" id="3_vl2vd"]
+[ext_resource type="Texture2D" uid="uid://ccr1qnkvwpbcf" path="res://Resources/Images/SnowyMountainsBackground/2.png" id="4_f2gaf"]
+[ext_resource type="Texture2D" uid="uid://be7mt68rtwsf3" path="res://Resources/Images/SnowyMountainsBackground/1.png" id="5_bgr2f"]
+
+[sub_resource type="Gradient" id="Gradient_ijm8o"]
+colors = PackedColorArray(0, 0, 0.592157, 1, 0.0431373, 0.0862745, 0.207843, 1)
+
+[sub_resource type="CurveTexture" id="CurveTexture_y0sw2"]
+
+[sub_resource type="Gradient" id="Gradient_gnxjf"]
+offsets = PackedFloat32Array(0, 0.137931, 0.853448, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rmavn"]
+gradient = SubResource("Gradient_gnxjf")
+
+[sub_resource type="Curve" id="Curve_7tjn7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.145833, 1), 0.0, 0.0, 0, 0, Vector2(0.847222, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_b4ivo"]
+curve = SubResource("Curve_7tjn7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5128f"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 300, 300)
+angle_min = 1.07288e-05
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_y0sw2")
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 3.0
+angular_velocity_min = -30.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_b4ivo")
+color_ramp = SubResource("GradientTexture1D_rmavn")
+
+[node name="BackgroundNight" type="ParallaxBackground"]
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(640, -112, 640, 672)
+width = 2000.0
+gradient = SubResource("Gradient_ijm8o")
+
+[node name="Stars" type="GPUParticles2D" parent="."]
+position = Vector2(592, 224)
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_5128f")
+texture = ExtResource("1_rycim")
+lifetime = 10.0
+preprocess = 10.0
+fixed_fps = 0
+
+[node name="Layer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.3, 0.03)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Image" type="Sprite2D" parent="Layer3"]
+position = Vector2(576, 384)
+scale = Vector2(3, 3)
+texture = ExtResource("2_thro7")
+offset = Vector2(0, -15)
+
+[node name="Layer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.6, 0.04)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Image" type="Sprite2D" parent="Layer2"]
+position = Vector2(576, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("3_vl2vd")
+offset = Vector2(0, -15)
+
+[node name="Layer1" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.8, 0.1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Image" type="Sprite2D" parent="Layer1"]
+position = Vector2(576, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("4_f2gaf")
+offset = Vector2(0, -15)
+
+[node name="ColorRect" type="ColorRect" parent="Layer1"]
+offset_top = 600.0
+offset_right = 1152.0
+offset_bottom = 992.0
+color = Color(0.0392157, 0.054902, 0.0980392, 1)
+
+[node name="Layer0" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.9, 0.04)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Image" type="Sprite2D" parent="Layer0"]
+position = Vector2(576, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("5_bgr2f")

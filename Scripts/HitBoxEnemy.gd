@@ -4,12 +4,13 @@ extends Area2D
 @export var damage = 10
 @export var knockback = 200
 @export var one_hit = true
+@export var active = true
 
 var hitCountdown = 0.0
 var hit = false
 
 func can_hit() -> bool:
-	return !one_hit or !hit
+	return (!one_hit or !hit) and active
 
 func _hit():
 	hit = true

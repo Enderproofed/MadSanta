@@ -47,18 +47,11 @@ _data = {
 script = ExtResource("1_tkyqy")
 level_number = 2
 
-[node name="Positions" type="Node2D" parent="."]
-
-[node name="LevelBorder" type="Node2D" parent="Positions"]
-position = Vector2(0, 680)
-
-[node name="LevelBorder2" type="Node2D" parent="Positions"]
-position = Vector2(3392, 0)
-
 [node name="LevelBase" parent="." instance=ExtResource("2_wj8qn")]
 show_behind_parent = true
 z_index = -3
 finish_position = 3395
+border_bottom = 740
 
 [node name="Enemies" type="Node2D" parent="."]
 

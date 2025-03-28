@@ -4,7 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://c0b1dovndhbv2" path="res://Resources/Images/present.png" id="2_gg3i0"]
 [ext_resource type="Script" path="res://Scripts/HitBoxEnemy.gd" id="3_h7on1"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_w88jg"]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ejbmi"]
+radius = 7.33333
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvldb"]
+radius = 15.0
 
 [sub_resource type="Curve" id="Curve_bugcl"]
 _data = [Vector2(0, 0.43956), 0.0, -0.865385, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -19,12 +26,6 @@ gravity = Vector3(0, 0, 0)
 scale_min = 3.0
 scale_max = 3.0
 alpha_curve = SubResource("CurveTexture_p3la2")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ejbmi"]
-radius = 7.33333
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_w88jg"]
-radius = 20.0
 
 [sub_resource type="Animation" id="Animation_p4ity"]
 length = 0.001
@@ -65,8 +66,28 @@ _data = {
 
 [node name="Present" type="RigidBody2D"]
 collision_layer = 4
+collision_mask = 25
 gravity_scale = 1.8
 script = ExtResource("1_jybbq")
+
+[node name="area" type="Area2D" parent="."]
+z_index = -2
+collision_layer = 0
+collision_mask = 15
+
+[node name="collision" type="CollisionShape2D" parent="area"]
+shape = SubResource("CircleShape2D_w88jg")
+
+[node name="HitBoxEnemy" type="Area2D" parent="."]
+z_index = -1
+scale = Vector2(3, 3)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_h7on1")
+active = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxEnemy"]
+shape = SubResource("CircleShape2D_ejbmi")
 
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cvldb")
@@ -82,21 +103,6 @@ lifetime = 0.4
 z_index = -1
 scale = Vector2(3, 3)
 texture = ExtResource("2_gg3i0")
-
-[node name="HitBoxPlayer" type="Area2D" parent="Present"]
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("3_h7on1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Present/HitBoxPlayer"]
-shape = SubResource("CircleShape2D_ejbmi")
-
-[node name="area" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 3
-
-[node name="collision" type="CollisionShape2D" parent="area"]
-shape = SubResource("CircleShape2D_w88jg")
 
 [node name="Animations" type="AnimationPlayer" parent="."]
 libraries = {

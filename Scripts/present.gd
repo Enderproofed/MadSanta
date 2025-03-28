@@ -1,6 +1,11 @@
 extends Projectile
 
 var dead = false
+var active = false
+
+func _ready() -> void:
+	await Globals.timer(0.1)
+	active = true
 
 func die():
 	if !dead:
@@ -13,4 +18,4 @@ func die():
 		super()
 
 func collision(body: Node2D) -> void:
-	die()
+	if active:die()

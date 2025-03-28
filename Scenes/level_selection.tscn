@@ -4,7 +4,8 @@
 [ext_resource type="Shader" path="res://Resources/blur.gdshader" id="3_m1au8"]
 [ext_resource type="Script" path="res://Scripts/level_button.gd" id="4_iskqh"]
 [ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_menu_buttons.tres" id="4_l0owf"]
-[ext_resource type="PackedScene" uid="uid://mdwboriqudwf" path="res://Scenes/level_1.tscn" id="5_t36g4"]
+[ext_resource type="PackedScene" uid="uid://iuap6q341bhm" path="res://Scenes/level_mirko.tscn" id="5_5in24"]
+[ext_resource type="PackedScene" uid="uid://mdwboriqudwf" path="res://Scenes/level_1.tscn" id="5_rg3vk"]
 [ext_resource type="PackedScene" uid="uid://cwjxb457j2bxv" path="res://Scenes/level_2.tscn" id="6_rbafn"]
 [ext_resource type="PackedScene" uid="uid://waxamh61b5up" path="res://Scenes/level_nico.tscn" id="7_30jvf"]
 
@@ -56,7 +57,7 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("4_l0owf")
 text = "Level 1"
 script = ExtResource("4_iskqh")
-level_scene = ExtResource("5_t36g4")
+level_scene = ExtResource("5_rg3vk")
 level_number = 1
 
 [node name="Level2" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -65,7 +66,7 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("4_l0owf")
 text = "            Level 2            "
 script = ExtResource("4_iskqh")
-level_scene = ExtResource("6_rbafn")
+level_scene = ExtResource("5_5in24")
 level_number = 2
 
 [node name="Level3" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -74,7 +75,7 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("4_l0owf")
 text = "Level 3"
 script = ExtResource("4_iskqh")
-level_scene = ExtResource("7_30jvf")
+level_scene = ExtResource("6_rbafn")
 level_number = 3
 
 [node name="Level4" type="Button" parent="MarginContainer/VBoxContainer"]

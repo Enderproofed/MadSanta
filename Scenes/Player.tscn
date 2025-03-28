@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b6lj54tqfp1fr"]
+[gd_scene load_steps=24 format=3 uid="uid://b6lj54tqfp1fr"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://b2vumwmikhr3h" path="res://Resources/Images/Snowman.png" id="2_3a8ht"]
@@ -87,10 +87,62 @@ height = 24.0
 [sub_resource type="Gradient" id="Gradient_g18uc"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
+[sub_resource type="Curve" id="Curve_rhxmo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.152778, 1), 0.0, 0.0, 0, 0, Vector2(0.868056, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_0161y"]
+curve = SubResource("Curve_rhxmo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v2buo"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1000, 500, 300)
+gravity = Vector3(-50, 98, 0)
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_0161y")
+
+[sub_resource type="Animation" id="Animation_r61xr"]
+resource_name = "3secZoomInOut"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cam:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 2.33333, 2.96667),
+"transitions": PackedFloat32Array(-2, 1, -2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(2, 2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ksc5y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cam:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.5, 2.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ao8t"]
+_data = {
+"3secZoomInOut": SubResource("Animation_r61xr"),
+"RESET": SubResource("Animation_ksc5y")
+}
+
 [node name="Player" type="RigidBody2D"]
 z_index = 2
 collision_layer = 2
-collision_mask = 9
+collision_mask = 25
 physics_material_override = SubResource("1")
 gravity_scale = 0.0
 can_sleep = false
@@ -98,6 +150,7 @@ continuous_cd = 2
 script = ExtResource("1")
 
 [node name="Cam" type="Camera2D" parent="."]
+process_mode = 3
 zoom = Vector2(2.5, 2.5)
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -114,6 +167,7 @@ shape = SubResource("4")
 
 [node name="down" type="Area2D" parent="."]
 collision_layer = 3
+collision_mask = 17
 
 [node name="col" type="CollisionShape2D" parent="down"]
 position = Vector2(0, 28)
@@ -131,7 +185,6 @@ process_material = SubResource("9")
 [node name="skin" type="Sprite2D" parent="."]
 hframes = 10
 vframes = 10
-frame = 12
 
 [node name="wall" type="GPUParticles2D" parent="skin"]
 position = Vector2(7.5, 8)
@@ -151,12 +204,12 @@ process_material = SubResource("10")
 [node name="floor" type="RayCast2D" parent="."]
 position = Vector2(-15, 24)
 target_position = Vector2(0, 80)
-collision_mask = 9
+collision_mask = 25
 
 [node name="floor2" type="RayCast2D" parent="."]
 position = Vector2(15, 24)
 target_position = Vector2(0, 80)
-collision_mask = 9
+collision_mask = 25
 
 [node name="top" type="RayCast2D" parent="."]
 position = Vector2(0, -24)
@@ -202,5 +255,17 @@ texture_mode = 1
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_7skte")
 bus = &"Effects"
+
+[node name="Snow" type="GPUParticles2D" parent="."]
+visible = false
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_v2buo")
+lifetime = 2.0
+
+[node name="CamAnimation" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_1ao8t")
+}
 
 [connection signal="body_entered" from="EnemyTracker" to="." method="enemy_entered"]

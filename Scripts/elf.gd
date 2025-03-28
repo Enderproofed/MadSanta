@@ -25,4 +25,4 @@ func shoot_present():
 	var distance_to_player = Globals.player.global_position.x - global_position.x
 	var direction = Vector2(distance_to_player, -700 - abs(distance_to_player)).normalized()
 	present_projectile.linear_velocity = direction * 1000
-	present_projectile.global_position = global_position + direction*50
+	present_projectile.global_position = global_position + direction*40
