@@ -33,4 +33,5 @@ func _process(delta: float) -> void:
 		for child in $Pivot.get_children():
 			var size = clamp(80 - abs($Pivot.position.x + child.position.x), 0, 80) / 80.0
 			child.scale = Vector2(max(0.001,size), max(0.001,size))
-			child.modulate.a = size
+			if child.modulate.r != 0.5:
+				child.modulate.a = size
