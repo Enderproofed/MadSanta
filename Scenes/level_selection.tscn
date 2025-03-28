@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://iuap6q341bhm" path="res://Scenes/level_mirko.tscn" id="5_5in24"]
 [ext_resource type="PackedScene" uid="uid://mdwboriqudwf" path="res://Scenes/level_1.tscn" id="5_rg3vk"]
 [ext_resource type="PackedScene" uid="uid://cwjxb457j2bxv" path="res://Scenes/level_2.tscn" id="6_rbafn"]
+[ext_resource type="PackedScene" uid="uid://waxamh61b5up" path="res://Scenes/level_nico.tscn" id="7_30jvf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pc7b3"]
 shader = ExtResource("3_m1au8")
