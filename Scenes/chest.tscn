@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://pph1prssartn"]
 
-[ext_resource type="Texture2D" uid="uid://bm7yjrxo4d3em" path="res://Resources/Images/08 - Chest.png" id="1_qtw4c"]
+[ext_resource type="Texture2D" uid="uid://bm7yjrxo4d3em" path="res://Resources/08 - Chest.png" id="1_qtw4c"]
 [ext_resource type="Script" path="res://Scripts/chest.gd" id="1_t10dv"]
 [ext_resource type="Texture2D" uid="uid://b5k3is810ayhk" path="res://Resources/Images/white_glow.png" id="3_cluhc"]
 [ext_resource type="Texture2D" uid="uid://bxr6iajdvj1tr" path="res://Resources/Images/blue_glow.png" id="4_66mjv"]

@@ -14,6 +14,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body == Globals.player and !opened:
+		print("COLLECTED!!!")
 		Globals.change_scenes(Globals.COLLECT_SCREEN)
 		Globals.collect_screen.set_item_type(item)
 		$Animation.play("open")

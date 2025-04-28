@@ -30,6 +30,7 @@ func _ready() -> void:
 	Globals.player = self
 	health = 100
 	healthbar.init_health(health)
+	$Line2D.hide()
 
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -107,9 +108,10 @@ func _integrate_forces(state):
 	$left.global_position = global_position + Vector2(-$col.shape.size.x/2+1, 0)
 	$top.global_position = global_position + Vector2(0, -$col.shape.size.y/2+1)
 	
-	for child in get_children():
-		if child.get("global_rotation"):
-			child.global_rotation = 0
+	#for child in get_children():
+		#if child.get("global_rotation"):
+			#child.global_rotation = 0
+	global_rotation = 0
 	
 	if Globals.isPaused():
 		paused = true
@@ -144,8 +146,8 @@ func _integrate_forces(state):
 	
 	extra = lerp(extra,1.0,0.1)
 	
-	if normal_v < 0:$skin.scale.x = -1
-	if normal_v > 0:$skin.scale.x = 1
+	#if normal_v < 0:$skin.scale.x = -1
+	#if normal_v > 0:$skin.scale.x = 1
 	
 	if $floor.is_colliding() or $floor2.is_colliding():
 		var floorPosition = max($floor.get_collision_point().y, $floor2.get_collision_point().y)-$col.shape.size.y/2
@@ -194,8 +196,7 @@ func take_damage(amount: int) -> void:
 	healthbar.health = health
 	if health <= 0:
 		Globals.playerDied()
-		
-		
+	$Hurt.play("hurt")
 
 func hide_healthbar():
 	healthbar.hide()

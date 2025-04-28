@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/level_base.gd" id="1_m2mkg"]
 [ext_resource type="PackedScene" uid="uid://cvxgmcglpifqo" path="res://Scenes/background.tscn" id="1_qqdoe"]
 [ext_resource type="PackedScene" uid="uid://8mgsmpcsry2t" path="res://Scenes/finish.tscn" id="3_plcm7"]
-[ext_resource type="PackedScene" path="res://Scenes/backgroundNight.tscn" id="4_vm3ra"]
+[ext_resource type="PackedScene" uid="uid://cthvhrblbqf3k" path="res://Scenes/backgroundNight.tscn" id="4_vm3ra"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fk5qd"]
 size = Vector2(128, 2304)

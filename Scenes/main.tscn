@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ddk2vh04b5n1c"]
+[gd_scene load_steps=35 format=3 uid="uid://ddk2vh04b5n1c"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_uhene"]
 [ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="1_wsnms"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://beygl7farnit4" path="res://Scenes/settings_menu.tscn" id="10_on1yh"]
 [ext_resource type="PackedScene" uid="uid://cvksbkhweo1kg" path="res://Scenes/weapon_selection.tscn" id="10_x0ftc"]
 [ext_resource type="AudioStream" uid="uid://cv2mosluvx1ys" path="res://Resources/Sounds/title_melody.wav" id="13_g6dpr"]
+[ext_resource type="Texture2D" uid="uid://dyjomxd8lr4sm" path="res://Resources/06 - Coin.png" id="14_iuvsc"]
 [ext_resource type="Script" path="res://Scripts/music.gd" id="14_mvmjm"]
 [ext_resource type="AudioStream" uid="uid://fhlg73ytwd2l" path="res://Resources/Sounds/snow_level.wav" id="16_msmy0"]
 
@@ -104,6 +105,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nsq04"]
 _data = {
@@ -172,10 +185,10 @@ tracks/0/path = NodePath("CollectScreen:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.01),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [false, true, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -184,10 +197,10 @@ tracks/1/path = NodePath("CollectScreen:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.01, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_6pjcf"]
@@ -224,17 +237,57 @@ _data = {
 "fade_finish_menu": SubResource("Animation_6pjcf")
 }
 
+[sub_resource type="Animation" id="Animation_fak1r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tsik4"]
+resource_name = "spin"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.466667, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rqnde"]
+_data = {
+"RESET": SubResource("Animation_fak1r"),
+"spin": SubResource("Animation_tsik4")
+}
+
 [node name="Main" type="Node"]
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("1_uhene")
 
 [node name="Background" parent="UI" instance=ExtResource("2_hqxhv")]
+visible = false
 
 [node name="SildeCam" type="Camera2D" parent="UI/Background"]
 position = Vector2(0, -208)
 
 [node name="Title" type="Label" parent="UI"]
+visible = false
 z_index = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -299,6 +352,7 @@ libraries = {
 }
 
 [node name="MainMenu" parent="UI" instance=ExtResource("3_1edqh")]
+visible = false
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("4_byso1")]
 visible = false
@@ -331,13 +385,47 @@ libraries = {
 [node name="WeaponSelection" parent="UI" instance=ExtResource("10_x0ftc")]
 position = Vector2(1056, 584)
 
+[node name="LevelOverlay" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Coins" type="Label" parent="UI/LevelOverlay"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 16.0
+offset_right = 376.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("1_wsnms")
+theme_override_font_sizes/font_size = 25
+text = "0"
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/LevelOverlay/Coins"]
+position = Vector2(-19, 26)
+scale = Vector2(2, 2)
+texture = ExtResource("14_iuvsc")
+hframes = 4
+
+[node name="SpinAnimation" type="AnimationPlayer" parent="UI/LevelOverlay/Coins"]
+libraries = {
+"": SubResource("AnimationLibrary_rqnde")
+}
+autoplay = "spin"
+speed_scale = 1.5
+
 [node name="Music" type="Node" parent="."]
 script = ExtResource("14_mvmjm")
 
 [node name="TitleMelody" type="AudioStreamPlayer" parent="Music"]
+process_mode = 3
 stream = ExtResource("13_g6dpr")
 bus = &"Music"
 
 [node name="LevelMelody" type="AudioStreamPlayer" parent="Music"]
+process_mode = 3
 stream = ExtResource("16_msmy0")
 bus = &"Music"

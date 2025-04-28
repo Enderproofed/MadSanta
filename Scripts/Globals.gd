@@ -44,6 +44,7 @@ var collected_items = []
 var selected_weapon = null
 var level1_played = false
 var triggered_texts = []
+var coins = 0
 
 @onready var collect_screen = get_node("/root/Main/UI/CollectScreen")
 @onready var ui: UI = get_node("/root/Main/UI")
@@ -56,6 +57,7 @@ func _ready() -> void:
 			collect_item(chest_item)
 
 func _process(delta: float) -> void:
+	print(state)
 	if Input.is_action_just_pressed("pause") and !isPaused():
 		change_scenes(Globals.PAUSED) 
 	if Input.is_action_just_pressed("ESC"):
@@ -63,6 +65,15 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("F11"):
 		fullscreen = !fullscreen
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if fullscreen else DisplayServer.WINDOW_MODE_WINDOWED)
+
+func offset_camera(offset: Vector2):
+	player.get_node("Cam").position = offset
+
+func offset_camera_global(global_offset: Vector2):
+	player.get_node("Cam").position = global_offset - player.global_position
+
+func reset_camera():
+	player.get_node("Cam").position = Vector2.ZERO
 
 func item_to_id(item: CHEST_ITEMS) -> int:
 	return item
@@ -113,4 +124,5 @@ func collect_item(item: CHEST_ITEMS):
 	get_node("/root/Main/UI/WeaponSelection").add_selectable_weapon(item)
 	
 func playerDied():
-	ui.change_scenes(DEATH_SCREEN)
+	if state != FINISH_MENU:
+		ui.change_scenes(DEATH_SCREEN)
