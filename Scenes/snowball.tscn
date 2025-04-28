@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cf6ewm62kcask"]
 
-[ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_p2pia"]
+[ext_resource type="Script" path="res://Scripts/snowball.gd" id="1_f64v5"]
 [ext_resource type="Texture2D" uid="uid://dknmtsban5tcd" path="res://Resources/Images/snowball.png" id="1_s2y8b"]
 [ext_resource type="Script" path="res://Scripts/HitBoxPlayer.gd" id="3_ik7ft"]
 
@@ -67,7 +67,7 @@ _data = {
 collision_layer = 4
 collision_mask = 27
 gravity_scale = 1.8
-script = ExtResource("1_p2pia")
+script = ExtResource("1_f64v5")
 
 [node name="HitBoxPlayer" type="Area2D" parent="."]
 z_index = -130

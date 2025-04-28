@@ -29,6 +29,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if !Engine.is_editor_hint():
 		if body == Globals.player:
 			start_text_sequence()
+			trigger()
 
 func start_text_sequence():
 	if text not in Globals.triggered_texts:

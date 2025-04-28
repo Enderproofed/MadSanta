@@ -46,7 +46,7 @@ _data = {
 [node name="LevelNico" type="Node2D"]
 editor_description = "Level 1"
 script = ExtResource("1_kpg4g")
-level_number = 1
+level_number = 3
 
 [node name="LevelBase" parent="." instance=ExtResource("2_yf2nr")]
 show_behind_parent = true

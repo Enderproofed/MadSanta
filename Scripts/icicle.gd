@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Projectile
 
 func _ready() -> void:
 	$trail.process_material = $trail.process_material.duplicate()
