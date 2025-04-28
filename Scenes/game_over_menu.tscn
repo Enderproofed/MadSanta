@@ -56,7 +56,7 @@ theme = ExtResource("2_x085v")
 text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Levelauswahl" to="." method="_on_levelauswahl_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Levelauswahl" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Levelauswahl" to="." method="_on_levelauswahl_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
