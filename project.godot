@@ -27,7 +27,8 @@ Texts="*res://Scripts/Texts.gd"
 
 [display]
 
-window/stretch/mode="viewport"
+window/size/initial_position_type=3
+window/stretch/mode="canvas_items"
 
 [input]
 

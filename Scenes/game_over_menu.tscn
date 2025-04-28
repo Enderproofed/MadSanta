@@ -35,25 +35,25 @@ size_flags_vertical = 4
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_x085v")
-text = "Restart"
+text = "Neustart"
 
 [node name="Levelauswahl" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_x085v")
-text = "Levelauswahl"
+text = "  Levelauswahl  "
 
 [node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_x085v")
-text = "     Main Menu     "
+text = "     Hauptmenü     "
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_x085v")
-text = "Quit"
+text = "Rage Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Levelauswahl" to="." method="_on_restart_pressed"]

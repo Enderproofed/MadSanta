@@ -35,7 +35,7 @@ func set_health(health: float):
 	healthbar.init_health(health)
 
 func _process(delta: float) -> void:
-	if activated_by != null and activated != true: return
+	if activated_by != null and !activated: return
 	
 	alertCountdown = max(alertCountdown - delta, 0)
 	if linear_velocity.x < -2:
@@ -62,7 +62,7 @@ func _process(delta: float) -> void:
 		right_edge = false
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	if activated_by != null and activated != true: return
+	if activated_by != null and !activated: return
 	
 	global_rotation = 0
 	if Globals.player != null:

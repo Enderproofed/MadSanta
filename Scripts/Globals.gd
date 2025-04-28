@@ -57,7 +57,7 @@ func _ready() -> void:
 			collect_item(chest_item)
 
 func _process(delta: float) -> void:
-	print(state)
+	#print(state)
 	if Input.is_action_just_pressed("pause") and !isPaused():
 		change_scenes(Globals.PAUSED) 
 	if Input.is_action_just_pressed("ESC"):
