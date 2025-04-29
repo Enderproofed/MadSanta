@@ -13,4 +13,9 @@ script = ExtResource("1_8wnux")
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3rfc8")
 
+[node name="CamOffsetLine" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 6.0
+default_color = Color(1, 1, 1, 0.32549)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

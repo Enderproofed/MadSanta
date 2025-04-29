@@ -12,16 +12,19 @@ var direction = -1
 var enemy = true
 var alerted = false
 var active = false
+var activated = false
 var alertCountdown = 0
 var acceleration = BASE_ACCELERATION
 var left_edge = false
 var right_edge = false
+var stunning = 1.0
 
 @onready var healthbar: HealthBar = $EnemyBase/Healthbar
 var health
 var max_health
 
 @export var door: Door
+@export var activated_by: Node2D
 
 func get_enemy_name() -> String:
 	return $EnemyBase/Label.text
@@ -32,6 +35,8 @@ func set_health(health: float):
 	healthbar.init_health(health)
 
 func _process(delta: float) -> void:
+	if activated_by != null and !activated: return
+	
 	alertCountdown = max(alertCountdown - delta, 0)
 	if linear_velocity.x < -2:
 		$skin.scale.x = 1.5
@@ -57,6 +62,8 @@ func _process(delta: float) -> void:
 		right_edge = false
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if activated_by != null and !activated: return
+	
 	global_rotation = 0
 	if Globals.player != null:
 		var distance_to_player = position.distance_to(Globals.player.position)
@@ -95,7 +102,7 @@ func take_damage(amount: int) -> void:
 	if health <= 0:
 		die()
 	
-	linear_velocity.x = 0
+	linear_velocity.x = lerp(linear_velocity.x, 0.0, stunning)
 	$hurt.stop()
 	$hurt.play("hurt")
 
@@ -118,3 +125,6 @@ func alert():
 func unalert():
 	alerted = false
 	speed = base_speed
+
+func activate():
+	activated = true

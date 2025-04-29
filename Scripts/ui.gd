@@ -5,6 +5,7 @@ var text_pointer = 0
 var texts_to_show = []
 var text_switch_blocked = false
 var menu = true
+var a = 0
 
 func _ready() -> void:
 	change_scenes(Globals.state)
@@ -17,6 +18,8 @@ func _process(delta: float) -> void:
 		$Text/Label.visible_ratio += delta/3
 	if Globals.MAIN_MENU:
 		$Background/SildeCam.position.x += 1
+	
+	$LevelOverlay/Coins.text = str(Globals.coins)
 
 func start_text_sequence(texts):
 	change_scenes(Globals.TEXT)
@@ -34,7 +37,7 @@ func _input(event: InputEvent) -> void:
 
 func end_text():
 	$Text/Animation.play_backwards("show_text")
-	await Globals.timer(0.85)
+	#await Globals.timer(0.85)
 	change_scenes(Globals.PLAYING)
 	texts_to_show = []
 	text_pointer = 0
@@ -43,6 +46,7 @@ func end_text():
 	Globals.level1_played = true
 	if Globals.level != null:
 		Globals.level.zoom_out()
+	Globals.reset_camera()
 
 func next_text():
 	if !text_switch_blocked and !texts_to_show.is_empty():
@@ -70,15 +74,7 @@ func change_text(text: String):
 
 func intro_text():
 	Globals.player.hide_healthbar()
-	var intro_text = [
-		"Du bist ein Schneemann und deine Schneefrau wurde brutal von\n
-		Schrergen des wild gewordenen Weihnachtsmannes getötet.",
-		"Deine Mission ist es den Weihnachtsmann und seine fiesen\n
-		Machenschaften zu stoppen und dich an ihm zu rächen.",
-		"Doch sei gewarnt. Er hat bereits seine Schergen auf dich\n
-		angesetzt. Sei also auf der hut!"
-	]
-	start_text_sequence(intro_text)
+	start_text_sequence(Texts.INTRO)
 
 func back():
 	match Globals.state:
@@ -109,10 +105,12 @@ func change_scenes(sceneName: String) -> void:
 	$Credits.visible = sceneName == Globals.CREDITS
 	var scenes_without_background = [Globals.PLAYING, Globals.FINISH_MENU, Globals.DEATH_SCREEN]
 	$Background/SildeCam.enabled = sceneName not in scenes_without_background
+	$Background.visible = sceneName not in scenes_without_background
 	var scenes_with_title = [Globals.MAIN_MENU, Globals.LEVEL_SELECTION, Globals.CREDITS, Globals.FINISH_MENU, Globals.PAUSED, Globals.SETTINGS, Globals.DEATH_SCREEN]
 	$Title.visible = sceneName in scenes_with_title
 	$WeaponSelection/Animation.play("show" if sceneName == Globals.PLAYING else "hide")
 	$gameOverMenu.visible = sceneName == Globals.DEATH_SCREEN
+	$LevelOverlay.visible = sceneName == Globals.PLAYING
 	if sceneName == Globals.MAIN_MENU:
 		$Title.text = "Mad Santa"
 	if sceneName == Globals.DEATH_SCREEN:
@@ -143,7 +141,7 @@ func change_scenes(sceneName: String) -> void:
 		$CollectScreen.hide()
 		$CollectScreen.modulate.a = 0
 		#TODO might need check for current game state
-	if  sceneName in [Globals.MAIN_MENU, Globals.LEVEL_SELECTION] :
+	if  sceneName in [Globals.MAIN_MENU, Globals.LEVEL_SELECTION]:
 		delete_level()
 	Globals.state = sceneName
 
@@ -151,6 +149,7 @@ func start_level(level_scene: PackedScene):
 	var level = level_scene.instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
 	get_node("../").add_child(level)
 	Globals.level = level
+	print(level_scene, "  /  ", level)
 	Globals.current_level = level.level_number
 	Globals.enemies_killed = 0
 	Globals.enemies_in_level = level.get_node("Enemies").get_child_count()
