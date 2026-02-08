@@ -1,12 +1,13 @@
 [gd_resource type="TileSet" load_steps=4 format=3 uid="uid://dcltu6sxqh3la"]
 
-[ext_resource type="Texture2D" uid="uid://4ty5i2lw6aq7" path="res://Resources/01 - Tileset.png" id="1_7nm65"]
+[ext_resource type="Texture2D" uid="uid://4ty5i2lw6aq7" path="res://Resources/Images/01 - Tileset.png" id="1_7ulml"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fhn6f"]
-texture = ExtResource("1_7nm65")
+texture = ExtResource("1_7ulml")
 0:0/0 = 0
 0:0/0/terrain_set = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/terrain = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5.98996, -6.99448, -5.98996, -6.99448, -7.05649, -5.95275, -7.00689, -6.00236, -8, 8, -8, 8, 8, -8, 8)
 0:0/0/terrains_peering_bit/bottom_right_corner = 0
 1:0/0 = 0
 1:0/0/terrain_set = 0
@@ -358,7 +359,7 @@ texture = ExtResource("1_7nm65")
 8:4/0/terrains_peering_bit/top_side = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8rscc"]
-texture = ExtResource("1_7nm65")
+texture = ExtResource("1_7ulml")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0

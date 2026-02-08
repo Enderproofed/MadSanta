@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://byruqbxri55ls"]
+[gd_scene load_steps=12 format=3 uid="uid://byruqbxri55ls"]
 
 [ext_resource type="Script" path="res://Scripts/icicle.gd" id="1_ssx5l"]
 [ext_resource type="Texture2D" uid="uid://8v2til5u0c6l" path="res://Resources/Images/Icicle.png" id="3_73gxm"]
@@ -15,6 +15,7 @@ point_count = 2
 curve = SubResource("Curve_6k4dy")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p7bsc"]
+resource_local_to_scene = true
 particle_flag_disable_z = true
 angle_min = 90.0
 angle_max = 90.0
@@ -38,7 +39,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_aove2"]
 resource_name = "die"
-length = 0.3
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,7 +47,37 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
+"times": PackedFloat32Array(0, 9.46667, 9.96667),
+"transitions": PackedFloat32Array(1, 1, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_f4ysb"]
+resource_name = "die_fast"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, -2),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -55,12 +86,13 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ax0hu"]
 _data = {
 "RESET": SubResource("Animation_p4ity"),
-"die": SubResource("Animation_aove2")
+"die": SubResource("Animation_aove2"),
+"die_fast": SubResource("Animation_f4ysb")
 }
 
 [node name="Icicle" type="RigidBody2D"]
 collision_layer = 4
-collision_mask = 27
+collision_mask = 57
 gravity_scale = 0.0
 script = ExtResource("1_ssx5l")
 
@@ -86,19 +118,24 @@ shape = SubResource("ConvexPolygonShape2D_kronj")
 
 [node name="Texture" type="Sprite2D" parent="."]
 z_index = -1
-rotation = 1.5708
+rotation = -1.5708
 texture = ExtResource("3_73gxm")
+
+[node name="Animations" type="AnimationPlayer" parent="Texture"]
+libraries = {
+"": SubResource("AnimationLibrary_ax0hu")
+}
 
 [node name="area" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 25
+collision_mask = 57
 
 [node name="collision" type="CollisionShape2D" parent="area"]
 shape = SubResource("ConvexPolygonShape2D_kronj")
 
-[node name="Animations" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ax0hu")
-}
+[node name="ColPrediction" type="RayCast2D" parent="."]
+position = Vector2(8, 0)
+target_position = Vector2(100, 0)
+collision_mask = 0
 
 [connection signal="body_entered" from="area" to="." method="collision"]

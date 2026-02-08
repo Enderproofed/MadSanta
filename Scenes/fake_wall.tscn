@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dnefbu3xkpj6h"]
 
 [ext_resource type="Script" path="res://Scripts/fake_wall.gd" id="1_2pc8x"]
-[ext_resource type="Texture2D" uid="uid://4ty5i2lw6aq7" path="res://Resources/01 - Tileset.png" id="1_f61w7"]
+[ext_resource type="Texture2D" uid="uid://4ty5i2lw6aq7" path="res://Resources/Images/01 - Tileset.png" id="1_f61w7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pu6xf"]
 size = Vector2(200, 20)
@@ -137,7 +137,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("1_f61w7")
 hframes = 11
 vframes = 5
-frame = 1
+frame = 28
 
 [node name="Sprite2D6" type="Sprite2D" parent="CornersFake"]
 position = Vector2(48, -72)

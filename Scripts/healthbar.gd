@@ -9,6 +9,7 @@ func _set_health(new_health):
 	update_fill_color(health/max_value)
 	if health <= 0:
 		hide()
+	$Label.text = str(int(health)) + "/" + str(int(max_value))
 
 func calculate_color(progress: float) -> Color:
 	return Color(1.0, progress * 2.0, 0.0) if progress <= 0.5 else Color(1.0 - (progress - 0.5) * 2.0, 1.0, 0.0)

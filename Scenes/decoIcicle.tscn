@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://bha0oxkrplatf"]
+
+[ext_resource type="Texture2D" uid="uid://8v2til5u0c6l" path="res://Resources/Images/Icicle.png" id="1_xl4vv"]
+[ext_resource type="Texture2D" uid="uid://b5k3is810ayhk" path="res://Resources/Images/white_glow.png" id="2_j8lfy"]
+
+[sub_resource type="Gradient" id="Gradient_oqgde"]
+offsets = PackedFloat32Array(0, 0.491803, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bhav1"]
+gradient = SubResource("Gradient_oqgde")
+
+[sub_resource type="Curve" id="Curve_7kg7j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.293333, 1), 0.0, 0.0, 0, 0, Vector2(0.753333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ee3rj"]
+curve = SubResource("Curve_7kg7j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jdfjc"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(112, 16, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 1.0
+damping_max = 3.0
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_ee3rj")
+color_ramp = SubResource("GradientTexture1D_bhav1")
+
+[node name="Icicle" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 232.0
+offset_right = 232.0
+
+[node name="IcicleMiddle" type="Sprite2D" parent="."]
+visible = false
+rotation = -1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("1_xl4vv")
+
+[node name="Icicle4" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(-80, 0)
+rotation = -1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("1_xl4vv")
+
+[node name="Icicle5" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.4)
+position = Vector2(-40, 0)
+rotation = -1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("1_xl4vv")
+
+[node name="Icicle3" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.6)
+rotation = -1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("1_xl4vv")
+
+[node name="Icicle2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.74902)
+position = Vector2(40, 0)
+rotation = -1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("1_xl4vv")
+
+[node name="Icicle1" type="Sprite2D" parent="."]
+position = Vector2(80, 0)
+rotation = -1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("1_xl4vv")
+
+[node name="Particles2" type="GPUParticles2D" parent="."]
+modulate = Color(5, 5, 5, 1)
+position = Vector2(8, 0)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_jdfjc")
+texture = ExtResource("2_j8lfy")
+preprocess = 5.0
+local_coords = true

@@ -28,12 +28,12 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if !Engine.is_editor_hint():
 		if body == Globals.player:
-			start_text_sequence()
 			trigger()
+			start_text_sequence()
 
 func start_text_sequence():
 	if text not in Globals.triggered_texts:
-		get_node("/root/Main/UI").start_text_sequence(Texts.get_text(text))
+		get_node("/root/Main/Overlay/UI").start_text_sequence(text)
 		if offset_target != null:
 			Globals.offset_camera_global(offset_target.global_position)
 		else:

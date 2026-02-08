@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cthvhrblbqf3k"]
+[gd_scene load_steps=14 format=3 uid="uid://cthvhrblbqf3k"]
 
 [ext_resource type="Texture2D" uid="uid://b5k3is810ayhk" path="res://Resources/Images/white_glow.png" id="1_rycim"]
 [ext_resource type="Texture2D" uid="uid://c21ed1cn0erg5" path="res://Resources/Images/SnowyMountainsBackground/4.png" id="2_thro7"]
@@ -9,20 +9,27 @@
 [sub_resource type="Gradient" id="Gradient_ijm8o"]
 colors = PackedColorArray(0, 0, 0.592157, 1, 0.0431373, 0.0862745, 0.207843, 1)
 
-[sub_resource type="CurveTexture" id="CurveTexture_y0sw2"]
+[sub_resource type="Curve" id="Curve_6mink"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dwnf1"]
+curve = SubResource("Curve_6mink")
 
 [sub_resource type="Gradient" id="Gradient_gnxjf"]
 offsets = PackedFloat32Array(0, 0.137931, 0.853448, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_rmavn"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7vsnq"]
 gradient = SubResource("Gradient_gnxjf")
 
 [sub_resource type="Curve" id="Curve_7tjn7"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.145833, 1), 0.0, 0.0, 0, 0, Vector2(0.847222, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_b4ivo"]
+[sub_resource type="CurveTexture" id="CurveTexture_p1mep"]
 curve = SubResource("Curve_7tjn7")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5128f"]
@@ -31,7 +38,7 @@ emission_shape = 3
 emission_box_extents = Vector3(600, 300, 300)
 angle_min = 1.07288e-05
 angle_max = 360.0
-angle_curve = SubResource("CurveTexture_y0sw2")
+angle_curve = SubResource("CurveTexture_dwnf1")
 spread = 180.0
 initial_velocity_min = 0.5
 initial_velocity_max = 3.0
@@ -40,14 +47,14 @@ angular_velocity_max = 30.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_max = 0.2
-scale_curve = SubResource("CurveTexture_b4ivo")
-color_ramp = SubResource("GradientTexture1D_rmavn")
+scale_curve = SubResource("CurveTexture_p1mep")
+color_ramp = SubResource("GradientTexture1D_7vsnq")
 
 [node name="BackgroundNight" type="ParallaxBackground"]
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(640, -112, 640, 672)
-width = 2000.0
+points = PackedVector2Array(1152, 0, 1152, 648)
+width = 2304.0
 gradient = SubResource("Gradient_ijm8o")
 
 [node name="Stars" type="GPUParticles2D" parent="."]

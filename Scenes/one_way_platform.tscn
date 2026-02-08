@@ -26,14 +26,3 @@ offset_bottom = 16.0
 scale = Vector2(3, 3)
 texture = ExtResource("2_b0px5")
 stretch_mode = 1
-
-[node name="Playerdetect" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="Collision" type="CollisionShape2D" parent="Playerdetect"]
-position = Vector2(24, -5)
-shape = SubResource("RectangleShape2D_1douh")
-
-[connection signal="body_entered" from="Playerdetect" to="." method="_on_playerdetect_body_entered"]
-[connection signal="body_exited" from="Playerdetect" to="." method="_on_playerdetect_body_exited"]

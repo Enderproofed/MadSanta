@@ -15,7 +15,6 @@ var saved_value = null
 func _on_entered_body_entered(body: Node2D) -> void:
 	if body == Globals.player:
 		if saved_value == null:
-			print("saved")
 			match direction:
 				DIRECTION.TOP: saved_value = body.get_node("Cam").limit_top
 				DIRECTION.BOTTOM: saved_value = body.get_node("Cam").limit_bottom
@@ -29,7 +28,6 @@ func _on_entered_body_entered(body: Node2D) -> void:
 		
 
 func _on_exited_body_entered(body: Node2D) -> void:
-	print("exited")
 	if body == Globals.player:
 		if saved_value != null:
 			match direction:

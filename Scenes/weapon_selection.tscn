@@ -1,26 +1,33 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvksbkhweo1kg"]
+[gd_scene load_steps=11 format=3 uid="uid://cvksbkhweo1kg"]
 
 [ext_resource type="Script" path="res://Scripts/weapon_selection.gd" id="1_ngvrv"]
 [ext_resource type="Texture2D" uid="uid://dknmtsban5tcd" path="res://Resources/Images/snowball.png" id="1_w87a7"]
 [ext_resource type="Texture2D" uid="uid://8v2til5u0c6l" path="res://Resources/Images/Icicle.png" id="2_egnua"]
+[ext_resource type="Environment" uid="uid://cqttt4dkikimg" path="res://Resources/glow_environment.tres" id="2_jhhbh"]
 
-[sub_resource type="Animation" id="Animation_q6b00"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_85jra"]
+resource_name = "radiate"
+length = 0.5
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Color(0.7, 0.9, 100, 1), Color(0.8, 0.9, 100, 1), Color(0.7, 0.9, 100, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_85dlt"]
-resource_name = "hide"
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sw2vm"]
+_data = {
+"radiate": SubResource("Animation_85jra")
+}
+
+[sub_resource type="Animation" id="Animation_q6b00"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -44,7 +51,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -57,6 +64,46 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_85dlt"]
+resource_name = "hide"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.995), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.01, 0.01)]
 }
 
 [sub_resource type="Animation" id="Animation_o3f5x"]
@@ -107,30 +154,85 @@ _data = {
 "show": SubResource("Animation_o3f5x")
 }
 
-[node name="WeaponSelection" type="Node2D"]
+[node name="WeaponSelection" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -64.0
+offset_right = -96.0
+offset_bottom = -64.0
+grow_horizontal = 0
+grow_vertical = 0
 script = ExtResource("1_ngvrv")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_jhhbh")
 
 [node name="Pivot" type="Node2D" parent="."]
 
 [node name="Snowball" type="Node2D" parent="Pivot"]
 
-[node name="Snowball" type="Sprite2D" parent="Pivot/Snowball"]
+[node name="Image" type="Sprite2D" parent="Pivot/Snowball"]
 scale = Vector2(4, 4)
 texture = ExtResource("1_w87a7")
+
+[node name="Label" type="Label" parent="Pivot/Snowball"]
+offset_left = -24.0
+offset_top = 24.0
+offset_right = 456.0
+offset_bottom = 254.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 150
+text = "1"
+horizontal_alignment = 1
 
 [node name="Icicle" type="Node2D" parent="Pivot"]
 position = Vector2(40, 0)
 
-[node name="Snowball" type="Sprite2D" parent="Pivot/Icicle"]
+[node name="Image" type="Sprite2D" parent="Pivot/Icicle"]
 scale = Vector2(2, 2)
 texture = ExtResource("2_egnua")
+
+[node name="Label" type="Label" parent="Pivot/Icicle"]
+offset_left = -24.0
+offset_top = 24.0
+offset_right = 456.0
+offset_bottom = 254.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 150
+text = "2"
+horizontal_alignment = 1
 
 [node name="A" type="Node2D" parent="Pivot"]
 position = Vector2(80, 0)
 
-[node name="Snowball" type="Sprite2D" parent="Pivot/A"]
-scale = Vector2(4, 4)
-texture = ExtResource("1_w87a7")
+[node name="LaserBeam" type="Line2D" parent="Pivot/A"]
+modulate = Color(0.7, 0.9, 100, 1)
+points = PackedVector2Array(-16, 24, 8, -16)
+width = 8.0
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="A" type="AnimationPlayer" parent="Pivot/A/LaserBeam"]
+libraries = {
+"": SubResource("AnimationLibrary_sw2vm")
+}
+autoplay = "radiate"
+
+[node name="Label" type="Label" parent="Pivot/A"]
+offset_left = -24.0
+offset_top = 24.0
+offset_right = 456.0
+offset_bottom = 254.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 150
+text = "3"
+horizontal_alignment = 1
 
 [node name="B" type="Node2D" parent="Pivot"]
 position = Vector2(120, 0)
@@ -139,12 +241,32 @@ position = Vector2(120, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("2_egnua")
 
+[node name="Label" type="Label" parent="Pivot/B"]
+offset_left = -24.0
+offset_top = 24.0
+offset_right = 456.0
+offset_bottom = 254.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 150
+text = "4"
+horizontal_alignment = 1
+
 [node name="C" type="Node2D" parent="Pivot"]
 position = Vector2(160, 0)
 
 [node name="Snowball" type="Sprite2D" parent="Pivot/C"]
 scale = Vector2(4, 4)
 texture = ExtResource("1_w87a7")
+
+[node name="Label" type="Label" parent="Pivot/C"]
+offset_left = -24.0
+offset_top = 24.0
+offset_right = 456.0
+offset_bottom = 254.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 150
+text = "5"
+horizontal_alignment = 1
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {

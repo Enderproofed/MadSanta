@@ -1,0 +1,112 @@
+[gd_scene load_steps=7 format=3 uid="uid://bx1bo278vn02r"]
+
+[ext_resource type="Script" path="res://Scripts/planet_deco.gd" id="1_7v4ye"]
+[ext_resource type="Texture2D" uid="uid://c2b8irlkiat3n" path="res://Resources/Images/EarthSpinning.png" id="2_3w5cc"]
+
+[sub_resource type="Animation" id="Animation_bowhh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Planet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Planet:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [50]
+}
+
+[sub_resource type="Animation" id="Animation_lx8cn"]
+resource_name = "Spin100Frames"
+length = 50.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Planet:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [100]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Planet:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0.125, 49.875),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 99]
+}
+
+[sub_resource type="Animation" id="Animation_divko"]
+resource_name = "Spin50Frames"
+length = 25.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Planet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0.25, 24.75),
+"transitions": PackedFloat32Array(1, 0),
+"update": 0,
+"values": [0, 49]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Planet:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [50]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tfai5"]
+_data = {
+"RESET": SubResource("Animation_bowhh"),
+"Spin100Frames": SubResource("Animation_lx8cn"),
+"Spin50Frames": SubResource("Animation_divko")
+}
+
+[node name="PlanetDeco" type="Node2D"]
+script = ExtResource("1_7v4ye")
+
+[node name="Planet" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_3w5cc")
+hframes = 50
+
+[node name="Spin" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tfai5")
+}
+autoplay = "Spin100Frames"

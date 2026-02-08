@@ -1,10 +1,14 @@
 extends Node
 
+var texts_map = {}
+
+func _ready() -> void:
+	for text:String in TEXTS.keys():
+		texts_map.get_or_add(TEXTS.keys().find(text), get(text))
+	print(texts_map)
+
 func get_text(type: TEXTS):
-	match type:
-		TEXTS.INTRO: return self.INTRO
-		TEXTS.BIG_GNOME: return self.BIG_GNOME
-	return [""]
+	return texts_map.values()[type]
 
 enum TEXTS {
 	INTRO,

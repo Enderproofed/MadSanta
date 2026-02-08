@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c24638ekp5g3y"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_jit5o"]
-[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_menu_buttons.tres" id="2_xauh6"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="2_xauh6"]
 [ext_resource type="Shader" path="res://Resources/blur.gdshader" id="6_52gx7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pc7b3"]
@@ -64,12 +64,11 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("2_xauh6")
 text = "Credits"
 
-[node name="DeleteSaveFile" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Accounts" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_xauh6")
-disabled = true
-text = "Neues Spiel"
+text = "Spielstände"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -80,5 +79,5 @@ text = "Verlassen"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/DeleteSaveFile" to="." method="new_game"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Accounts" to="." method="_on_accounts_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -2,30 +2,30 @@
 
 [ext_resource type="Script" path="res://Scripts/collect_screen.gd" id="1_sv3vy"]
 [ext_resource type="Shader" path="res://Resources/blur.gdshader" id="2_wndp2"]
-[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_menu_buttons.tres" id="3_13dab"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="3_13dab"]
 [ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="4_8a175"]
-[ext_resource type="Texture2D" uid="uid://dknmtsban5tcd" path="res://Resources/Images/snowball.png" id="5_cgp88"]
 [ext_resource type="Texture2D" uid="uid://b5k3is810ayhk" path="res://Resources/Images/white_glow.png" id="5_xbmpn"]
-[ext_resource type="Texture2D" uid="uid://bxr6iajdvj1tr" path="res://Resources/Images/blue_glow.png" id="6_a8m8d"]
-[ext_resource type="Texture2D" uid="uid://8v2til5u0c6l" path="res://Resources/Images/Icicle.png" id="8_t038k"]
+[ext_resource type="PackedScene" uid="uid://dwjdd8gpys2xm" path="res://Scenes/decoSnowball.tscn" id="6_x255q"]
+[ext_resource type="PackedScene" uid="uid://bha0oxkrplatf" path="res://Scenes/decoIcicle.tscn" id="7_klm1r"]
+[ext_resource type="PackedScene" uid="uid://2k0dfvfpvmou" path="res://Scenes/decoLaser.tscn" id="8_01y0d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_836vi"]
 shader = ExtResource("2_wndp2")
 shader_parameter/blur = 2.0
 
-[sub_resource type="Gradient" id="Gradient_ppd36"]
+[sub_resource type="Gradient" id="Gradient_oqgde"]
 offsets = PackedFloat32Array(0, 0.491803, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_bhav1"]
-gradient = SubResource("Gradient_ppd36")
+gradient = SubResource("Gradient_oqgde")
 
-[sub_resource type="Curve" id="Curve_x6i0b"]
+[sub_resource type="Curve" id="Curve_7kg7j"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.293333, 1), 0.0, 0.0, 0, 0, Vector2(0.753333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_ee3rj"]
-curve = SubResource("Curve_x6i0b")
+curve = SubResource("Curve_7kg7j")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_re7kw"]
 particle_flag_disable_z = true
@@ -97,14 +97,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot:position")
+tracks/0/path = NodePath("Pivot/Pivot:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(576, 320)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_6igpi"]
@@ -114,14 +114,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot:position")
+tracks/0/path = NodePath("Pivot/Pivot:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(-2, -2, 1),
 "update": 0,
-"values": [Vector2(576, 340), Vector2(576, 296), Vector2(576, 340)]
+"values": [Vector2(0, 20), Vector2(0, -24), Vector2(0, 20)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e31r2"]
@@ -131,6 +131,7 @@ _data = {
 }
 
 [node name="CollectScreen" type="Control"]
+modulate = Color(3, 3, 3, 1)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -183,32 +184,6 @@ text = "Du hast ... erhalten!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Particles" type="GPUParticles2D" parent="."]
-position = Vector2(576, 296.57)
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_re7kw")
-texture = ExtResource("5_xbmpn")
-lifetime = 5.0
-preprocess = 5.0
-
-[node name="ParticlesBlue" type="GPUParticles2D" parent="."]
-show_behind_parent = true
-position = Vector2(576, 296.57)
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_ysbsj")
-texture = ExtResource("6_a8m8d")
-lifetime = 5.0
-preprocess = 5.0
-
-[node name="ParticlesBlue2" type="GPUParticles2D" parent="."]
-show_behind_parent = true
-position = Vector2(576, 296.57)
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_uwkbw")
-texture = ExtResource("6_a8m8d")
-lifetime = 5.0
-preprocess = 5.0
-
 [node name="Pivot" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -216,61 +191,61 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = 16.0
-offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Snowball" type="Control" parent="Pivot"]
-anchors_preset = 0
+[node name="Particles" type="GPUParticles2D" parent="Pivot"]
+modulate = Color(5, 5, 5, 1)
+position = Vector2(0, -27.43)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_re7kw")
+texture = ExtResource("5_xbmpn")
+lifetime = 5.0
+preprocess = 5.0
 
-[node name="Snowball6" type="Sprite2D" parent="Pivot/Snowball"]
+[node name="ParticlesBlue" type="GPUParticles2D" parent="Pivot"]
 visible = false
-modulate = Color(1, 1, 1, 0.2)
-position = Vector2(-88, 10)
-scale = Vector2(5, 5)
-texture = ExtResource("5_cgp88")
+modulate = Color(0.4, 0.9, 5, 1)
+show_behind_parent = true
+position = Vector2(0, -27.43)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_ysbsj")
+texture = ExtResource("5_xbmpn")
+lifetime = 5.0
+preprocess = 5.0
 
-[node name="Snowball5" type="Sprite2D" parent="Pivot/Snowball"]
+[node name="ParticlesBlue2" type="GPUParticles2D" parent="Pivot"]
+modulate = Color(0.4, 0.9, 5, 1)
+show_behind_parent = true
+position = Vector2(0, -27.43)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_uwkbw")
+texture = ExtResource("5_xbmpn")
+lifetime = 5.0
+preprocess = 5.0
+
+[node name="Pivot" type="Control" parent="Pivot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Snowball" parent="Pivot/Pivot" instance=ExtResource("6_x255q")]
 visible = false
-modulate = Color(1, 1, 1, 0.4)
-position = Vector2(-47, -12)
-scale = Vector2(5, 5)
-texture = ExtResource("5_cgp88")
 
-[node name="Snowball4" type="Sprite2D" parent="Pivot/Snowball"]
+[node name="Icicle" parent="Pivot/Pivot" instance=ExtResource("7_klm1r")]
 visible = false
-modulate = Color(1, 1, 1, 0.6)
-position = Vector2(-3.99997, -16)
-scale = Vector2(5, 5)
-texture = ExtResource("5_cgp88")
+offset_left = 0.0
+offset_right = 0.0
 
-[node name="Snowball3" type="Sprite2D" parent="Pivot/Snowball"]
+[node name="Laser" parent="Pivot/Pivot" instance=ExtResource("8_01y0d")]
 visible = false
-modulate = Color(1, 1, 1, 0.8)
-position = Vector2(42, -10)
-scale = Vector2(5, 5)
-texture = ExtResource("5_cgp88")
-
-[node name="Snowball2" type="Sprite2D" parent="Pivot/Snowball"]
-visible = false
-position = Vector2(83, 6)
-scale = Vector2(5, 5)
-texture = ExtResource("5_cgp88")
-
-[node name="SnowballMiddle" type="Sprite2D" parent="Pivot/Snowball"]
-position = Vector2(7.62939e-06, 3.8147e-06)
-scale = Vector2(6, 6)
-texture = ExtResource("5_cgp88")
-
-[node name="Icicle" type="Control" parent="Pivot"]
-visible = false
-anchors_preset = 0
-
-[node name="Icicle2" type="Sprite2D" parent="Pivot/Icicle"]
-rotation = -1.5708
-scale = Vector2(3, 3)
-texture = ExtResource("8_t038k")
+offset_left = 0.0
+offset_right = 0.0
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,4 +1,6 @@
 extends Control
 
+@onready var ui: UI = get_parent()
+
 func _on_back_pressed() -> void:
-	get_parent().change_scenes(Globals.MAIN_MENU)
+	ui.change_scenes(ui.settings_from)

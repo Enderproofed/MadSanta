@@ -1,6 +1,6 @@
 extends Node
 
-const NAMES = ["Knut", "Björn", "Olaf", "Ragnar", "Sven", "Hakon", "Leif", "Gunnar", "Torben",
+const NAMES: Array[String] = ["Knut", "Björn", "Olaf", "Ragnar", "Sven", "Hakon", "Leif", "Gunnar", "Torben",
 "Einar", "Sigurd", "Magnus", "Thore", "Asgrim", "Vidar", "Haldor", "Bjarne", "Snorri", "Ulf",
 "Njord", "Stig", "Harald", "Erik", "Jari", "Thorvald", "Hemming", "Viggo", "Arvid", "Dag", "Halvar",
 "Rolf", "Tjark", "Sampo", "Eike", "Odd", "Sune", "Roald", "Xaver", "Hemming", "Bo", "Njal", "Odin",
@@ -11,7 +11,7 @@ const NAMES = ["Knut", "Björn", "Olaf", "Ragnar", "Sven", "Hakon", "Leif", "Gun
 "Henrik", "Ivar", "Joakim", "Klas", "Ludvig", "Mikkel", "Nikolaj", "Orvar", "Pelle", "Quirin",
 "Ragnarök", "Sverker", "Ture", "Uffe", "Vladimir", "Waldemar", "Eskil", "Yngve", "Zebulon"
 ]
-const LAST_NAMES = ["Nordsturm", "Frostklinge", "Eisgrim", "Schneebart", "Kälteklaue", "Winterzorn",
+const LAST_NAMES: Array[String] = ["Nordsturm", "Frostklinge", "Eisgrim", "Schneebart", "Kälteklaue", "Winterzorn",
 "Gletscherfaust", "Frostbeißer", "Nordfrost", "Eisenschlag", "Blizzard", "Sturmschatten", "Nordbrand",
 "Eisensang", "Frostwind", "Schneehammer", "Kristallklaue", "Eiszorn", "Sturmwächter", "Klingenfrost",
  "Winterkralle", "Schneesturm", "Frostschatten", "Dunkelsturm", "Eishauch", "Kältewolf", "Nordmann",
@@ -30,7 +30,10 @@ const LAST_NAMES = ["Nordsturm", "Frostklinge", "Eisgrim", "Schneebart", "Kälte
 
 func generate_full_name_seed(seed: int) -> String:
 	seed(seed)
-	return NAMES[randi_range(0, 95)] + " " + LAST_NAMES[randi_range(0, 95)]
+	var full_name = generate_full_name()
+	randomize()
+	return full_name
+
 
 func generate_full_name() -> String:
-	return NAMES[randi_range(0, 95)] + " " + LAST_NAMES[randi_range(0, 95)]
+	return NAMES[randi_range(0, NAMES.size()-1)] + " " + LAST_NAMES[randi_range(0, LAST_NAMES.size() -1)]

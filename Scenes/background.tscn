@@ -1,59 +1,191 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvxgmcglpifqo"]
+[gd_scene load_steps=17 format=3 uid="uid://cvxgmcglpifqo"]
 
-[ext_resource type="Texture2D" uid="uid://bsilwupar14ju" path="res://Resources/Images/SnowyMountainsBackground/5.png" id="1_ngx7k"]
+[ext_resource type="Script" path="res://Scripts/background.gd" id="1_2ws62"]
+[ext_resource type="Texture2D" uid="uid://dv7tnkd2j6i11" path="res://Resources/Images/SnowyMountainsBackground/5.png" id="1_ngx7k"]
 [ext_resource type="Texture2D" uid="uid://c21ed1cn0erg5" path="res://Resources/Images/SnowyMountainsBackground/4.png" id="2_32qar"]
 [ext_resource type="Texture2D" uid="uid://f53fdfjrgxv7" path="res://Resources/Images/SnowyMountainsBackground/3.png" id="3_2oi8e"]
+[ext_resource type="Texture2D" uid="uid://b5k3is810ayhk" path="res://Resources/Images/white_glow.png" id="3_hodvr"]
 [ext_resource type="Texture2D" uid="uid://ccr1qnkvwpbcf" path="res://Resources/Images/SnowyMountainsBackground/2.png" id="4_pp0qr"]
 [ext_resource type="Texture2D" uid="uid://be7mt68rtwsf3" path="res://Resources/Images/SnowyMountainsBackground/1.png" id="5_bejko"]
+[ext_resource type="PackedScene" uid="uid://bx1bo278vn02r" path="res://Scenes/PlanetDeco.tscn" id="8_2x8ym"]
+
+[sub_resource type="Gradient" id="Gradient_oy8rn"]
+colors = PackedColorArray(0, 0, 0.592157, 1, 0.0431373, 0.0862745, 0.207843, 1)
+
+[sub_resource type="Curve" id="Curve_wvj65"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y0sw2"]
+curve = SubResource("Curve_wvj65")
+
+[sub_resource type="Gradient" id="Gradient_jdhmc"]
+offsets = PackedFloat32Array(0, 0.137931, 0.853448, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rmavn"]
+gradient = SubResource("Gradient_jdhmc")
+
+[sub_resource type="Curve" id="Curve_rk1ke"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.145833, 1), 0.0, 0.0, 0, 0, Vector2(0.847222, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_b4ivo"]
+curve = SubResource("Curve_rk1ke")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ia5u"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(1728, 324, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1728, 324, 0)
+angle_min = 1.07288e-05
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_y0sw2")
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 3.0
+angular_velocity_min = -30.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_b4ivo")
+color_ramp = SubResource("GradientTexture1D_rmavn")
 
 [node name="Background" type="ParallaxBackground"]
+scroll_limit_begin = Vector2(0, -2000)
+scroll_ignore_camera_zoom = true
+script = ExtResource("1_2ws62")
+night = true
+delete_others_on_start = null
 
-[node name="Back" type="Sprite2D" parent="."]
+[node name="BackDay" type="Node2D" parent="."]
+visible = false
+
+[node name="Image" type="Sprite2D" parent="BackDay"]
 position = Vector2(576, 324)
 scale = Vector2(3, 3)
 texture = ExtResource("1_ngx7k")
 
-[node name="Layer3" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.3, 0.03)
-motion_mirroring = Vector2(1152, 0)
+[node name="Image2" type="Sprite2D" parent="BackDay"]
+position = Vector2(1728, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("1_ngx7k")
 
-[node name="Image" type="Sprite2D" parent="Layer3"]
-position = Vector2(576, 324)
+[node name="Image3" type="Sprite2D" parent="BackDay"]
+position = Vector2(2880, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("1_ngx7k")
+
+[node name="BackNight" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="BackNight"]
+points = PackedVector2Array(1728, 0, 1728, 648)
+width = 3456.0
+gradient = SubResource("Gradient_oy8rn")
+
+[node name="Stars" type="GPUParticles2D" parent="BackNight"]
+amount = 512
+process_material = SubResource("ParticleProcessMaterial_8ia5u")
+texture = ExtResource("3_hodvr")
+lifetime = 10.0
+preprocess = 10.0
+fixed_fps = 0
+
+[node name="Moon" parent="BackNight" instance=ExtResource("8_2x8ym")]
+position = Vector2(392, 192)
+planet_type = 1
+
+[node name="Mountains" type="ParallaxLayer" parent="."]
+position = Vector2(0, 48)
+motion_scale = Vector2(0.3, 0.03)
+motion_mirroring = Vector2(3456, 0)
+
+[node name="Image" type="Sprite2D" parent="Mountains"]
+position = Vector2(576, 372)
 scale = Vector2(3, 3)
 texture = ExtResource("2_32qar")
 offset = Vector2(0, -15)
 
-[node name="Layer2" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.6, 0.04)
-motion_mirroring = Vector2(1152, 0)
+[node name="Image2" type="Sprite2D" parent="Mountains"]
+position = Vector2(1728, 372)
+scale = Vector2(3, 3)
+texture = ExtResource("2_32qar")
+offset = Vector2(0, -15)
 
-[node name="Image" type="Sprite2D" parent="Layer2"]
+[node name="Image3" type="Sprite2D" parent="Mountains"]
+position = Vector2(2880, 372)
+scale = Vector2(3, 3)
+texture = ExtResource("2_32qar")
+offset = Vector2(0, -15)
+
+[node name="DarkTrees" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.6, 0.04)
+motion_mirroring = Vector2(3456, 0)
+
+[node name="Image" type="Sprite2D" parent="DarkTrees"]
 position = Vector2(576, 324)
 scale = Vector2(3, 3)
 texture = ExtResource("3_2oi8e")
 offset = Vector2(0, -15)
 
-[node name="Layer1" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.8, 0.1)
-motion_mirroring = Vector2(1152, 0)
+[node name="Image2" type="Sprite2D" parent="DarkTrees"]
+position = Vector2(1728, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("3_2oi8e")
+offset = Vector2(0, -15)
 
-[node name="Image" type="Sprite2D" parent="Layer1"]
+[node name="Image3" type="Sprite2D" parent="DarkTrees"]
+position = Vector2(2880, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("3_2oi8e")
+offset = Vector2(0, -15)
+
+[node name="Trees" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.8, 0.1)
+motion_mirroring = Vector2(3456, 0)
+
+[node name="Image" type="Sprite2D" parent="Trees"]
 position = Vector2(576, 324)
 scale = Vector2(3, 3)
 texture = ExtResource("4_pp0qr")
 offset = Vector2(0, -15)
 
-[node name="ColorRect" type="ColorRect" parent="Layer1"]
+[node name="Image2" type="Sprite2D" parent="Trees"]
+position = Vector2(1728, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("4_pp0qr")
+offset = Vector2(0, -15)
+
+[node name="Image3" type="Sprite2D" parent="Trees"]
+position = Vector2(2880, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("4_pp0qr")
+offset = Vector2(0, -15)
+
+[node name="ColorRect" type="ColorRect" parent="Trees"]
 offset_top = 600.0
-offset_right = 1152.0
+offset_right = 3456.0
 offset_bottom = 992.0
 color = Color(0.0392157, 0.054902, 0.0980392, 1)
 
-[node name="Layer0" type="ParallaxLayer" parent="."]
+[node name="Snow" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.9, 0.04)
-motion_mirroring = Vector2(1152, 0)
+motion_mirroring = Vector2(3456, 0)
 
-[node name="Image" type="Sprite2D" parent="Layer0"]
+[node name="Image" type="Sprite2D" parent="Snow"]
 position = Vector2(576, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("5_bejko")
+
+[node name="Image2" type="Sprite2D" parent="Snow"]
+position = Vector2(1728, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("5_bejko")
+
+[node name="Image3" type="Sprite2D" parent="Snow"]
+position = Vector2(2880, 324)
 scale = Vector2(3, 3)
 texture = ExtResource("5_bejko")

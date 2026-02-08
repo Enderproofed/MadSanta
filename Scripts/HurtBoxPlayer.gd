@@ -16,4 +16,7 @@ func _on_area_entered(hitbox: Area2D) -> void:
 		owner.take_damage(hitbox.damage)
 		hitbox._hit()
 		if owner.has_method("set_velocity") and hitbox.get("knockback") != null:
-			owner.set_velocity((owner.global_position - hitbox.global_position).normalized() * hitbox.knockback)
+			var direction = (owner.global_position - hitbox.global_position).normalized()
+			if direction.y < -abs(direction.x) and abs(owner.global_position.x - 2285) >= 2:
+				direction = Vector2(direction.y if direction.x < 0 else -direction.y, direction.y).normalized()
+			owner.set_velocity(direction * hitbox.knockback)

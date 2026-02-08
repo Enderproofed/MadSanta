@@ -1,6 +1,7 @@
 extends Projectile
 
 func _ready() -> void:
+	super._ready()
 	await Globals.timer(5)
 	die()
 

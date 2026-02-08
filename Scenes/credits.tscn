@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" path="res://Scripts/level_selection.gd" id="1_6qft3"]
 [ext_resource type="Shader" path="res://Resources/blur.gdshader" id="2_4ugha"]
-[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_menu_buttons.tres" id="3_uqgq6"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="3_uqgq6"]
 [ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="4_4nyst"]
 [ext_resource type="PackedScene" uid="uid://dutqd68lmkexo" path="res://Scenes/link.tscn" id="5_ywcy7"]
+
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pc7b3"]
 shader = ExtResource("2_4ugha")

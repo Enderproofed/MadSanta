@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://gv4layjcwelw"]
+[gd_scene load_steps=14 format=3 uid="uid://gv4layjcwelw"]
 
 [ext_resource type="Texture2D" uid="uid://xv0xrc5mu1a7" path="res://Resources/Images/Gnome.png" id="1_0ew41"]
 [ext_resource type="Script" path="res://Scripts/gnome.gd" id="1_18kyi"]
@@ -12,6 +12,9 @@ size = Vector2(21, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iimlj"]
 size = Vector2(2, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xg2q"]
+size = Vector2(16, 2)
 
 [sub_resource type="Animation" id="Animation_qmt73"]
 length = 0.001
@@ -124,6 +127,14 @@ collision_mask = 3
 
 [node name="collision" type="CollisionShape2D" parent="right"]
 shape = SubResource("RectangleShape2D_iimlj")
+
+[node name="ground" type="Area2D" parent="."]
+position = Vector2(0, 28)
+collision_layer = 0
+collision_mask = 3
+
+[node name="collision" type="CollisionShape2D" parent="ground"]
+shape = SubResource("RectangleShape2D_7xg2q")
 
 [node name="floor" type="RayCast2D" parent="."]
 
