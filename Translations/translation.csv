@@ -14,43 +14,43 @@ M_MENU,Hauptmenü,Main Menu,メインメニュー,Menu principal,Menu principale
 NEXT_LEVEL,Nächstes Level,Next Level,次のレベル,Niveau suivant,Livello successivo
 PLAY_AGAIN,Noch einmal spielen,Play Again,もう一度プレイ,Rejouer,Gioca ancora
 UPGRADES,Upgrades,Upgrades,アップグレード,Améliorations,Potenziamenti
-CREATE_NEW_LEVEL,Neues Level erstellen,Create new Level,,,
-LEVELS_NONE,"Bisher gibt es keine Levels.%nErstelle eins mit ""Neues Level erstellen""","There are currently no Levels.%nCreate one with ""Create new Level""",,,
-EDIT,Bearbeiten,Edit,,,
-DELETE,Löschen,Delete,,,
-VALID,Validiert,Validated,,,
-NOT_VALID,Nicht validiert,Not validated,,,
-IMPORT_LEVEL,Level importieren,Import Level,,,
-OPEN_SAVE,Speicherort öffnen,Open Save location,,,
-SAVE,Speichern,Save,,,
-EXIT,Verlassen,Exit,,,
-SAVE_AND_EXIT,Speichern und verlassen,Save and exit,,,
-CONTINUE_BUILDING,Weiter bauen,Continue building,,,
-SELECT_ALL,Alles auswählen,Select all,,,
-DESELECT_ALL,Auswahl aufheben,Deselect all,,,
-DELETE_SELECTION,Ausgewähltes löschen,Delecte selected,,,
-UNNAMED,Unbenannt,Unnamed,,,
+CREATE_NEW_LEVEL,Neues Level erstellen,Create new Level,新しいレベルを作成,Créer un niveau,Creare un nuovo livello
+LEVELS_NONE,"Bisher gibt es keine Levels.%nErstelle eins mit ""Neues Level erstellen""","There are currently no Levels.%nCreate one with ""Create new Level""",現在レベルはありません。%n「新しいレベルを作成」で作成してください。,Aucun niveau n'existe actuellement.%nCréez-en un avec « Créer un niveau ».,"Non ci sono ancora livelli.%nCreane uno con ""Creare un nuovo livello""."
+EDIT,Bearbeiten,Edit,編集,Modifier,Modifica
+DELETE,Löschen,Delete,削除,Supprimer,Elimina
+VALID,Validiert,Validated,有効,Valide,Valido
+NOT_VALID,Nicht validiert,Not validated,無効,Non valide,Non valido
+IMPORT_LEVEL,Level importieren,Import Level,レベルをインポート,Importer un niveau,Importa livello
+OPEN_SAVE,Speicherort öffnen,Open Save location,保存場所を開く,Ouvrir l'emplacement de sauvegarde,Apri posizione del salvataggio
+SAVE,Speichern,Save,保存,Sauvegarder,Salva
+EXIT,Verlassen,Exit,終了,Quitter,Esci
+SAVE_AND_EXIT,Speichern und verlassen,Save and exit,保存して終了,Sauvegarder et quitter,Salva ed esci
+CONTINUE_BUILDING,Weiter bauen,Continue building,建築を続ける,Continuer à construire,Continua a costruire
+SELECT_ALL,Alles auswählen,Select all,すべて選択,Tout sélectionner,Seleziona tutto
+DESELECT_ALL,Auswahl aufheben,Deselect all,選択を解除,Tout désélectionner,Deseleziona tutto
+DELETE_SELECTION,Ausgewähltes löschen,Delete selection,選択したものを削除,Supprimer la sélection,Elimina selezione
+UNNAMED,Unbenannt,Unnamed,名前なし,Sans nom,Senza nome
 ____________POPUP____________,,,,,
-OVERWRITE_LEVEL,Level existiert bereits. Überschreiben?,Level already existing. Overwrite?,,,
-DELETE_LEVEL,Das Level wirklich löschen?%nDas kann nicht rückgängig gemacht werden!,Really wanna delete this level?%nCannot be undone!,,,
-EXIT_WITHOUT_SAVE,Wollen sie alle Änderungen verwerfen und ohne zu Speichern verlassen?,Do you really want to exit without saving and lose all your changes?,,,
-REFRESH_EDITOR,Das Level wirklich neu laden?%nAlle Änderungen gehen dabei verloren!,Really wanna re-load the level?%nAll changes will be lost!,,,
+OVERWRITE_LEVEL,Level existiert bereits. Überschreiben?,Level already existing. Overwrite?,レベルはすでに存在します。上書きしますか？,Le niveau existe déjà. Écraser ?,Il livello esiste già. Sovrascrivere?
+DELETE_LEVEL,Das Level wirklich löschen?%nDas kann nicht rückgängig gemacht werden!,Really wanna delete this level?%nCannot be undone!,本当にこのレベルを削除しますか？%n元に戻すことはできません！,Voulez-vous vraiment supprimer ce niveau ?%nCette action est irréversible !,Vuoi davvero eliminare questo livello?%nNon può essere annullato!
+EXIT_WITHOUT_SAVE,Wollen sie alle Änderungen verwerfen und ohne zu Speichern verlassen?,Do you really want to exit without saving and lose all your changes?,すべての変更を破棄して保存せずに終了しますか？,Voulez-vous vraiment quitter sans sauvegarder et perdre toutes vos modifications ?,Vuoi davvero uscire senza salvare e perdere tutte le modifiche?
+REFRESH_EDITOR,Das Level wirklich neu laden?%nAlle Änderungen gehen dabei verloren!,Really wanna re-load the level?%nAll changes will be lost!,本当にレベルを再読み込みしますか？%nすべての変更が失われます！,Voulez-vous vraiment recharger le niveau ?%nToutes les modifications seront perdues !,Vuoi davvero ricaricare il livello?%nTutte le modifiche andranno perse!
 ____________ALERTS____________,,,,,
-SAVE_ALERT,Erfolgreich gespeichert,Successfully saved,,,
-SAVE_FAIL_ALERT,Fehler beim speichern,Failed to save,,,
-FAILED_TO_LOAD,Konnte nicht geladen werden,Failed to load,,,
-FAILED_TO_DELETE,Konnte nicht gelöscht werden,Failed to delete,,,
-UNDONE,Erfolgreich rückgängig gemacht: {0},Undo successful: {0},,,
-REDONE,Erfolgreich wiederhergestellt: {0},Redo successful: {0},,,
+SAVE_ALERT,Erfolgreich gespeichert,Successfully saved,正常に保存されました,Enregistré avec succès,Salvataggio riuscito
+SAVE_FAIL_ALERT,Fehler beim speichern,Failed to save,保存に失敗しました,Échec de l'enregistrement,Salvataggio non riuscito
+FAILED_TO_LOAD,Konnte nicht geladen werden,Failed to load,読み込みに失敗しました,Échec du chargement,Caricamento non riuscito
+FAILED_TO_DELETE,Konnte nicht gelöscht werden,Failed to delete,削除に失敗しました,Échec de la suppression,Eliminazione non riuscita
+UNDONE,Erfolgreich rückgängig gemacht: {0},Undo successful: {0},元に戻しました: {0},Annulation réussie : {0},Annullamento riuscito: {0}
+REDONE,Erfolgreich wiederhergestellt: {0},Redo successful: {0},やり直しました: {0},Rétablissement réussi : {0},Ripristino riuscito: {0}
 ____________ACTIONS____________,,,,,
-PLACE,Platzieren,Place,,,
-ERASE,Löschen,Erase,,,
-SELECT,Auswählen,Select,,,
-MOVE,Verschieben,Move,,,
-PLAYER_MOVEMENT,Spieler verschieben,Move player,,,
-LIMIT_MOVEMENT,Levelgrenze verschieben,Move level border,,,
-CONTENT_MOVEMENT,Element Verschieben,Move element,,,
-EDIT_PLACEHOLDER,Element bearbeiten,Edit element,,,
+PLACE,Platzieren,Place,配置,Placer,Posiziona
+ERASE,Löschen,Erase,消去,Effacer,Cancella
+SELECT,Auswählen,Select,選択,Sélectionner,Seleziona
+MOVE,Verschieben,Move,移動,Déplacer,Sposta
+PLAYER_MOVEMENT,Spieler verschieben,Move player,プレイヤーを移動,Déplacer le joueur,Sposta giocatore
+LIMIT_MOVEMENT,Levelgrenze verschieben,Move level border,レベル境界を移動,Déplacer la limite du niveau,Sposta il limite del livello
+CONTENT_MOVEMENT,Element Verschieben,Move element,要素を移動,Déplacer l'élément,Sposta elemento
+EDIT_PLACEHOLDER,Element bearbeiten,Edit element,要素を編集,Modifier l'élément,Modifica elemento
 ____________GENERAL_TITLES____________,,,,,
 MINIGAMES,Minispiele (%s),Minigames (%s),ミニゲーム (%s),Mini-jeux (%s),Minigiochi (%s)
 TARGETS,Ziele,Targets,目標,Objectifs,Obiettivi
@@ -58,37 +58,37 @@ DAILY,Tages Minispiel,Daily Mini,デイリーミニゲーム,Mini-jeu quotidien,
 SPEEDRUN,Speedrun,Speedrun,スピードラン,Speedrun,Speedrun
 SANDBOX,Sandbox,Sandbox,Translation missing,Sandbox,Sandbox
 CREATE,Erstellen,Create,作る,Créer,Crea
-FLOOR,Boden,Floor,,,
-ENEMIES,Gegner,Enemies,,,
-COLLECTABLES,Sammelzeugs,Collectables,,,
-OTHER,Anderes,Other,,,
+FLOOR,Boden,Floor,地面,Sol,Pavimento
+ENEMIES,Gegner,Enemies,敵,Ennemis,Nemici
+COLLECTABLES,Sammelzeugs,Collectables,収集アイテム,Objets à collectionner,Collezionabili
+OTHER,Anderes,Other,その他,Autre,Altro
 ____________GENERAL_LABELS____________,,,,,
 HEALTH,Leben,Health,体力,Santé,Salute
 ENEMIES_KILLED,Besiegte Gegner,Enemies killed,倒した敵,Ennemis vaincus,Nemici sconfitti
 ____________PLACEHOLDERS____________,,,,,
-NEW_SAVE,Namen des Spielstands eingeben,Enter name of the save,セーブ名を入力,Entrez le nom de la sauvegarde,Inserisci il nome del salvataggio
+NEW_SAVE,Namen des Spielstands eingeben,Enter name of the save,セーブデータの名前を入力,Entrez le nom de la sauvegarde,Inserisci il nome del salvataggio
 LEVEL_NAME,Levelname,Level Name,レベル名,Nom du niveau,Nome del livello
 ____________SETTINGS_LABELS____________,,,,,
 MASTER,Allgemein,Master,全体,Général,Generale
 MUSIC,Musik,Music,音楽,Musique,Musica
 SOUND_EFFECTS,Soundeffekte,Sound effects,効果音,Effets sonores,Effetti sonori
 DRAW_TRAIL,Flugbahn zeichnen,Draw trail,軌跡を描く,Afficher la trajectoire,Mostra traiettoria
-PLAYER_GHOST_VISIBLE,Spieler-Geist anzeigen,Display player ghost,,,
+PLAYER_GHOST_VISIBLE,Spieler-Geist anzeigen,Display player ghost,プレイヤーのゴーストを表示,Afficher le fantôme du joueur,Mostra fantasma del giocatore
 LANG,Sprache,Language,言語,Langue,Lingua
-RANDOM_NAME,Zufälliger Name,Random name,,,
-HAS_NAME,Hat Name,Has name,,,
-NAME,Name,Name,,,
-EDIT_ELEMENT,{0} bearbeiten,Edit {0},,,
+RANDOM_NAME,Zufälliger Name,Random name,ランダムな名前,Nom aléatoire,Nome casuale
+HAS_NAME,Hat Name,Has name,名前あり,A un nom,Ha un nome
+NAME,Name,Name,名前,Nom,Nome
+EDIT_ELEMENT,{0} bearbeiten,Edit {0},{0}を編集,Modifier {0},Modifica {0}
 ____________PLACEHOLDERS____________,,,,,
-TILES,Boden,Ground,,,
-ONE_WAY,Durchlässige Plattform,One way platfornm,,,
-BRICK_WALL,Ziegelblock,Brick block,,,
-GNOME,Zwerg,Gnome,,,
-ELF,Elf,Elf,,,
-COIN,Münze,Coin,,,
-SNOWFLAKE,Schneeflocke,Snowflake,,,
-ICE_SHARD,Eiskristall,Ice shard,,,
-FIRE_SHARD,Feuerkristall,Fire shard,,,
+TILES,Boden,Ground,地面,Sol,Terra
+ONE_WAY,Durchlässige Plattform,One way platfornm,一方通行プラットフォーム,Plateforme à sens unique,Piattaforma a senso unico
+BRICK_WALL,Ziegelblock,Brick block,レンガブロック,Bloc de briques,Blocco di mattoni
+GNOME,Zwerg,Gnome,ノーム,Gnome,Gnomo
+ELF,Elf,Elf,エルフ,Elfe,Elfo
+COIN,Münze,Coin,コイン,Pièce,Moneta
+SNOWFLAKE,Schneeflocke,Snowflake,雪の結晶,Flocon de neige,Fiocco di neve
+ICE_SHARD,Eiskristall,Ice shard,氷のかけら,Éclat de glace,Frammento di ghiaccio
+FIRE_SHARD,Feuerkristall,Fire shard,炎のかけら,Éclat de feu,Frammento di fuoco
 ____________TITLE_LABELS____________,,,,,
 PAUSED,Pause,Pause,一時停止,Pause,Pausa
 MAIN_MENU,Mad Santa,Mad Santa,Mad Santa,Mad Santa,Mad Santa
@@ -112,16 +112,16 @@ RESET_UPGRADES,"Upgrades zurücksetzen   ","Reset upgrades   ","アップグレ�
 STRENGTH,"  Stärke","  Strength","  威力","  Puissance","  Potenza"
 SIZE,"  Größe","  Size","  サイズ","  Taille","  Dimensione"
 BOUNCY,"  Bouncy","  Bouncy","  跳ね返り","  Rebond","  Rimbalzo"
-SPEED,"  Geschwindigkeit","  Speed","  速度","  Vitesse","  Velocità"
+SPEED,"  Geschwindigkeit","  Speed"," 速度","  Vitesse","  Velocità"
 RELOAD,"  Nachladen","  Reload","  リロード","  Rechargement","  Ricarica"
 SPREAD,"  Ausbreitung","  Spread","  拡散","  Dispersion","  Dispersione"
 LOAD_SPEED,"  Auflade-Speed","  Reload-Speed","  チャージ速度","  Vitesse de recharge","  Velocità di ricarica"
-LOAD_TIME,"  Auflade-Zeit","  Load-Time",,,
+LOAD_TIME,"  Auflade-Zeit","  Load-Time","  チャージ時間","  Temps de recharge","  Tempo di ricarica"
 FIRE_TIME,"  Feuerzeit","  Fire-Time","  発射時間","  Durée de tir","  Durata del fuoco"
 FLIGHT_TIME,"  Flugzeit","  Flight-Time","  飛行時間","  Temps de vol","  Tempo di volo"
 JUMP_HEIGHT,"  Sprunghöhe","  Jump-Height","  ジャンプ力","  Hauteur de saut","  Altezza salto"
 DASH,"  Dash","  Dash","  ダッシュ","  Dash","  Scatto"
-PRECISION,"  Genauigkeit","  Precision",,,
+PRECISION,"  Genauigkeit","  Precision","  精度","  Précision","  Precisione"
 ____________CREDITS___________,,,,,
-CREDITS_TEXT,"Dieses Spiel hat im Rahmen eines Schulprojekts der MTS21-C an der OSZIMT angefangen. Die Köpfe dahinter sind Nico Hellmann, David Sonnenberg und","This game started as a school project of MTS21-C at the OSZIMT. The heads behind this are Nico Hellmann, David Sonnenberg and",,,
-TEXTURES,Texturen,Textures,,,
+CREDITS_TEXT,"Dieses Spiel hat im Rahmen eines Schulprojekts der MTS21-C an der OSZIMT angefangen. Die Köpfe dahinter sind Nico Hellmann, David Sonnenberg und","This game started as a school project of MTS21-C at the OSZIMT. The heads behind this are Nico Hellmann, David Sonnenberg and","このゲームはOSZIMTのMTS21-Cで行われた学校プロジェクトとして始まりました。その中心となったのはNico Hellmann、David Sonnenberg、そして","Ce jeu a commencé dans le cadre d'un projet scolaire de la MTS21-C à l'OSZIMT. Les personnes à l'origine du projet sont Nico Hellmann, David Sonnenberg et","Questo gioco è nato nell'ambito di un progetto scolastico della MTS21-C presso l'OSZIMT. Le persone dietro al progetto sono Nico Hellmann, David Sonnenberg e"
+TEXTURES,Texturen,Textures,テクスチャ,Textures,Texture
