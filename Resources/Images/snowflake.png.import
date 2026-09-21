@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://co4dc1fhpwqs7"
-path="res://.godot/imported/snowflake.png-a96abd90d68e2a89502e28dd82cc67ec.ctex"
+path="res://.godot/imported/Snowflake.png-64bffc671ac93b35a14f5850332127ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Images/snowflake.png"
-dest_files=["res://.godot/imported/snowflake.png-a96abd90d68e2a89502e28dd82cc67ec.ctex"]
+source_file="res://Resources/Images/Snowflake.png"
+dest_files=["res://.godot/imported/Snowflake.png-64bffc671ac93b35a14f5850332127ca.ctex"]
 
 [params]
 

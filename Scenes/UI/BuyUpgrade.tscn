@@ -1,0 +1,212 @@
+[gd_scene load_steps=8 format=3 uid="uid://bf8hm4qkh6qar"]
+
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="1_peluk"]
+[ext_resource type="Script" path="res://Scripts/UI/buy_upgrade.gd" id="2_vcini"]
+[ext_resource type="PackedScene" uid="uid://bawf6rrfoul0i" path="res://Scenes/Collectables/Coin.tscn" id="3_p1vo4"]
+[ext_resource type="PackedScene" uid="uid://c86r2jrovbcdf" path="res://Scenes/Collectables/Snowflake.tscn" id="4_08p74"]
+[ext_resource type="PackedScene" uid="uid://6ydg47mvcxcl" path="res://Scenes/Collectables/ShardIce.tscn" id="5_0oj5q"]
+[ext_resource type="PackedScene" uid="uid://dbiwksccqorqa" path="res://Scenes/Collectables/ShardFire.tscn" id="6_qi6wx"]
+[ext_resource type="Texture2D" uid="uid://debe8kidgi7jo" path="res://Resources/Images/Icons/CheckMark.png" id="7_01yi8"]
+
+[node name="BuyUpgrade" type="Button"]
+custom_minimum_size = Vector2(447, 0)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.802
+anchor_right = 0.5
+anchor_bottom = 0.802
+offset_left = -576.0
+offset_top = -519.696
+offset_right = -129.0
+offset_bottom = -479.696
+focus_mode = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_peluk")
+disabled = true
+text = "  Geschwindigkeit"
+alignment = 0
+icon_alignment = 2
+script = ExtResource("2_vcini")
+costs = {
+0: 100,
+1: 15,
+2: 5
+}
+upgrade_name = "Geschwindigkeit"
+
+[node name="EffectiveValue" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -20.0
+offset_right = 330.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Current" type="Label" parent="EffectiveValue"]
+layout_mode = 2
+text = "30s"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Arrow" type="Label" parent="EffectiveValue"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.800491, 0.800491, 0.800491, 1)
+text = "→"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="UpgradedValue" type="Label" parent="EffectiveValue"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.882353, 0.298039, 1)
+text = "25s"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Alignment" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Coin" type="Control" parent="Alignment"]
+custom_minimum_size = Vector2(88, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cost" type="Label" parent="Alignment/Coin"]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 36.0
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Pivot" type="Control" parent="Alignment/Coin"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Coin" parent="Alignment/Coin/Pivot" instance=ExtResource("3_p1vo4")]
+position = Vector2(-26, 2.5)
+id = -1
+decoration = true
+
+[node name="Snowflake" type="Control" parent="Alignment"]
+custom_minimum_size = Vector2(69, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cost" type="Label" parent="Alignment/Snowflake"]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 36.0
+text = "15"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Pivot" type="Control" parent="Alignment/Snowflake"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Snowflake" parent="Alignment/Snowflake/Pivot" instance=ExtResource("4_08p74")]
+position = Vector2(-24, 0.5)
+scale = Vector2(0.85, 0.85)
+id = -1
+decoration = true
+
+[node name="IceShard" type="Control" parent="Alignment"]
+custom_minimum_size = Vector2(59, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cost" type="Label" parent="Alignment/IceShard"]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 36.0
+text = "5"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Pivot" type="Control" parent="Alignment/IceShard"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="IceShard" parent="Alignment/IceShard/Pivot" instance=ExtResource("5_0oj5q")]
+position = Vector2(-25, 0.5)
+scale = Vector2(0.85, 0.85)
+id = -1
+decoration = true
+
+[node name="FireShard" type="Control" parent="Alignment"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cost" type="Label" parent="Alignment/FireShard"]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 39.0
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Pivot" type="Control" parent="Alignment/FireShard"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="FireShard" parent="Alignment/FireShard/Pivot" instance=ExtResource("6_qi6wx")]
+position = Vector2(-25, 0.5)
+scale = Vector2(0.85, 0.85)
+id = -1
+decoration = true
+
+[node name="MaxedIcon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -17.0
+offset_right = -18.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("7_01yi8")
+expand_mode = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

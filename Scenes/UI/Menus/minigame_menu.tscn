@@ -1,0 +1,475 @@
+[gd_scene load_steps=26 format=3 uid="uid://bqxhifwk5bmkt"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/minigame_menu.gd" id="1_emq1e"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Blur.gdshader" id="2_pablj"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="3_rwkda"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Border.gdshader" id="4_3ioet"]
+[ext_resource type="Texture2D" uid="uid://bm7yjrxo4d3em" path="res://Resources/Images/Animations/Chest.png" id="5_4jb1f"]
+[ext_resource type="Texture2D" uid="uid://cw05lwmaj6nfy" path="res://Resources/Images/Targets/TargetBig.png" id="6_suroa"]
+[ext_resource type="Texture2D" uid="uid://dkiy6eblicmw3" path="res://Resources/Images/Icons/Clock.png" id="7_vtgex"]
+[ext_resource type="PackedScene" uid="uid://bbqnngojh2bwq" path="res://Scenes/UI/BackButton.tscn" id="8_mmvv2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pc7b3"]
+shader = ExtResource("2_pablj")
+shader_parameter/blur = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jitp7"]
+radius = 67.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ljsjh"]
+shader = ExtResource("4_3ioet")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/pulsating_thickness = 0.0
+shader_parameter/alpha_threashold = null
+
+[sub_resource type="Animation" id="Animation_lkxp0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hf2g2"]
+resource_name = "pop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(0.5, 2, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.7, 0.7), Vector2(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.833333),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dt3rx"]
+_data = {
+"RESET": SubResource("Animation_lkxp0"),
+"pop": SubResource("Animation_hf2g2")
+}
+
+[sub_resource type="Animation" id="Animation_n0b26"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lckj5"]
+resource_name = "pulsate"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pjdjs"]
+_data = {
+"RESET": SubResource("Animation_n0b26"),
+"pulsate": SubResource("Animation_lckj5")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_34a6j"]
+radius = 67.0
+
+[sub_resource type="Animation" id="Animation_3pyy6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t57pl"]
+resource_name = "pop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(0.5, 2, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.7, 0.7), Vector2(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.833333),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2idpa"]
+_data = {
+"RESET": SubResource("Animation_3pyy6"),
+"pop": SubResource("Animation_t57pl")
+}
+
+[sub_resource type="Animation" id="Animation_pcpaf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sqfqd"]
+resource_name = "pulsate"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b3qin"]
+_data = {
+"RESET": SubResource("Animation_pcpaf"),
+"pulsate": SubResource("Animation_sqfqd")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_25rrs"]
+shader = ExtResource("4_3ioet")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/pulsating_thickness = 0.0
+shader_parameter/alpha_threashold = null
+
+[node name="MinigameMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_emq1e")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_pc7b3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Daily" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.556
+anchor_right = 0.5
+anchor_bottom = 0.556
+offset_top = -0.288025
+offset_bottom = -0.288025
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Daily" groups=["Translated"]]
+modulate = Color(0.6, 1, 1, 1)
+layout_mode = 0
+offset_left = -184.0
+offset_top = -136.0
+offset_right = 736.0
+offset_bottom = -24.0
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("3_rwkda")
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 80
+text = "Tages Minispiel"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/tr_key = "DAILY"
+
+[node name="WaitTimer" type="Label" parent="Daily"]
+layout_mode = 0
+offset_left = -184.0
+offset_top = 72.0
+offset_right = 736.0
+offset_bottom = 184.0
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("3_rwkda")
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 67
+text = "03:00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="TouchScreenButton" parent="Daily"]
+shape = SubResource("CircleShape2D_jitp7")
+
+[node name="Target" type="Node2D" parent="Daily/Button"]
+
+[node name="Texture" type="Sprite2D" parent="Daily/Button/Target"]
+material = SubResource("ShaderMaterial_ljsjh")
+scale = Vector2(6, 6)
+texture = ExtResource("5_4jb1f")
+hframes = 2
+
+[node name="Animation" type="AnimationPlayer" parent="Daily/Button/Target"]
+libraries = {
+"": SubResource("AnimationLibrary_dt3rx")
+}
+speed_scale = 1.5
+
+[node name="PulsateAnimation" type="AnimationPlayer" parent="Daily/Button"]
+libraries = {
+"": SubResource("AnimationLibrary_pjdjs")
+}
+autoplay = "pulsate"
+
+[node name="Targets" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.278
+anchor_top = 0.556
+anchor_right = 0.278
+anchor_bottom = 0.556
+offset_left = -0.256042
+offset_top = -0.288025
+offset_right = -0.256042
+offset_bottom = -0.288025
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Targets" groups=["Translated"]]
+layout_mode = 0
+offset_left = -184.0
+offset_top = -136.0
+offset_right = 736.0
+offset_bottom = -24.0
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("3_rwkda")
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 80
+text = "Ziele schießen"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/tr_key = "TARGETS"
+
+[node name="Button" type="TouchScreenButton" parent="Targets"]
+shape = SubResource("CircleShape2D_34a6j")
+
+[node name="Target" type="Node2D" parent="Targets/Button"]
+
+[node name="Texture" type="Sprite2D" parent="Targets/Button/Target"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_suroa")
+region_rect = Rect2(-10.7246, -3.84933, 59.6084, 52.1574)
+
+[node name="Animation" type="AnimationPlayer" parent="Targets/Button/Target"]
+libraries = {
+"": SubResource("AnimationLibrary_2idpa")
+}
+speed_scale = 1.5
+
+[node name="PulsateAnimation" type="AnimationPlayer" parent="Targets/Button"]
+libraries = {
+"": SubResource("AnimationLibrary_b3qin")
+}
+autoplay = "pulsate"
+
+[node name="Speedrun" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.729
+anchor_top = 0.556
+anchor_right = 0.729
+anchor_bottom = 0.556
+offset_left = 0.191956
+offset_top = -0.288025
+offset_right = 0.191956
+offset_bottom = -0.288025
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Speedrun" groups=["Translated"]]
+layout_mode = 0
+offset_left = -184.0
+offset_top = -136.0
+offset_right = 736.0
+offset_bottom = -24.0
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("3_rwkda")
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 80
+text = "Speedrun"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/tr_key = "SPEEDRUN"
+
+[node name="Button" type="TouchScreenButton" parent="Speedrun"]
+shape = SubResource("CircleShape2D_34a6j")
+
+[node name="Target" type="Node2D" parent="Speedrun/Button"]
+
+[node name="Texture" type="Sprite2D" parent="Speedrun/Button/Target"]
+material = SubResource("ShaderMaterial_25rrs")
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("7_vtgex")
+
+[node name="Animation" type="AnimationPlayer" parent="Speedrun/Button/Target"]
+libraries = {
+"": SubResource("AnimationLibrary_2idpa")
+}
+speed_scale = 1.5
+
+[node name="PulsateAnimation" type="AnimationPlayer" parent="Speedrun/Button"]
+libraries = {
+"": SubResource("AnimationLibrary_b3qin")
+}
+autoplay = "pulsate"
+
+[node name="Sandbox" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = 0.729
+anchor_top = 0.556
+anchor_right = 0.729
+anchor_bottom = 0.556
+offset_left = 168.192
+offset_top = -216.288
+offset_right = 168.192
+offset_bottom = -216.288
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Sandbox" groups=["Translated"]]
+layout_mode = 0
+offset_left = -184.0
+offset_top = -136.0
+offset_right = 736.0
+offset_bottom = -24.0
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("3_rwkda")
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 80
+text = "Sandbox"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/tr_key = "SANDBOX"
+
+[node name="Button" type="TouchScreenButton" parent="Sandbox"]
+shape = SubResource("CircleShape2D_34a6j")
+
+[node name="Target" type="Node2D" parent="Sandbox/Button"]
+
+[node name="Animation" type="AnimationPlayer" parent="Sandbox/Button/Target"]
+libraries = {
+"": SubResource("AnimationLibrary_2idpa")
+}
+speed_scale = 1.5
+
+[node name="Line2D" type="Line2D" parent="Sandbox/Button/Target"]
+points = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32, -32, -32, -16, -56, 48, -56, 32, -32, 32, 32, 48, 8, -16, 8, -32, 32, -16, 8, -16, -56, 48, -56, 48, 8)
+default_color = Color(0.4, 0.9, 5, 1)
+joint_mode = 2
+
+[node name="PulsateAnimation" type="AnimationPlayer" parent="Sandbox/Button"]
+libraries = {
+"": SubResource("AnimationLibrary_b3qin")
+}
+autoplay = "pulsate"
+
+[node name="Back" parent="." instance=ExtResource("8_mmvv2")]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 221.0
+offset_bottom = 64.0
+
+[connection signal="pressed" from="Daily/Button" to="." method="daily_minigame"]
+[connection signal="pressed" from="Targets/Button" to="." method="targets"]
+[connection signal="pressed" from="Speedrun/Button" to="." method="speedrun"]
+[connection signal="pressed" from="Sandbox/Button" to="." method="sandbox"]

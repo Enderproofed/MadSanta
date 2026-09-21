@@ -1,0 +1,322 @@
+[gd_scene load_steps=21 format=3 uid="uid://c24638ekp5g3y"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/main_menu.gd" id="1_6d7tm"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Blur.gdshader" id="2_yvqyd"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="3_3grig"]
+[ext_resource type="Texture2D" uid="uid://qb0i6yg4f3kd" path="res://Resources/Images/Icons/PlayButton.png" id="4_8irky"]
+[ext_resource type="Texture2D" uid="uid://dacagreiytvdx" path="res://Resources/Images/Icons/Gear.png" id="5_vu31m"]
+[ext_resource type="Texture2D" uid="uid://bjxhnbg2mw16t" path="res://Resources/Images/Icons/Save.png" id="6_thqeg"]
+[ext_resource type="Texture2D" uid="uid://demp05b2eewkl" path="res://Resources/Images/Icons/LogOut.png" id="7_oa6yr"]
+[ext_resource type="Texture2D" uid="uid://cw05lwmaj6nfy" path="res://Resources/Images/Targets/TargetBig.png" id="8_8e2mb"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Border.gdshader" id="9_4vf2v"]
+[ext_resource type="Texture2D" uid="uid://cum3x8i5ivv6k" path="res://Resources/Images/Icons/CreateIcon.png" id="10_kgn8a"]
+[ext_resource type="PackedScene" uid="uid://ot4d1fn1yc2u" path="res://Scenes/UI/UpgradesButton.tscn" id="11_vqsyv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pc7b3"]
+shader = ExtResource("2_yvqyd")
+shader_parameter/blur = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_34a6j"]
+radius = 67.0
+
+[sub_resource type="Animation" id="Animation_lkxp0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hf2g2"]
+resource_name = "pop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(0.5, 2, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.7, 0.7), Vector2(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.833333),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dt3rx"]
+_data = {
+"RESET": SubResource("Animation_lkxp0"),
+"pop": SubResource("Animation_hf2g2")
+}
+
+[sub_resource type="Animation" id="Animation_n0b26"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lckj5"]
+resource_name = "pulsate"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pjdjs"]
+_data = {
+"RESET": SubResource("Animation_n0b26"),
+"pulsate": SubResource("Animation_lckj5")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2kmg6"]
+shader = ExtResource("9_4vf2v")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/pulsating_thickness = 0.0
+shader_parameter/alpha_threashold = 0.12
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6d7tm")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_pc7b3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -48.0
+offset_right = 128.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Play" type="Button" parent="Buttons" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_3grig")
+text = "    Spielen    "
+icon = ExtResource("4_8irky")
+icon_alignment = 2
+metadata/tr_key = "PLAY"
+
+[node name="Options" type="Button" parent="Buttons" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_3grig")
+text = "    Einstellungen    "
+icon = ExtResource("5_vu31m")
+icon_alignment = 2
+metadata/tr_key = "SETTINGS"
+
+[node name="Credits" type="Button" parent="Buttons" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_3grig")
+text = "Credits"
+metadata/tr_key = "CREDITS"
+
+[node name="Accounts" type="Button" parent="Buttons" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_3grig")
+text = "Spielstände"
+icon = ExtResource("6_thqeg")
+icon_alignment = 2
+metadata/tr_key = "SAVES"
+
+[node name="Quit" type="Button" parent="Buttons" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_3grig")
+theme_override_colors/icon_normal_color = Color(5, 0.5, 0.5, 1)
+theme_override_colors/icon_focus_color = Color(10, 0.4, 0.4, 1)
+theme_override_colors/icon_pressed_color = Color(10, 0.3, 0.3, 1)
+theme_override_colors/icon_hover_color = Color(10, 0.4, 0.4, 1)
+text = "Verlassen"
+icon = ExtResource("7_oa6yr")
+icon_alignment = 2
+metadata/tr_key = "QUIT"
+
+[node name="Minigames" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.201
+anchor_top = 0.556
+anchor_right = 0.201
+anchor_bottom = 0.556
+offset_left = 0.447998
+offset_top = -0.287994
+offset_right = 0.447998
+offset_bottom = -0.287994
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Minigames" groups=["Translated"]]
+layout_mode = 0
+offset_left = -184.0
+offset_top = -128.0
+offset_right = 736.0
+offset_bottom = -16.0
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("3_3grig")
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 80
+text = "Minispiele (WIP)"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/tr_params = ["WIP"]
+metadata/tr_key = "MINIGAMES"
+
+[node name="Button" type="TouchScreenButton" parent="Minigames"]
+shape = SubResource("CircleShape2D_34a6j")
+
+[node name="Target" type="Node2D" parent="Minigames/Button"]
+
+[node name="Texture" type="Sprite2D" parent="Minigames/Button/Target"]
+scale = Vector2(3, 3)
+texture = ExtResource("8_8e2mb")
+
+[node name="Animation" type="AnimationPlayer" parent="Minigames/Button/Target"]
+libraries = {
+"": SubResource("AnimationLibrary_dt3rx")
+}
+speed_scale = 1.5
+
+[node name="PulsateAnimation" type="AnimationPlayer" parent="Minigames/Button"]
+libraries = {
+"": SubResource("AnimationLibrary_pjdjs")
+}
+autoplay = "pulsate"
+
+[node name="Create" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.799
+anchor_top = 0.556
+anchor_right = 0.799
+anchor_bottom = 0.556
+offset_left = -0.447998
+offset_top = 151.712
+offset_right = -0.447998
+offset_bottom = 151.712
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Create" groups=["Translated"]]
+layout_mode = 0
+offset_left = -184.0
+offset_top = -128.0
+offset_right = 736.0
+offset_bottom = -16.0
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("3_3grig")
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 80
+text = "Erstellen"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/tr_key = "CREATE"
+
+[node name="Button" type="TouchScreenButton" parent="Create"]
+shape = SubResource("CircleShape2D_34a6j")
+
+[node name="Icon" type="Node2D" parent="Create/Button"]
+
+[node name="Texture" type="Sprite2D" parent="Create/Button/Icon"]
+material = SubResource("ShaderMaterial_2kmg6")
+scale = Vector2(3, 3)
+texture = ExtResource("10_kgn8a")
+
+[node name="Animation" type="AnimationPlayer" parent="Create/Button/Icon"]
+libraries = {
+"": SubResource("AnimationLibrary_dt3rx")
+}
+speed_scale = 1.5
+
+[node name="PulsateAnimation" type="AnimationPlayer" parent="Create/Button"]
+libraries = {
+"": SubResource("AnimationLibrary_pjdjs")
+}
+autoplay = "pulsate"
+
+[node name="Upgrades" parent="." instance=ExtResource("11_vqsyv")]
+layout_mode = 1
+anchor_left = 0.799
+anchor_right = 0.799
+offset_left = -0.447998
+offset_top = -104.288
+offset_right = -0.447998
+offset_bottom = -104.288
+
+[connection signal="pressed" from="Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Buttons/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Buttons/Accounts" to="." method="_on_accounts_pressed"]
+[connection signal="pressed" from="Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Minigames/Button" to="." method="_on_minigames_button_pressed"]
+[connection signal="pressed" from="Create/Button" to="." method="_on_create_button_pressed"]

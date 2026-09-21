@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=3 uid="uid://fo64l61wi3ix"]
+
+[ext_resource type="Texture2D" uid="uid://c3g2aesch7alr" path="res://Resources/Images/ProgressBar/LaserBarProgress.png" id="1_y1bre"]
+[ext_resource type="Texture2D" uid="uid://d24ps4s8lptig" path="res://Resources/Images/ProgressBar/LaserBarTop.png" id="2_edpcg"]
+[ext_resource type="Script" path="res://Scripts/UI/Bar.gd" id="2_ibvro"]
+[ext_resource type="Texture2D" uid="uid://b32xcl05xstaq" path="res://Resources/Images/ProgressBar/LaserBarBottom.png" id="3_47u8j"]
+[ext_resource type="Texture2D" uid="uid://c86njqq71fhuh" path="res://Resources/Images/ProgressBar/LaserBarMiddle.png" id="4_w23go"]
+[ext_resource type="Texture2D" uid="uid://btdrwxddkv50" path="res://Resources/Images/ProgressBar/LaserBarBorderInnerTop.png" id="4_xwmt0"]
+[ext_resource type="Texture2D" uid="uid://b5k3is810ayhk" path="res://Resources/Images/GlowStar.png" id="7_l4cww"]
+
+[sub_resource type="Gradient" id="Gradient_mvxwi"]
+offsets = PackedFloat32Array(0, 0.0658683, 0.715517, 1)
+colors = PackedColorArray(100, 100, 100, 0, 100, 100, 100, 1, 100, 100, 100, 1, 100, 100, 100, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_36qyt"]
+gradient = SubResource("Gradient_mvxwi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1c76g"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(18, 124, 1)
+angle_min = 1.07288e-05
+angle_max = 360.0
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.1
+color_ramp = SubResource("GradientTexture1D_36qyt")
+
+[node name="ProgressBar" type="TextureProgressBar"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -648.0
+offset_right = 40.0
+offset_bottom = -400.0
+grow_vertical = 0
+rotation = -3.14159
+step = 0.01
+value = 100.0
+fill_mode = 2
+nine_patch_stretch = true
+texture_under = ExtResource("1_y1bre")
+texture_progress = ExtResource("1_y1bre")
+tint_under = Color(1, 1, 1, 0.135)
+tint_progress = Color(0.6, 0.8, 1, 1)
+script = ExtResource("2_ibvro")
+length = 248
+color = null
+
+[node name="Top" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = -12.0
+offset_right = 40.0
+offset_bottom = 4.0
+texture = ExtResource("2_edpcg")
+
+[node name="Inner" type="TextureRect" parent="Top"]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+texture = ExtResource("4_xwmt0")
+
+[node name="Bottom" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 244.0
+offset_right = 40.0
+offset_bottom = 260.0
+texture = ExtResource("3_47u8j")
+
+[node name="Inner" type="TextureRect" parent="Bottom"]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+texture = ExtResource("4_xwmt0")
+flip_v = true
+
+[node name="Container" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 99.2
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_w23go")
+stretch_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="StarsColored" type="GPUParticles2D" parent="."]
+modulate = Color(1.1, 1.3, 1.5, 2)
+z_index = 10
+position = Vector2(20, 124)
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_1c76g")
+texture = ExtResource("7_l4cww")
+preprocess = 1.0
+
+[node name="Stars" type="GPUParticles2D" parent="."]
+modulate = Color(100, 100, 100, 1)
+z_index = 10
+position = Vector2(20, 124)
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_1c76g")
+texture = ExtResource("7_l4cww")
+preprocess = 1.0

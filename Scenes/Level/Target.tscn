@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmo7vxw63uepn"]
+
+[ext_resource type="Script" path="res://Scripts/Level/target.gd" id="1_ypyau"]
+[ext_resource type="Texture2D" uid="uid://cw05lwmaj6nfy" path="res://Resources/Images/Targets/TargetBig.png" id="2_r3h7r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_58bwu"]
+resource_local_to_scene = true
+radius = 63.0
+
+[sub_resource type="Animation" id="Animation_lkxp0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hf2g2"]
+resource_name = "pop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(0.5, 2, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.7, 0.7), Vector2(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.833333),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dt3rx"]
+_data = {
+"RESET": SubResource("Animation_lkxp0"),
+"pop": SubResource("Animation_hf2g2")
+}
+
+[node name="Target" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_ypyau")
+size = 5
+deco = null
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_58bwu")
+
+[node name="Texture" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_r3h7r")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dt3rx")
+}
+speed_scale = 1.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

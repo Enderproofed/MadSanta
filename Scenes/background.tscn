@@ -1,13 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://cvxgmcglpifqo"]
+[gd_scene load_steps=20 format=3 uid="uid://cvxgmcglpifqo"]
 
 [ext_resource type="Script" path="res://Scripts/background.gd" id="1_2ws62"]
-[ext_resource type="Texture2D" uid="uid://dv7tnkd2j6i11" path="res://Resources/Images/SnowyMountainsBackground/5.png" id="1_ngx7k"]
-[ext_resource type="Texture2D" uid="uid://c21ed1cn0erg5" path="res://Resources/Images/SnowyMountainsBackground/4.png" id="2_32qar"]
-[ext_resource type="Texture2D" uid="uid://f53fdfjrgxv7" path="res://Resources/Images/SnowyMountainsBackground/3.png" id="3_2oi8e"]
-[ext_resource type="Texture2D" uid="uid://b5k3is810ayhk" path="res://Resources/Images/white_glow.png" id="3_hodvr"]
-[ext_resource type="Texture2D" uid="uid://ccr1qnkvwpbcf" path="res://Resources/Images/SnowyMountainsBackground/2.png" id="4_pp0qr"]
-[ext_resource type="Texture2D" uid="uid://be7mt68rtwsf3" path="res://Resources/Images/SnowyMountainsBackground/1.png" id="5_bejko"]
-[ext_resource type="PackedScene" uid="uid://bx1bo278vn02r" path="res://Scenes/PlanetDeco.tscn" id="8_2x8ym"]
+[ext_resource type="Texture2D" uid="uid://dv7tnkd2j6i11" path="res://Resources/Images/SnowyMountainsBackground/Background.png" id="1_ngx7k"]
+[ext_resource type="Texture2D" uid="uid://c21ed1cn0erg5" path="res://Resources/Images/SnowyMountainsBackground/Mountains.png" id="2_32qar"]
+[ext_resource type="Texture2D" uid="uid://f53fdfjrgxv7" path="res://Resources/Images/SnowyMountainsBackground/TreesBackground.png" id="3_2oi8e"]
+[ext_resource type="Texture2D" uid="uid://b5k3is810ayhk" path="res://Resources/Images/GlowStar.png" id="3_hodvr"]
+[ext_resource type="Texture2D" uid="uid://ccr1qnkvwpbcf" path="res://Resources/Images/SnowyMountainsBackground/Trees.png" id="4_pp0qr"]
+[ext_resource type="Texture2D" uid="uid://be7mt68rtwsf3" path="res://Resources/Images/SnowyMountainsBackground/Snow.png" id="5_bejko"]
+[ext_resource type="Script" path="res://Scripts/shooting_stars.gd" id="5_qtyc3"]
+[ext_resource type="PackedScene" uid="uid://bx1bo278vn02r" path="res://Scenes/UI/Deco/PlanetDeco.tscn" id="8_2x8ym"]
+[ext_resource type="Texture2D" uid="uid://dfjtrdwcx2fjx" path="res://Resources/Images/DarkPlanksBackground.png" id="9_yl8sg"]
 
 [sub_resource type="Gradient" id="Gradient_oy8rn"]
 colors = PackedColorArray(0, 0, 0.592157, 1, 0.0431373, 0.0862745, 0.207843, 1)
@@ -54,15 +56,17 @@ scale_max = 0.1
 scale_curve = SubResource("CurveTexture_b4ivo")
 color_ramp = SubResource("GradientTexture1D_rmavn")
 
+[sub_resource type="Curve" id="Curve_k2foh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Background" type="ParallaxBackground"]
-scroll_limit_begin = Vector2(0, -2000)
 scroll_ignore_camera_zoom = true
 script = ExtResource("1_2ws62")
-night = true
 delete_others_on_start = null
+moon_visible = false
 
 [node name="BackDay" type="Node2D" parent="."]
-visible = false
 
 [node name="Image" type="Sprite2D" parent="BackDay"]
 position = Vector2(576, 324)
@@ -87,6 +91,7 @@ width = 3456.0
 gradient = SubResource("Gradient_oy8rn")
 
 [node name="Stars" type="GPUParticles2D" parent="BackNight"]
+editor_description = "mich bitte nicht bei pause verstecken, danke"
 amount = 512
 process_material = SubResource("ParticleProcessMaterial_8ia5u")
 texture = ExtResource("3_hodvr")
@@ -94,29 +99,49 @@ lifetime = 10.0
 preprocess = 10.0
 fixed_fps = 0
 
+[node name="ShootingStars" type="Node2D" parent="BackNight"]
+script = ExtResource("5_qtyc3")
+
+[node name="Star" type="Sprite2D" parent="BackNight/ShootingStars"]
+position = Vector2(136, -24)
+rotation = 0.776672
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_hodvr")
+
+[node name="Line" type="Line2D" parent="BackNight/ShootingStars"]
+points = PackedVector2Array(72, -24, 136, -24)
+width = 4.045
+width_curve = SubResource("Curve_k2foh")
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="Moon" parent="BackNight" instance=ExtResource("8_2x8ym")]
+visible = false
 position = Vector2(392, 192)
 planet_type = 1
 
+[node name="Earth" parent="BackNight" instance=ExtResource("8_2x8ym")]
+position = Vector2(344, 224)
+
 [node name="Mountains" type="ParallaxLayer" parent="."]
 position = Vector2(0, 48)
-motion_scale = Vector2(0.3, 0.03)
+motion_scale = Vector2(0.3, 0.02)
 motion_mirroring = Vector2(3456, 0)
 
 [node name="Image" type="Sprite2D" parent="Mountains"]
-position = Vector2(576, 372)
+position = Vector2(576, 324)
 scale = Vector2(3, 3)
 texture = ExtResource("2_32qar")
 offset = Vector2(0, -15)
 
 [node name="Image2" type="Sprite2D" parent="Mountains"]
-position = Vector2(1728, 372)
+position = Vector2(1728, 324)
 scale = Vector2(3, 3)
 texture = ExtResource("2_32qar")
 offset = Vector2(0, -15)
 
 [node name="Image3" type="Sprite2D" parent="Mountains"]
-position = Vector2(2880, 372)
+position = Vector2(2880, 324)
 scale = Vector2(3, 3)
 texture = ExtResource("2_32qar")
 offset = Vector2(0, -15)
@@ -189,3 +214,20 @@ texture = ExtResource("5_bejko")
 position = Vector2(2880, 324)
 scale = Vector2(3, 3)
 texture = ExtResource("5_bejko")
+
+[node name="Indoor" type="ParallaxLayer" parent="."]
+visible = false
+motion_scale = Vector2(0.3, 0.03)
+motion_mirroring = Vector2(3456, 648)
+
+[node name="Indoor" type="TextureRect" parent="Indoor"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture = ExtResource("9_yl8sg")
+stretch_mode = 1

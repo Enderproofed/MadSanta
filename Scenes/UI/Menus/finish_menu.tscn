@@ -1,0 +1,187 @@
+[gd_scene load_steps=13 format=3 uid="uid://csb5x38occ8p2"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/finish_menu.gd" id="1_d50ue"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Blur.gdshader" id="1_txix5"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="2_j6vrx"]
+[ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="3_1ye7n"]
+[ext_resource type="Texture2D" uid="uid://xhrkgvshw1uq" path="res://Resources/Images/Icons/Menu.png" id="4_bv8gc"]
+[ext_resource type="Texture2D" uid="uid://cum3x8i5ivv6k" path="res://Resources/Images/Icons/CreateIcon.png" id="4_tv73j"]
+[ext_resource type="Texture2D" uid="uid://48kcvgmd5jbc" path="res://Resources/Images/Icons/CurvedArrow.png" id="5_j2w1h"]
+[ext_resource type="Texture2D" uid="uid://u2g4se103l05" path="res://Resources/Images/Icons/Restart.png" id="6_6x863"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_836vi"]
+shader = ExtResource("1_txix5")
+shader_parameter/blur = 2.0
+
+[sub_resource type="Animation" id="Animation_qgl5k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v4mew"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tv8hx"]
+_data = {
+"RESET": SubResource("Animation_qgl5k"),
+"fade_in": SubResource("Animation_v4mew")
+}
+
+[node name="FinishMenu" type="Control" node_paths=PackedStringArray("edit_button", "my_levels_button", "level_selection_button", "next_level_button", "enemies_killed")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d50ue")
+edit_button = NodePath("VBoxContainer/Edit")
+my_levels_button = NodePath("VBoxContainer/MyLevels")
+level_selection_button = NodePath("VBoxContainer/LevelSelection")
+next_level_button = NodePath("VBoxContainer/NextLevel")
+enemies_killed = NodePath("EnemiesKilled")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_836vi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.368056
+anchor_top = 0.530864
+anchor_right = 0.631944
+anchor_bottom = 0.833333
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Edit" type="Button" parent="VBoxContainer" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_j6vrx")
+text = "Bearbeiten"
+icon = ExtResource("4_tv73j")
+icon_alignment = 2
+metadata/tr_key = "EDIT"
+
+[node name="MyLevels" type="Button" parent="VBoxContainer" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_j6vrx")
+text = "Meine Levels"
+icon = ExtResource("4_bv8gc")
+icon_alignment = 2
+metadata/tr_key = "CREATE_LEVEL_MENU"
+
+[node name="LevelSelection" type="Button" parent="VBoxContainer" groups=["Translated"]]
+visible = false
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_j6vrx")
+text = "Levelauswahl"
+icon = ExtResource("4_bv8gc")
+icon_alignment = 2
+metadata/tr_key = "LEVEL_SELECTION"
+
+[node name="NextLevel" type="Button" parent="VBoxContainer" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_j6vrx")
+text = "Nächstes Level"
+icon = ExtResource("5_j2w1h")
+icon_alignment = 2
+metadata/tr_key = "NEXT_LEVEL"
+
+[node name="PlayAgain" type="Button" parent="VBoxContainer" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_j6vrx")
+text = "Noch einmal spielen"
+icon = ExtResource("6_6x863")
+icon_alignment = 2
+metadata/tr_key = "PLAY_AGAIN"
+
+[node name="EnemiesKilled" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 71.0
+offset_top = -28.0
+offset_right = 127.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_1ye7n")
+theme_override_font_sizes/font_size = 25
+text = "0 / 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemiesKilledLabel" type="Label" parent="." groups=["Translated"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -29.0
+offset_right = 62.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_1ye7n")
+theme_override_font_sizes/font_size = 25
+text = "Besiegte Gegner:"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/tr_key = "ENEMIES_KILLED"
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tv8hx")
+}
+autoplay = "fade_in"
+
+[connection signal="pressed" from="VBoxContainer/Edit" to="." method="_on_edit_pressed"]
+[connection signal="pressed" from="VBoxContainer/MyLevels" to="." method="_on_my_levels_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelSelection" to="." method="_on_level_selection_pressed"]
+[connection signal="pressed" from="VBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]

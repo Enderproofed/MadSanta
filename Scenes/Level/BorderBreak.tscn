@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp0nirm20b26i"]
+
+[ext_resource type="Script" path="res://Scripts/Level/border_break.gd" id="1_emj4o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gt52"]
+size = Vector2(200, 20)
+
+[node name="BorderBreak" type="Node2D"]
+script = ExtResource("1_emj4o")
+
+[node name="Entered" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="Entered"]
+modulate = Color(1, 1, 1, 0.380392)
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_4gt52")
+
+[node name="Exited" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="Exited"]
+modulate = Color(1, 1, 1, 0.345098)
+position = Vector2(0, 80)
+shape = SubResource("RectangleShape2D_4gt52")
+
+[connection signal="body_entered" from="Entered" to="." method="_on_entered_body_entered"]
+[connection signal="body_entered" from="Exited" to="." method="_on_exited_body_entered"]

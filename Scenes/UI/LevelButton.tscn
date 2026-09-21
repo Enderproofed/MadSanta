@@ -1,0 +1,186 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1oul5fnukx8a"]
+
+[ext_resource type="Texture2D" uid="uid://crlfwh3dsdcsj" path="res://Resources/Images/LevelPreview/Level1.png" id="1_284us"]
+[ext_resource type="Script" path="res://Scripts/UI/LevelButton.gd" id="1_lqax2"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="2_oy17r"]
+[ext_resource type="Texture2D" uid="uid://dabpavl2sx4mf" path="res://Resources/Images/Icons/Star.png" id="4_1lusl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oudvf"]
+draw_center = false
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.4, 0.9, 5, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 7.0
+expand_margin_top = 7.0
+expand_margin_right = 7.0
+expand_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d6dft"]
+draw_center = false
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.5, 0.95, 5, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gpyr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 7.0
+expand_margin_top = 7.0
+expand_margin_right = 7.0
+expand_margin_bottom = 7.0
+
+[node name="LevelButton" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lqax2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = 168.0
+offset_right = 2160.0
+offset_bottom = 446.0
+scale = Vector2(0.2, 0.2)
+theme = ExtResource("2_oy17r")
+theme_override_constants/outline_size = 85
+theme_override_font_sizes/font_size = 200
+text = "Level  1"
+horizontal_alignment = 1
+
+[node name="Image" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -154.0
+offset_right = 240.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_284us")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LevelButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -154.0
+offset_right = 240.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_oudvf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d6dft")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2gpyr")
+
+[node name="Time" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = 220.0
+offset_right = 2160.0
+offset_bottom = 498.0
+scale = Vector2(0.2, 0.2)
+theme_override_colors/font_outline_color = Color(0.2, 0.7, 100, 1)
+theme_override_constants/outline_size = 40
+theme_override_font_sizes/font_size = 130
+text = "Time: 01:23:456"
+horizontal_alignment = 1
+
+[node name="Stars" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = 260.0
+offset_right = 248.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Star1" type="TextureRect" parent="Stars"]
+modulate = Color(0.12549, 0.12549, 0.12549, 0.501961)
+layout_mode = 2
+texture = ExtResource("4_1lusl")
+expand_mode = 3
+
+[node name="Star2" type="TextureRect" parent="Stars"]
+modulate = Color(0.12549, 0.12549, 0.12549, 0.501961)
+layout_mode = 2
+texture = ExtResource("4_1lusl")
+expand_mode = 3
+
+[node name="Star3" type="TextureRect" parent="Stars"]
+modulate = Color(0.12549, 0.12549, 0.12549, 0.501961)
+layout_mode = 2
+texture = ExtResource("4_1lusl")
+expand_mode = 3
+
+[node name="Star4" type="TextureRect" parent="Stars"]
+visible = false
+modulate = Color(0.12549, 0.12549, 0.12549, 0.501961)
+layout_mode = 2
+texture = ExtResource("4_1lusl")
+expand_mode = 3
+
+[node name="Star5" type="TextureRect" parent="Stars"]
+visible = false
+modulate = Color(0.12549, 0.12549, 0.12549, 0.501961)
+layout_mode = 2
+texture = ExtResource("4_1lusl")
+expand_mode = 3
+
+[connection signal="button_up" from="LevelButton" to="." method="_on_pressed"]

@@ -1,0 +1,215 @@
+[gd_scene load_steps=11 format=3 uid="uid://yfnm24kwyj4s"]
+
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="1_50d4j"]
+[ext_resource type="Script" path="res://Scripts/UI/SlideButton.gd" id="1_golgu"]
+[ext_resource type="Texture2D" uid="uid://dknmtsban5tcd" path="res://Resources/Images/Projectiles/Snowball.png" id="3_0q87b"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_225vb"]
+radius = 15.0
+height = 60.0
+
+[sub_resource type="Animation" id="Animation_wwug6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button/Background/Snowball:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 14)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button/Background:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_qe46j"]
+resource_name = "toggle"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button/Background/Snowball:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 14), Vector2(0, -14)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button/Background:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.5), Color(0.4, 0.9, 1, 1), Color(0.4, 0.9, 5, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gkcf5"]
+resource_name = "toggle_disabled"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button/Background/Snowball:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 14), Vector2(0, -14)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button/Background:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.5), Color(0.4, 0.9, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7sv2j"]
+resource_name = "toggled"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button/Background/Snowball:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -14)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button/Background:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.4, 0.9, 5, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mumn7"]
+resource_name = "toggled_disabled"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button/Background/Snowball:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -14)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button/Background:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.4, 0.9, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sqrkh"]
+_data = {
+"RESET": SubResource("Animation_wwug6"),
+"toggle": SubResource("Animation_qe46j"),
+"toggle_disabled": SubResource("Animation_gkcf5"),
+"toggled": SubResource("Animation_7sv2j"),
+"toggled_disabled": SubResource("Animation_mumn7")
+}
+
+[node name="SlideButton" type="Control"]
+custom_minimum_size = Vector2(230, 36)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 120.0
+offset_bottom = 36.0
+mouse_default_cursor_shape = 2
+script = ExtResource("1_golgu")
+right_label = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 327.0
+offset_bottom = 139.0
+scale = Vector2(0.25, 0.25)
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_50d4j")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 100
+text = "Label"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 36.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+flat = true
+
+[node name="Background" type="MeshInstance2D" parent="Button"]
+modulate = Color(0.9, 0.9, 0.9, 1)
+self_modulate = Color(0, 0, 0, 0.5)
+position = Vector2(36, 18)
+rotation = 1.5708
+mesh = SubResource("CapsuleMesh_225vb")
+
+[node name="Snowball" type="Sprite2D" parent="Button/Background"]
+z_index = 1
+position = Vector2(0, 14)
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("3_0q87b")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sqrkh")
+}
+
+[connection signal="gui_input" from="Label" to="." method="_on_label_gui_input"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="toggled" from="Button" to="." method="set_pressed"]

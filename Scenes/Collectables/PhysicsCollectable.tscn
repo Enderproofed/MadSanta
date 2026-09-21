@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhkqrwrqdwsx5"]
+
+[ext_resource type="Script" path="res://Scripts/Level/Collectables/PhysicsCollectable.gd" id="1_1gevx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pqdv"]
+size = Vector2(32, 32)
+
+[node name="PhysicsCollectable" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_1gevx")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4pqdv")

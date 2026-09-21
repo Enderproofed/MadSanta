@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbqnngojh2bwq"]
+
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="1_o6r1f"]
+[ext_resource type="Script" path="res://Scripts/UI/back_button.gd" id="2_x3g3b"]
+
+[node name="Back" type="Button" groups=["Translated"]]
+offset_left = 481.5
+offset_top = 500.0
+offset_right = 670.5
+offset_bottom = 540.0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_o6r1f")
+text = "Zurück"
+script = ExtResource("2_x3g3b")
+metadata/tr_key = "BACK"
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

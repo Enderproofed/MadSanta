@@ -1,0 +1,219 @@
+[gd_scene load_steps=13 format=3 uid="uid://dnxpu1jdle27"]
+
+[ext_resource type="Script" path="res://Scripts/UI/collectables_display.gd" id="1_adeyi"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="2_p5af4"]
+[ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="3_y1jer"]
+[ext_resource type="PackedScene" uid="uid://bawf6rrfoul0i" path="res://Scenes/Collectables/Coin.tscn" id="4_t3gnl"]
+[ext_resource type="PackedScene" uid="uid://c86r2jrovbcdf" path="res://Scenes/Collectables/Snowflake.tscn" id="5_qhgnm"]
+[ext_resource type="PackedScene" uid="uid://6ydg47mvcxcl" path="res://Scenes/Collectables/ShardIce.tscn" id="6_5ab7m"]
+[ext_resource type="PackedScene" uid="uid://dbiwksccqorqa" path="res://Scenes/Collectables/ShardFire.tscn" id="7_ln6uj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0iyg2"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 5
+
+[sub_resource type="Animation" id="Animation_qkijx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o0sge"]
+resource_name = "collect"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.2),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ga57o"]
+resource_name = "pop in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(0.5, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1gmkp"]
+_data = {
+"RESET": SubResource("Animation_qkijx"),
+"collect": SubResource("Animation_o0sge"),
+"pop in": SubResource("Animation_ga57o")
+}
+
+[node name="CollectablesDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 384.0
+offset_bottom = 36.0
+script = ExtResource("1_adeyi")
+
+[node name="Background" type="Label" parent="."]
+process_mode = 3
+layout_mode = 1
+offset_right = 384.0
+offset_bottom = 36.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_0iyg2")
+
+[node name="Coins" type="Label" parent="."]
+process_mode = 3
+layout_mode = 0
+offset_left = 89.0
+offset_top = -7.0
+offset_right = 113.0
+offset_bottom = 41.0
+pivot_offset = Vector2(0, 24)
+theme = ExtResource("2_p5af4")
+theme_override_fonts/font = ExtResource("3_y1jer")
+theme_override_font_sizes/font_size = 25
+text = "0"
+vertical_alignment = 1
+
+[node name="Coin" parent="Coins" instance=ExtResource("4_t3gnl")]
+position = Vector2(-19, 26)
+id = -1
+decoration = true
+fake_collect = true
+
+[node name="Animation" type="AnimationPlayer" parent="Coins"]
+libraries = {
+"": SubResource("AnimationLibrary_1gmkp")
+}
+
+[node name="Snowflakes" type="Label" parent="."]
+layout_mode = 0
+offset_left = 169.0
+offset_top = -7.0
+offset_right = 193.0
+offset_bottom = 41.0
+pivot_offset = Vector2(0, 24)
+theme = ExtResource("2_p5af4")
+theme_override_fonts/font = ExtResource("3_y1jer")
+theme_override_font_sizes/font_size = 25
+text = "0"
+vertical_alignment = 1
+
+[node name="Snowflake" parent="Snowflakes" instance=ExtResource("5_qhgnm")]
+position = Vector2(-20, 26)
+id = -1
+decoration = true
+fake_collect = true
+
+[node name="Animation" type="AnimationPlayer" parent="Snowflakes"]
+libraries = {
+"": SubResource("AnimationLibrary_1gmkp")
+}
+
+[node name="IceShards" type="Label" parent="."]
+layout_mode = 0
+offset_left = 249.0
+offset_top = -7.0
+offset_right = 273.0
+offset_bottom = 41.0
+pivot_offset = Vector2(0, 24)
+theme = ExtResource("2_p5af4")
+theme_override_fonts/font = ExtResource("3_y1jer")
+theme_override_font_sizes/font_size = 25
+text = "0"
+vertical_alignment = 1
+
+[node name="IceShard" parent="IceShards" instance=ExtResource("6_5ab7m")]
+position = Vector2(-20, 26)
+id = -1
+decoration = true
+fake_collect = true
+
+[node name="Animation" type="AnimationPlayer" parent="IceShards"]
+libraries = {
+"": SubResource("AnimationLibrary_1gmkp")
+}
+
+[node name="FireShards" type="Label" parent="."]
+layout_mode = 0
+offset_left = 329.0
+offset_top = -7.0
+offset_right = 353.0
+offset_bottom = 41.0
+pivot_offset = Vector2(0, 24)
+theme = ExtResource("2_p5af4")
+theme_override_fonts/font = ExtResource("3_y1jer")
+theme_override_font_sizes/font_size = 25
+text = "0"
+vertical_alignment = 1
+
+[node name="FireShard" parent="FireShards" instance=ExtResource("7_ln6uj")]
+position = Vector2(-20, 26)
+id = -1
+decoration = true
+fake_collect = true
+
+[node name="Animation" type="AnimationPlayer" parent="FireShards"]
+libraries = {
+"": SubResource("AnimationLibrary_1gmkp")
+}

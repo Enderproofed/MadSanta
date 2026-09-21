@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bf2t6ny56t66x"]
+
+[ext_resource type="Shader" path="res://Resources/Shaders/Border.gdshader" id="1_gmowc"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_gmowc")
+shader_parameter/line_color = Color(0.8, 0.8, 1, 0.8)
+shader_parameter/line_thickness = 0.0

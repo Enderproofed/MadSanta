@@ -6,8 +6,8 @@ enum PLANET_TYPE {
 }
 
 const PLANET_TEXTURES_MAP = {
-	PLANET_TYPE.EARTH: preload("res://Resources/Images/EarthSpinning.png"),
-	PLANET_TYPE.MOON: preload("res://Resources/Images/MoonSpinning.png")
+	PLANET_TYPE.EARTH: preload("res://Resources/Images/Animations/EarthSpinning.png"),
+	PLANET_TYPE.MOON: preload("res://Resources/Images/Animations/MoonSpinning.png")
 }
 
 @export var planet_type: PLANET_TYPE = PLANET_TYPE.EARTH:

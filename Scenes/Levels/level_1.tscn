@@ -1,0 +1,667 @@
+[gd_scene load_steps=58 format=4 uid="uid://mdwboriqudwf"]
+
+[ext_resource type="Script" path="res://Scripts/Level/Level.gd" id="1_r3sfw"]
+[ext_resource type="PackedScene" uid="uid://c2hskt6dqvqh2" path="res://Scenes/Level/LevelBase.tscn" id="2_167hg"]
+[ext_resource type="PackedScene" uid="uid://b6lj54tqfp1fr" path="res://Scenes/Level/Player.tscn" id="3_5bo0i"]
+[ext_resource type="Texture2D" uid="uid://dmfuxcim4k6df" path="res://Resources/Images/MeltingSnowman.png" id="4_otml4"]
+[ext_resource type="PackedScene" uid="uid://gv4layjcwelw" path="res://Scenes/Level/Enemies/Gnome.tscn" id="5_jjerm"]
+[ext_resource type="TileSet" uid="uid://dcltu6sxqh3la" path="res://Resources/tileset.tres" id="6_h1ois"]
+[ext_resource type="Script" path="res://Scripts/Level/tilemap_baking_parent.gd" id="7_kbpy6"]
+[ext_resource type="Script" path="res://Scripts/Level/tilemap_collision_baker.gd" id="8_3e5qb"]
+[ext_resource type="PackedScene" uid="uid://bcbv2p2etpte" path="res://Scenes/Collectables/PathSnowflake.tscn" id="9_qxnom"]
+[ext_resource type="PackedScene" uid="uid://c86r2jrovbcdf" path="res://Scenes/Collectables/Snowflake.tscn" id="10_tld6o"]
+[ext_resource type="PackedScene" uid="uid://bawf6rrfoul0i" path="res://Scenes/Collectables/Coin.tscn" id="11_kao7q"]
+[ext_resource type="PackedScene" uid="uid://6ydg47mvcxcl" path="res://Scenes/Collectables/ShardIce.tscn" id="12_gy53x"]
+[ext_resource type="PackedScene" uid="uid://dp0nirm20b26i" path="res://Scenes/Level/BorderBreak.tscn" id="13_5mqgy"]
+[ext_resource type="PackedScene" uid="uid://pph1prssartn" path="res://Scenes/Level/Chest.tscn" id="14_140u8"]
+[ext_resource type="PackedScene" uid="uid://hmoun1h35j3h" path="res://Scenes/Level/TextTrigger.tscn" id="16_b4m70"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ou32v"]
+radius = 17.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4s82q"]
+size = Vector2(448, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6yw7a"]
+size = Vector2(64, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfy7c"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6eoa"]
+size = Vector2(112, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akt46"]
+size = Vector2(352, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_km752"]
+size = Vector2(64, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s35hg"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4eix"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8t8t"]
+size = Vector2(64, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ificf"]
+size = Vector2(96, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jht3q"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqjrs"]
+size = Vector2(336, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ix0ft"]
+size = Vector2(64, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u55xa"]
+size = Vector2(48, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v14te"]
+size = Vector2(80, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yiy"]
+size = Vector2(112, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mfrv"]
+size = Vector2(64, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gx2m"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_km7n3"]
+size = Vector2(288, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r63pg"]
+size = Vector2(240, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttfiw"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hmhsp"]
+size = Vector2(64, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ng7s1"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82for"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1r3u"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb4uf"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k701v"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkwr1"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ff3b"]
+size = Vector2(288, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skd8e"]
+size = Vector2(640, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wowmk"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43xqv"]
+size = Vector2(544, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tfry8"]
+size = Vector2(528, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dcvu3"]
+size = Vector2(32, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cy5qa"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmfsc"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_te8iy"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfvrq"]
+size = Vector2(64, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dkmib"]
+size = Vector2(448, 64)
+
+[sub_resource type="Curve2D" id="Curve2D_tsaek"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, -50, 0, 0, -100, 0, 100, 0, 210, -140, 0, -50, 0, -50, 420, 0, 100, 0, -100, 0, 210, -140, 0, -50, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbexj"]
+size = Vector2(32, 592)
+
+[node name="Level1" type="Node2D"]
+editor_description = "Level 1"
+script = ExtResource("1_r3sfw")
+level_number = 1
+
+[node name="LevelBase" parent="." instance=ExtResource("2_167hg")]
+show_behind_parent = true
+z_index = -3
+finish_position = 7000
+border_bottom = 690
+border_right = 5000
+on_moon = null
+
+[node name="Player" parent="." instance=ExtResource("3_5bo0i")]
+position = Vector2(248, 544)
+
+[node name="girlfriend" type="StaticBody2D" parent="."]
+position = Vector2(128, 560)
+
+[node name="collision" type="CollisionShape2D" parent="girlfriend"]
+shape = SubResource("CircleShape2D_ou32v")
+
+[node name="snowgirlfriend" type="Sprite2D" parent="girlfriend"]
+position = Vector2(0, -3.015)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_otml4")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Gnome" parent="Enemies" instance=ExtResource("5_jjerm")]
+position = Vector2(2144, 536)
+
+[node name="Gnome2" parent="Enemies" instance=ExtResource("5_jjerm")]
+position = Vector2(4408, 344)
+
+[node name="Gnome3" parent="Enemies" instance=ExtResource("5_jjerm")]
+position = Vector2(5440, 200)
+contains_collectable = true
+collectable = 1
+collectable_amount = 2
+extra_health = 100
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Level"]
+z_index = 1
+position = Vector2(0, -680)
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAAABoAAAAMAAAAAAABABoAAAAMAAAAAAACABoAAAAMAAAAAAADABoAAAAMAAAAAAAEABoAAAAMAAAAAAAFABoAAAAMAAAAAAAGABoAAAAMAAAAAAAGABsAAAABAAEAAAAFABsAAAABAAEAAAAEABsAAAABAAEAAAADABsAAAABAAEAAAACABsAAAABAAEAAAABABsAAAABAAEAAAAAABsAAAABAAEAAAD//xsAAAABAAEAAAD//xwAAAABAAEAAAAAABwAAAABAAEAAAABABwAAAABAAEAAAACABwAAAABAAEAAAADABwAAAABAAEAAAAEABwAAAABAAEAAAAFABwAAAABAAEAAAAGABwAAAABAAEAAAAHABwAAAABAAEAAAAIABwAAAABAAEAAAAJABwAAAABAAEAAAAJAB0AAAAMAAIAAAAKAB0AAAAMAAIAAAALAB0AAAAMAAIAAAAMAB0AAAAMAAIAAAARABwAAAABAAEAAAAQABwAAAABAAEAAAAPABwAAAABAAEAAAAOABwAAAABAAEAAAANABwAAAABAAEAAAAMABwAAAABAAEAAAALABwAAAABAAEAAAAKABwAAAABAAEAAAAIAB0AAAAMAAIAAAAHAB0AAAAMAAIAAAAGAB0AAAAMAAIAAAAFAB0AAAAMAAIAAAAEAB0AAAAMAAIAAAADAB0AAAAMAAIAAAACAB0AAAAMAAIAAAABAB0AAAAMAAIAAAAAAB0AAAAMAAIAAAASABwAAAABAAEAAAATABwAAAABAAEAAAAUABwAAAABAAEAAAAUAB0AAAAMAAIAAAATAB0AAAAMAAIAAAASAB0AAAAMAAIAAAARAB0AAAAMAAIAAAAVAB0AAAAMAAIAAAAWAB0AAAAMAAIAAAAWABwAAAABAAEAAAAVABwAAAABAAEAAAATABsAAAABAAEAAAASABsAAAABAAEAAAARABsAAAABAAEAAAAQABsAAAABAAEAAAAPABsAAAABAAEAAAAOABoAAAABAAEAAAANABoAAAAGAAIAAAAMABoAAAAMAAAAAAALABoAAAAMAAAAAAAKABoAAAAMAAAAAAAJABoAAAAMAAAAAAAIABoAAAAMAAAAAAAHABoAAAAMAAAAAAAHABsAAAABAAEAAAAIABsAAAABAAEAAAAJABsAAAABAAEAAAAKABsAAAABAAEAAAALABsAAAABAAEAAAAMABsAAAABAAEAAAANABsAAAABAAEAAAAOABsAAAABAAEAAAASABoAAAAMAAAAAAATABoAAAAMAAAAAAAUABoAAAAMAAAAAAAVABoAAAAMAAAAAAAWABoAAAAMAAAAAAAXABoAAAAMAAAAAAAYABoAAAAMAAAAAAAQABoAAAAFAAIAAAAPABoAAAABAAEAAAAUABsAAAABAAEAAAAVABsAAAABAAEAAAAWABsAAAABAAEAAAAXABsAAAABAAEAAAAYABwAAAABAAEAAAAYABsAAAABAAEAAAAXABwAAAABAAEAAAAYAB0AAAAMAAIAAAAXAB0AAAAMAAIAAAAZAB0AAAANAAIAAAAZABwAAAANAAEAAAAZABsAAAANAAEAAAAZABoAAAANAAAAAAAgAB0AAAAMAAIAAAAgABoAAAAMAAAAAAAhABoAAAAMAAAAAAAiABoAAAAMAAAAAAAjABoAAAAMAAAAAAAgABsAAAABAAEAAAAhABsAAAABAAEAAAAhABwAAAABAAEAAAAiABwAAAABAAEAAAAjABwAAAABAAEAAAAkABwAAAABAAEAAAAlABsAAAABAAEAAAAkABsAAAABAAEAAAAjABsAAAABAAEAAAAiABsAAAABAAEAAAAkABoAAAAMAAAAAAAlABoAAAAMAAAAAAA8ABoAAAAMAAAAAAA7ABoAAAAMAAAAAAA5ABoAAAABAAEAAAA4ABoAAAABAAEAAAA3ABoAAAABAAEAAAA2ABoAAAABAAEAAAA1ABoAAAALAAEAAAAwABoAAAABAAEAAAAvABoAAAAGAAIAAAAuABoAAAAMAAAAAAAtABoAAAAMAAAAAAAsABoAAAAMAAAAAAArABoAAAAMAAAAAAAqABoAAAAMAAAAAAApABoAAAAMAAAAAAAoABoAAAAMAAAAAAAnABoAAAAMAAAAAAAmABoAAAAMAAAAAAAhAB0AAAAMAAIAAAAiAB0AAAAMAAIAAAAjAB0AAAAMAAIAAAAkAB0AAAAMAAIAAAAlAB0AAAAMAAIAAAAmAB0AAAAMAAIAAAAnAB0AAAAMAAIAAAAoAB0AAAAMAAIAAAApAB0AAAAMAAIAAAArAB0AAAAMAAIAAAAqAB0AAAAMAAIAAAAtAB0AAAAMAAIAAAAsAB0AAAAMAAIAAAAuAB0AAAAMAAIAAAAvAB0AAAAMAAIAAAAwAB0AAAAMAAIAAAA1AB0AAAALAAIAAAA2AB0AAAAMAAIAAAA3AB0AAAAMAAIAAAA4AB0AAAAMAAIAAAA5AB0AAAAMAAIAAAA6AB0AAAAMAAIAAAA7AB0AAAAMAAIAAAA8AB0AAAAMAAIAAAA+ABwAAAABAAEAAAA+AB0AAAAMAAIAAAA9AB0AAAAMAAIAAAA+ABoAAAAMAAAAAAA9ABoAAAAMAAAAAAA8ABsAAAABAAEAAAA9ABsAAAABAAEAAAA+ABsAAAABAAEAAAA9ABwAAAABAAEAAAA8ABwAAAABAAEAAAA7ABwAAAABAAEAAAA6ABwAAAABAAEAAAA6ABsAAAABAAEAAAA5ABsAAAABAAEAAAA4ABsAAAABAAEAAAA3ABwAAAABAAEAAAA2ABwAAAABAAEAAAA1ABwAAAALAAEAAAAwABwAAAABAAEAAAAvABwAAAABAAEAAAAuABwAAAABAAEAAAAtABwAAAABAAEAAAAsABwAAAABAAEAAAArABwAAAABAAEAAAAqABwAAAABAAEAAAApABwAAAABAAEAAAAoABwAAAABAAEAAAAnABwAAAABAAEAAAAmABwAAAABAAEAAAAlABwAAAABAAEAAAAnABsAAAABAAEAAAAmABsAAAABAAEAAAAoABsAAAABAAEAAAApABsAAAABAAEAAAAqABsAAAABAAEAAAArABsAAAABAAEAAAAsABsAAAABAAEAAAAtABsAAAABAAEAAAAuABsAAAABAAEAAAAvABsAAAABAAEAAAAwABsAAAABAAEAAAA1ABsAAAALAAEAAAA2ABsAAAABAAEAAAA3ABsAAAABAAEAAAA5ABwAAAABAAEAAAA4ABwAAAABAAEAAAA7ABsAAAABAAEAAAD+/xwAAAALAAEAAAD+/x0AAAALAAIAAAA6ABoAAAAFAAIAAAAyABsAAAANAAEAAAAxABsAAAABAAEAAAAyABwAAAANAAEAAAAxABwAAAABAAEAAAAxAB0AAAAMAAIAAAAyAB0AAAANAAIAAAD+/xoAAAALAAAAAAD//xoAAAAMAAAAAAA/ABoAAAAMAAAAAABnABsAAAABAAEAAABpABoAAAAMAAAAAABoABoAAAAMAAAAAABnABoAAAAMAAAAAABmABoAAAAFAAIAAABlABoAAAAGAAIAAABkABoAAAAMAAAAAABjABoAAAAMAAAAAABiABoAAAALAAAAAABOABoAAAANAAEAAABNABoAAAABAAEAAABMABoAAAALAAEAAABJABoAAAANAAAAAABIABoAAAAMAAAAAABHABoAAAAMAAAAAABGABoAAAAMAAAAAABFABoAAAAMAAAAAABEABoAAAAMAAAAAABDABoAAAAMAAAAAABCABoAAAAMAAAAAABBABoAAAAMAAAAAABAABoAAAAMAAAAAABpAB0AAAAMAAIAAABpABwAAAABAAEAAABpABsAAAABAAEAAAA/AB0AAAAMAAIAAABAAB0AAAAMAAIAAABBAB0AAAAMAAIAAABCAB0AAAAMAAIAAABDAB0AAAAMAAIAAABEAB0AAAAMAAIAAABFAB0AAAAMAAIAAABGAB0AAAAMAAIAAABHAB0AAAAMAAIAAABIAB0AAAAMAAIAAABJAB0AAAANAAIAAABMAB0AAAALAAIAAABNAB0AAAAMAAIAAABOAB0AAAAMAAIAAABPAB0AAAAMAAIAAABQAB0AAAAMAAIAAABRAB0AAAAMAAIAAABSAB0AAAANAAIAAABbAB0AAAALAAIAAABcAB0AAAAMAAIAAABdAB0AAAAMAAIAAABeAB0AAAAMAAIAAABfAB0AAAAMAAIAAABgAB0AAAAMAAIAAABhAB0AAAAMAAIAAABiAB0AAAAMAAIAAABjAB0AAAAMAAIAAABkAB0AAAAMAAIAAABlAB0AAAAMAAIAAABmAB0AAAAMAAIAAABnAB0AAAAMAAIAAABoAB0AAAAMAAIAAABoABwAAAABAAEAAABoABsAAAABAAEAAABnABwAAAABAAEAAABmABwAAAABAAEAAABmABsAAAABAAEAAABlABwAAAABAAEAAABlABsAAAABAAEAAABkABwAAAABAAEAAABkABsAAAABAAEAAABjABwAAAABAAEAAABjABsAAAABAAEAAABiABwAAAABAAEAAABiABsAAAAGAAIAAABhABwAAAAGAAIAAABhABsAAAALAAAAAABgABwAAAAMAAAAAABfABwAAAAMAAAAAABeABwAAAAMAAAAAABdABwAAAAMAAAAAABcABwAAAAMAAAAAABbABwAAAALAAAAAABRABwAAAAMAAAAAABQABwAAAAMAAAAAABPABwAAAAMAAAAAABOABwAAAAFAAIAAABNABwAAAABAAEAAABMABwAAAALAAEAAABMABsAAAALAAEAAABJABwAAAANAAEAAABJABsAAAANAAEAAABHABwAAAABAAEAAABHABsAAAABAAEAAABGABsAAAABAAEAAABFABwAAAABAAEAAABFABsAAAABAAEAAABEABwAAAABAAEAAABDABwAAAABAAEAAABDABsAAAABAAEAAABCABwAAAABAAEAAABCABsAAAABAAEAAABBABwAAAABAAEAAABAABwAAAABAAEAAAA/ABwAAAABAAEAAAA/ABsAAAABAAEAAAANABkAAAALAAAAAAAOABkAAAAMAAAAAAAPABkAAAAMAAAAAAAQABkAAAANAAAAAAAdABsAAAALAAEAAAAdABwAAAALAAEAAAAeABwAAAABAAEAAAAfABwAAAABAAEAAAAfABsAAAABAAEAAAAeABoAAAAFAAIAAAAeABsAAAABAAEAAAAdAB0AAAALAAIAAAAeAB0AAAAMAAIAAAAfAB0AAAAMAAIAAAAjABcAAAAAAAMAAAAkABcAAAABAAMAAAAlABcAAAABAAMAAAAmABcAAAABAAMAAAAxABkAAAAGAAIAAAAyABgAAAANAAEAAAAyABkAAAANAAEAAAA1ABYAAAALAAEAAAA1ABcAAAALAAEAAAA1ABgAAAALAAEAAAA1ABkAAAALAAEAAAA2ABkAAAABAAEAAAA2ABgAAAABAAEAAAA2ABcAAAAFAAIAAAA2ABYAAAANAAEAAAA1ABUAAAALAAAAAAA2ABUAAAANAAAAAABAAA8AAAAAAAMAAABBAA8AAAABAAMAAABCAA8AAAABAAMAAABDAA8AAAACAAMAAAA7ABIAAAADAAMAAAA3ABgAAAABAAEAAAA4ABgAAAANAAEAAAA3ABkAAAABAAEAAAA4ABkAAAAFAAIAAAA4ABcAAAANAAAAAAA5ABkAAAAMAAAAAAA6ABkAAAANAAAAAAAdABkAAAALAAAAAAAeABkAAAANAAAAAAApABcAAAACAAMAAAAoABcAAAABAAMAAAAnABcAAAABAAMAAABMABkAAAALAAAAAABNABkAAAAMAAAAAABOABcAAAALAAAAAABOABkAAAAJAAAAAABPABcAAAAMAAAAAABQABUAAAALAAAAAABQABcAAAAGAAIAAABRABcAAAAFAAEAAABRABYAAAAFAAIAAABRABUAAAANAAAAAABqABoAAAAMAAAAAACoABoAAAANAAAAAACnABoAAAAMAAAAAACmABoAAAAMAAAAAAClABoAAAAMAAAAAACkABoAAAAMAAAAAACjABoAAAAMAAAAAACiABoAAAAMAAAAAAChABoAAAAMAAAAAACgABoAAAAMAAAAAACfABoAAAAMAAAAAACeABoAAAAMAAAAAACdABoAAAAMAAAAAACcABoAAAAMAAAAAACbABoAAAAMAAAAAACaABoAAAAMAAAAAACZABoAAAAMAAAAAACYABoAAAAMAAAAAACXABoAAAAMAAAAAACWABoAAAAMAAAAAACVABoAAAAMAAAAAACUABoAAAAMAAAAAACTABoAAAAMAAAAAACSABoAAAAMAAAAAACRABoAAAAMAAAAAACQABoAAAAMAAAAAACPABoAAAAMAAAAAACOABoAAAAMAAAAAACNABoAAAALAAAAAAB/ABoAAAAMAAAAAAB+ABoAAAAMAAAAAAB9ABoAAAAMAAAAAAB8ABoAAAAMAAAAAAB7ABoAAAAMAAAAAAB6ABoAAAAMAAAAAAB5ABoAAAAMAAAAAAB4ABoAAAAMAAAAAAB3ABoAAAAMAAAAAAB2ABoAAAAMAAAAAAB1ABoAAAAMAAAAAAB0ABoAAAAFAAIAAABzABoAAAAGAAIAAAByABoAAAAMAAAAAABxABoAAAAMAAAAAABwABoAAAAMAAAAAABvABoAAAAMAAAAAABuABoAAAAMAAAAAABrABoAAAAMAAAAAACoABsAAAANAAEAAACoABwAAAANAAEAAABqAB0AAAAMAAIAAACoAB0AAAANAAIAAACnAB0AAAAMAAIAAACmAB0AAAAMAAIAAAClAB0AAAAMAAIAAACkAB0AAAAMAAIAAACjAB0AAAAMAAIAAACiAB0AAAAMAAIAAAChAB0AAAAMAAIAAACgAB0AAAAMAAIAAACfAB0AAAAMAAIAAACeAB0AAAAMAAIAAACdAB0AAAAMAAIAAACcAB0AAAAMAAIAAACbAB0AAAAMAAIAAACaAB0AAAAMAAIAAACZAB0AAAAMAAIAAACYAB0AAAAMAAIAAACXAB0AAAAMAAIAAACWAB0AAAAMAAIAAACVAB0AAAAMAAIAAACUAB0AAAAMAAIAAACTAB0AAAAMAAIAAACSAB0AAAAMAAIAAACRAB0AAAAMAAIAAACQAB0AAAAMAAIAAACPAB0AAAAMAAIAAACOAB0AAAAMAAIAAACNAB0AAAALAAIAAAB/AB0AAAAMAAIAAAB+AB0AAAAMAAIAAAB9AB0AAAAMAAIAAAB8AB0AAAAMAAIAAAB7AB0AAAAMAAIAAAB6AB0AAAAMAAIAAAB5AB0AAAAMAAIAAAB4AB0AAAAMAAIAAAB3AB0AAAAMAAIAAAB2AB0AAAAMAAIAAAB1AB0AAAAMAAIAAAB0AB0AAAAMAAIAAABzAB0AAAAMAAIAAAByAB0AAAAMAAIAAABxAB0AAAAMAAIAAABwAB0AAAAMAAIAAABvAB0AAAAMAAIAAABuAB0AAAAMAAIAAABrAB0AAAAMAAIAAACnABwAAAABAAEAAACnABsAAAABAAEAAACmABwAAAABAAEAAACmABsAAAABAAEAAAClABwAAAABAAEAAAClABsAAAABAAEAAACkABwAAAABAAEAAACkABsAAAABAAEAAACjABwAAAABAAEAAACjABsAAAABAAEAAACiABwAAAABAAEAAACiABsAAAABAAEAAAChABwAAAABAAEAAAChABsAAAABAAEAAACgABwAAAABAAEAAACgABsAAAABAAEAAACfABwAAAABAAEAAACfABsAAAABAAEAAACeABwAAAABAAEAAACeABsAAAABAAEAAACdABwAAAABAAEAAACdABsAAAABAAEAAACcABwAAAABAAEAAACcABsAAAABAAEAAACbABwAAAABAAEAAACbABsAAAABAAEAAACaABwAAAABAAEAAACaABsAAAABAAEAAACZABwAAAABAAEAAACZABsAAAABAAEAAACYABwAAAABAAEAAACYABsAAAABAAEAAACXABwAAAABAAEAAACXABsAAAABAAEAAACWABwAAAABAAEAAACWABsAAAABAAEAAACVABwAAAABAAEAAACVABsAAAABAAEAAACUABwAAAABAAEAAACUABsAAAABAAEAAACTABwAAAABAAEAAACTABsAAAABAAEAAACSABwAAAABAAEAAACSABsAAAABAAEAAACRABwAAAABAAEAAACRABsAAAABAAEAAACQABwAAAABAAEAAACQABsAAAABAAEAAACPABwAAAABAAEAAACPABsAAAABAAEAAACOABwAAAABAAEAAACOABsAAAABAAEAAACNABwAAAALAAEAAACNABsAAAALAAEAAAB/ABwAAAABAAEAAAB/ABsAAAABAAEAAAB+ABwAAAABAAEAAAB+ABsAAAABAAEAAAB9ABwAAAABAAEAAAB9ABsAAAABAAEAAAB8ABwAAAABAAEAAAB8ABsAAAABAAEAAAB7ABwAAAABAAEAAAB7ABsAAAABAAEAAAB6ABwAAAABAAEAAAB6ABsAAAABAAEAAAB5ABwAAAABAAEAAAB5ABsAAAABAAEAAAB4ABwAAAABAAEAAAB4ABsAAAABAAEAAAB3ABwAAAABAAEAAAB3ABsAAAABAAEAAAB2ABwAAAABAAEAAAB2ABsAAAABAAEAAAB1ABwAAAABAAEAAAB1ABsAAAABAAEAAAB0ABwAAAABAAEAAAB0ABsAAAABAAEAAABzABwAAAABAAEAAABzABsAAAABAAEAAAByABwAAAABAAEAAAByABsAAAABAAEAAABxABwAAAABAAEAAABxABsAAAABAAEAAABwABwAAAABAAEAAABwABsAAAABAAEAAABvABwAAAABAAEAAABvABsAAAABAAEAAABuABwAAAABAAEAAABuABsAAAABAAEAAABrABwAAAABAAEAAABrABsAAAABAAEAAABqABwAAAABAAEAAABqABsAAAABAAEAAABSABYAAAAMAAAAAABTABcAAAAMAAIAAABUABcAAAAMAAIAAABTABYAAAAMAAAAAABUABYAAAAMAAAAAABVABYAAAAMAAAAAABWABYAAAAMAAAAAABXABYAAAAMAAAAAABYABYAAAAMAAAAAABZABYAAAAMAAAAAABaABYAAAAMAAAAAABbABYAAAAMAAAAAABcABYAAAAMAAAAAABdABYAAAAGAAIAAABeABYAAAANAAEAAABeABcAAAAFAAIAAABdABcAAAABAAEAAABcABcAAAAGAAEAAABbABcAAAAMAAIAAABXABcAAAAMAAIAAABWABcAAAAMAAIAAABVABcAAAAMAAIAAABYABcAAAAMAAIAAABZABcAAAAMAAIAAABaABcAAAAMAAIAAABdABgAAAAGAAEAAABeABgAAAAFAAEAAABQABgAAAAFAAEAAABPABgAAAABAAEAAABPABkAAAAMAAIAAABSABwAAAANAAAAAABeABUAAAANAAAAAABdABUAAAALAAAAAABdABkAAAALAAIAAABlABIAAAALAAAAAABmABMAAAAFAAIAAABmABIAAAANAAAAAABvABMAAAAMAAAAAABuABMAAAAMAAAAAABtABMAAAAMAAAAAABsABMAAAAMAAAAAABrABMAAAAMAAAAAABqABMAAAAMAAAAAABpABMAAAAMAAAAAABoABMAAAAMAAAAAABwABMAAAAMAAAAAABxABMAAAAMAAAAAAByABMAAAAMAAAAAABzAA0AAAALAAEAAAB0AA0AAAANAAEAAAB0AA4AAAANAAEAAAB0AA8AAAANAAEAAAB0ABAAAAAFAAQAAAB0ABEAAAANAAEAAAB0ABIAAAANAAEAAABzABMAAAAGAAIAAAB0ABMAAAAFAAIAAABzABEAAAALAAEAAABzABAAAAALAAEAAABzAA8AAAALAAEAAABzAA4AAAALAAEAAABzAAwAAAALAAEAAAB0AAwAAAANAAEAAABzAAsAAAALAAEAAAB0AAsAAAANAAEAAAB0AAoAAAANAAAAAABzAAoAAAALAAAAAABmABQAAAAFAAEAAABmABUAAAANAAIAAABlABUAAAALAAIAAAByABQAAAAMAAIAAABxABQAAAAMAAIAAABwABQAAAAFAAEAAABvABQAAAAGAAEAAABuABQAAAAMAAIAAABtABQAAAAMAAIAAABsABQAAAAMAAIAAABrABQAAAAMAAIAAABqABQAAAAFAAEAAABpABQAAAAGAAEAAABoABQAAAAMAAIAAABnABQAAAAMAAIAAABzABQAAAAGAAEAAAB0ABQAAAAFAAEAAABlABkAAAALAAAAAABmABkAAAANAAAAAABzABkAAAALAAAAAAB0ABkAAAANAAAAAABsABoAAAAGAAIAAABtABoAAAAFAAIAAABsABsAAAABAAEAAABtABsAAAABAAEAAABtABwAAAABAAEAAABsABwAAAABAAEAAABsAB0AAAAMAAIAAABtAB0AAAAMAAIAAAB0ABUAAAANAAIAAABsABkAAAALAAAAAABtABkAAAANAAAAAABqABUAAAANAAIAAABQABkAAAANAAIAAABfABcAAAANAAAAAABfABgAAAANAAIAAACAABoAAAAMAAAAAACAABsAAAABAAEAAACAABwAAAABAAEAAACAAB0AAAAMAAIAAACBAB0AAAAMAAIAAACCAB0AAAANAAIAAACCABwAAAANAAEAAACCABsAAAANAAEAAACCABoAAAANAAAAAACBABoAAAAMAAAAAACBABsAAAABAAEAAACBABwAAAABAAEAAAB1ABMAAAAMAAAAAAB2ABMAAAANAAAAAAB2ABQAAAANAAIAAAB1ABAAAAABAAMAAAB2ABAAAAACAAMAAAAxABcAAAALAAAAAAAyABcAAAANAAAAAAAwABkAAAAMAAAAAAARABoAAAAMAAAAAAD+/xsAAAALAAEAAAAQAB0AAAAMAAIAAAAPAB0AAAAMAAIAAAAOAB0AAAAMAAIAAAANAB0AAAAMAAIAAAD//x0AAAAMAAIAAAAdABoAAAALAAEAAAAfABoAAAAMAAAAAAAvABkAAAALAAAAAAAxABgAAAALAAEAAAAyABoAAAANAAEAAAAxABoAAAABAAEAAAAgABwAAAABAAEAAAA3ABcAAAAMAAAAAABEABsAAAABAAEAAABBABsAAAABAAEAAABAABsAAAABAAEAAABGABwAAAABAAEAAABIABwAAAABAAEAAABIABsAAAABAAEAAABOABgAAAALAAEAAABRABgAAAANAAIAAABNABsAAAABAAEAAABOABsAAAANAAEAAABQABYAAAALAAEAAABSABcAAAAMAAIAAABeABkAAAANAAIAAABcABgAAAALAAIAAABlABQAAAALAAEAAABlABMAAAALAAEAAABnABMAAAAMAAAAAABpABUAAAALAAIAAABwABUAAAANAAIAAABvABUAAAALAAIAAAB1ABQAAAAMAAIAAABzABUAAAALAAIAAABzABIAAAALAAEAAAA=")
+tile_set = ExtResource("6_h1ois")
+script = ExtResource("7_kbpy6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/TileMapLayer"]
+position = Vector2(0, 680)
+script = ExtResource("8_3e5qb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(192, -232)
+shape = SubResource("RectangleShape2D_4s82q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(240, -272)
+shape = SubResource("RectangleShape2D_6yw7a")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(480, -272)
+shape = SubResource("RectangleShape2D_qfy7c")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(616, -304)
+shape = SubResource("RectangleShape2D_m6eoa")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(640, -232)
+shape = SubResource("RectangleShape2D_akt46")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(784, -272)
+shape = SubResource("RectangleShape2D_km752")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(800, -296)
+shape = SubResource("RectangleShape2D_s35hg")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(864, -328)
+shape = SubResource("RectangleShape2D_p4eix")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(880, -296)
+shape = SubResource("RectangleShape2D_m8t8t")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(896, -272)
+shape = SubResource("RectangleShape2D_ificf")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(952, -384)
+shape = SubResource("RectangleShape2D_jht3q")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1016, -232)
+shape = SubResource("RectangleShape2D_kqjrs")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1056, -432)
+shape = SubResource("RectangleShape2D_ix0ft")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1240, -248)
+shape = SubResource("RectangleShape2D_u55xa")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1256, -272)
+shape = SubResource("RectangleShape2D_v14te")
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1272, -216)
+shape = SubResource("RectangleShape2D_h2yiy")
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1280, -288)
+shape = SubResource("RectangleShape2D_5mfrv")
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1296, -336)
+shape = SubResource("RectangleShape2D_6gx2m")
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1392, -304)
+shape = SubResource("RectangleShape2D_km7n3")
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1400, -320)
+shape = SubResource("RectangleShape2D_r63pg")
+
+[node name="CollisionShape2D21" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1504, -336)
+shape = SubResource("RectangleShape2D_ttfiw")
+
+[node name="CollisionShape2D22" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1504, -288)
+shape = SubResource("RectangleShape2D_hmhsp")
+
+[node name="CollisionShape2D23" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1504, -272)
+shape = SubResource("RectangleShape2D_ng7s1")
+
+[node name="CollisionShape2D24" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1632, -384)
+shape = SubResource("RectangleShape2D_82for")
+
+[node name="CollisionShape2D25" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1632, -336)
+shape = SubResource("RectangleShape2D_n1r3u")
+
+[node name="CollisionShape2D26" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1632, -272)
+shape = SubResource("RectangleShape2D_pb4uf")
+
+[node name="CollisionShape2D27" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1696, -336)
+shape = SubResource("RectangleShape2D_k701v")
+
+[node name="CollisionShape2D28" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1744, -272)
+shape = SubResource("RectangleShape2D_nkwr1")
+
+[node name="CollisionShape2D29" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1760, -360)
+shape = SubResource("RectangleShape2D_8ff3b")
+
+[node name="CollisionShape2D30" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1776, -216)
+shape = SubResource("RectangleShape2D_skd8e")
+
+[node name="CollisionShape2D31" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1792, -336)
+shape = SubResource("RectangleShape2D_wowmk")
+
+[node name="CollisionShape2D32" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1824, -240)
+shape = SubResource("RectangleShape2D_43xqv")
+
+[node name="CollisionShape2D33" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1832, -256)
+shape = SubResource("RectangleShape2D_tfry8")
+
+[node name="CollisionShape2D34" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1856, -472)
+shape = SubResource("RectangleShape2D_dcvu3")
+
+[node name="CollisionShape2D35" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1856, -392)
+shape = SubResource("RectangleShape2D_cy5qa")
+
+[node name="CollisionShape2D36" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1856, -336)
+shape = SubResource("RectangleShape2D_gmfsc")
+
+[node name="CollisionShape2D37" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1856, -272)
+shape = SubResource("RectangleShape2D_te8iy")
+
+[node name="CollisionShape2D38" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(1872, -416)
+shape = SubResource("RectangleShape2D_lfvrq")
+
+[node name="CollisionShape2D39" type="CollisionShape2D" parent="Level/TileMapLayer/StaticBody2D"]
+position = Vector2(2480, -232)
+shape = SubResource("RectangleShape2D_dkmib")
+
+[node name="Collectables" type="Node2D" parent="Level"]
+
+[node name="PathSnowflake" parent="Level/Collectables" instance=ExtResource("9_qxnom")]
+position = Vector2(64, 64)
+id = 8
+init_progress_ratio = null
+
+[node name="Snowflake" parent="Level/Collectables" instance=ExtResource("10_tld6o")]
+position = Vector2(3160, -320)
+
+[node name="PathCoin" parent="Level/Collectables/Snowflake" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 1
+init_progress_ratio = null
+
+[node name="PathCoin2" parent="Level/Collectables/Snowflake" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 3
+init_progress_ratio = 0.2
+
+[node name="PathCoin3" parent="Level/Collectables/Snowflake" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 2
+init_progress_ratio = 0.4
+
+[node name="PathCoin4" parent="Level/Collectables/Snowflake" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 4
+init_progress_ratio = 0.6
+
+[node name="PathCoin5" parent="Level/Collectables/Snowflake" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 5
+init_progress_ratio = 0.8
+
+[node name="Snowflake2" parent="Level/Collectables" instance=ExtResource("10_tld6o")]
+position = Vector2(2976, -248)
+id = 2
+
+[node name="PathCoin" parent="Level/Collectables/Snowflake2" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 6
+init_progress_ratio = null
+
+[node name="PathCoin2" parent="Level/Collectables/Snowflake2" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 2
+init_progress_ratio = 0.2
+
+[node name="PathCoin3" parent="Level/Collectables/Snowflake2" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 1
+init_progress_ratio = 0.4
+
+[node name="PathCoin4" parent="Level/Collectables/Snowflake2" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 3
+init_progress_ratio = 0.6
+
+[node name="PathCoin5" parent="Level/Collectables/Snowflake2" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 5
+init_progress_ratio = 0.8
+
+[node name="Snowflake3" parent="Level/Collectables" instance=ExtResource("10_tld6o")]
+position = Vector2(3336, -248)
+id = 3
+
+[node name="PathCoin" parent="Level/Collectables/Snowflake3" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 5
+init_progress_ratio = null
+
+[node name="PathCoin2" parent="Level/Collectables/Snowflake3" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 1
+init_progress_ratio = 0.2
+
+[node name="PathCoin3" parent="Level/Collectables/Snowflake3" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 3
+init_progress_ratio = 0.4
+
+[node name="PathCoin4" parent="Level/Collectables/Snowflake3" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 2
+init_progress_ratio = 0.6
+
+[node name="PathCoin5" parent="Level/Collectables/Snowflake3" instance=ExtResource("9_qxnom")]
+collectable_type = 0
+id = 4
+init_progress_ratio = 0.8
+
+[node name="Coins" type="Node2D" parent="Level/Collectables"]
+
+[node name="Coin" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(1712, 400)
+id = 22
+
+[node name="Coin2" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(1776, 400)
+id = 2
+
+[node name="Coin3" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(1912, 400)
+id = 3
+
+[node name="Coin6" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(1976, 400)
+id = 6
+
+[node name="Coin7" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(2568, 304)
+id = 7
+
+[node name="Coin8" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(2616, 304)
+id = 8
+
+[node name="Coin9" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(3912, 304)
+id = 9
+
+[node name="Coin10" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(3864, 304)
+id = 10
+
+[node name="Coin11" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(3104, 112)
+id = 11
+
+[node name="Coin12" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(3168, 112)
+id = 12
+
+[node name="Coin13" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(3232, 112)
+id = 13
+
+[node name="Coin4" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(1416, 496)
+id = 4
+
+[node name="Coin5" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(1464, 496)
+id = 5
+
+[node name="Coin19" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(4488, 304)
+id = 14
+
+[node name="Coin20" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(4536, 304)
+id = 15
+
+[node name="Coin21" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(4872, 160)
+id = 16
+
+[node name="Coin22" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(4920, 160)
+id = 17
+
+[node name="Coin23" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(5440, 544)
+id = 18
+
+[node name="Coin24" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(5488, 544)
+id = 19
+
+[node name="Coin25" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(4976, 544)
+id = 20
+
+[node name="Coin26" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(5024, 544)
+id = 21
+
+[node name="Coin27" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(3808, 584)
+
+[node name="Coin28" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(3864, 584)
+id = 23
+
+[node name="Coin29" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(3920, 584)
+id = 24
+
+[node name="Coin30" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(3920, 648)
+id = 25
+
+[node name="Coin31" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(3864, 648)
+id = 27
+
+[node name="Coin32" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(3808, 648)
+id = 28
+
+[node name="Coin33" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(5632, 216)
+id = 26
+
+[node name="Coin34" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(5696, 216)
+id = 29
+
+[node name="Coin35" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(5696, 168)
+id = 30
+
+[node name="Coin36" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(5632, 168)
+id = 31
+
+[node name="Coin37" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(5632, 72)
+id = 32
+
+[node name="Coin38" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(5696, 72)
+id = 33
+
+[node name="Coin39" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(5696, 24)
+id = 34
+
+[node name="Coin40" parent="Level/Collectables/Coins" instance=ExtResource("11_kao7q")]
+position = Vector2(5632, 24)
+id = 35
+
+[node name="PathCoin" parent="Level/Collectables/Coins" instance=ExtResource("9_qxnom")]
+position = Vector2(3968, 672)
+collectable_type = 0
+id = 39
+speed = 1.7
+curve = SubResource("Curve2D_tsaek")
+
+[node name="PathCoin2" parent="Level/Collectables/Coins" instance=ExtResource("9_qxnom")]
+position = Vector2(3968, 672)
+collectable_type = 0
+id = 40
+speed = 1.7
+init_progress_ratio = 0.05
+curve = SubResource("Curve2D_tsaek")
+
+[node name="PathCoin3" parent="Level/Collectables/Coins" instance=ExtResource("9_qxnom")]
+position = Vector2(3968, 672)
+collectable_type = 0
+id = 41
+speed = 1.7
+init_progress_ratio = 0.1
+curve = SubResource("Curve2D_tsaek")
+
+[node name="PathCoin4" parent="Level/Collectables/Coins" instance=ExtResource("9_qxnom")]
+position = Vector2(3968, 672)
+collectable_type = 0
+id = 36
+speed = 1.7
+init_progress_ratio = 0.15
+curve = SubResource("Curve2D_tsaek")
+
+[node name="PathCoin5" parent="Level/Collectables/Coins" instance=ExtResource("9_qxnom")]
+position = Vector2(3968, 672)
+collectable_type = 0
+id = 37
+speed = 1.7
+init_progress_ratio = 0.2
+curve = SubResource("Curve2D_tsaek")
+
+[node name="Snowflake4" parent="Level/Collectables" instance=ExtResource("10_tld6o")]
+position = Vector2(3888, 616)
+id = 4
+
+[node name="Snowflake5" parent="Level/Collectables" instance=ExtResource("10_tld6o")]
+position = Vector2(5664, 192)
+id = 5
+
+[node name="Snowflake6" parent="Level/Collectables" instance=ExtResource("10_tld6o")]
+position = Vector2(5664, 48)
+id = 6
+
+[node name="IceShard" parent="Level/Collectables" instance=ExtResource("12_gy53x")]
+position = Vector2(3840, 616)
+
+[node name="BorderBreak" parent="Level" instance=ExtResource("13_5mqgy")]
+position = Vector2(3176, 8)
+scale = Vector2(8, 1)
+added_limit = -500
+
+[node name="Chest" parent="Level" node_paths=PackedStringArray("hides") instance=ExtResource("14_140u8")]
+position = Vector2(720, 520)
+hides = NodePath("../ChestBorder")
+
+[node name="ChestBorder" type="StaticBody2D" parent="Level"]
+position = Vector2(1000, 272)
+
+[node name="Collision" type="CollisionShape2D" parent="Level/ChestBorder"]
+shape = SubResource("RectangleShape2D_xbexj")
+
+[node name="TextTrigger" parent="Level" node_paths=PackedStringArray("offset_target") instance=ExtResource("16_b4m70")]
+position = Vector2(6528, 696)
+scale = Vector2(8, 1)
+text = 2
+offset_target = NodePath(".")

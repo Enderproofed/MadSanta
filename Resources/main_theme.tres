@@ -1,11 +1,62 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://jnbngevfqoh4"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://jnbngevfqoh4"]
 
 [ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="1_ise4h"]
 [ext_resource type="StyleBox" uid="uid://dric80l8k5e7y" path="res://Resources/default_button.tres" id="2_bf5vu"]
 [ext_resource type="StyleBox" uid="uid://cxhsk5cqf36dq" path="res://Resources/default_pressed_button.tres" id="3_sx4cm"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sgw1"]
+bg_color = Color(0, 0.67451, 0.772549, 0.333333)
+border_width_left = 2
+border_width_top = 30
+border_width_right = 2
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 2.0
+expand_margin_top = 30.0
+expand_margin_right = 2.0
+expand_margin_bottom = 8.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_paeag"]
+bg_color = Color(0, 0.67451, 0.772549, 0.333333)
+border_width_left = 2
+border_width_top = 10
+border_width_right = 2
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 2.0
+expand_margin_top = 10.0
+expand_margin_right = 2.0
+expand_margin_bottom = 8.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nslxh"]
+bg_color = Color(0, 0.67451, 0.772549, 0.333333)
+border_width_left = 2
+border_width_top = 10
+border_width_right = 2
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 2.0
+expand_margin_top = 10.0
+expand_margin_right = 2.0
+expand_margin_bottom = 8.0
+anti_aliasing = false
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moc53"]
-bg_color = Color(0, 0.67451, 0.772549, 0.364706)
+bg_color = Color(9.3855e-07, 0.298586, 0.346104, 0.364706)
 border_width_left = 4
 border_width_right = 4
 border_color = Color(0.74978, 0.74978, 0.74978, 1)
@@ -29,6 +80,8 @@ corner_radius_bottom_left = 10
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_unnd8"]
+content_margin_left = 7.0
+content_margin_right = 7.0
 bg_color = Color(0, 0.67451, 0.772549, 0.486275)
 border_width_left = 4
 border_width_top = 2
@@ -108,23 +161,28 @@ anti_aliasing = false
 
 [resource]
 default_font = ExtResource("1_ise4h")
+AcceptDialog/colors/title_color = Color(0, 0, 0, 1)
+AcceptDialog/font_sizes/title_font_size = 20
+AcceptDialog/styles/embedded_border = SubResource("StyleBoxFlat_0sgw1")
+AcceptDialog/styles/embedded_unfocused_border = SubResource("StyleBoxFlat_paeag")
+AcceptDialog/styles/panel = SubResource("StyleBoxFlat_nslxh")
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_outline_color = Color(0.2, 0.7, 100, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
 Button/colors/icon_focus_color = Color(1, 1, 1, 1)
-Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1.2, 1.2, 1.2, 1)
 Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/icon_normal_color = Color(1, 1, 1, 1)
-Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(0.920995, 0.920995, 0.920995, 1)
+Button/colors/icon_pressed_color = Color(5, 5, 5, 1)
 Button/constants/align_to_largest_stylebox = 0
 Button/constants/h_separation = 4
-Button/constants/icon_max_width = 0
-Button/constants/outline_size = 0
+Button/constants/icon_max_width = 27
+Button/constants/outline_size = 7
 Button/font_sizes/font_size = 25
 Button/fonts/font = ExtResource("1_ise4h")
 Button/styles/disabled = SubResource("StyleBoxFlat_moc53")

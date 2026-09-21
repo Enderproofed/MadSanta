@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=4 uid="uid://bn5bv5a8wlsae"]
+
+[ext_resource type="Script" path="res://Scripts/Level/Level.gd" id="1_esylg"]
+[ext_resource type="PackedScene" uid="uid://c2hskt6dqvqh2" path="res://Scenes/Level/LevelBase.tscn" id="2_osmtm"]
+[ext_resource type="PackedScene" uid="uid://b6lj54tqfp1fr" path="res://Scenes/Level/Player.tscn" id="3_ofpr1"]
+[ext_resource type="Script" path="res://Scripts/Level/tilemap_baking_parent.gd" id="5_ag2nh"]
+[ext_resource type="TileSet" uid="uid://dcltu6sxqh3la" path="res://Resources/tileset.tres" id="6_tydic"]
+
+[node name="BaseLevel" type="Node2D"]
+script = ExtResource("1_esylg")
+level_number = 2
+
+[node name="LevelBase" parent="." instance=ExtResource("2_osmtm")]
+show_behind_parent = true
+z_index = -3
+position = Vector2(0, -352)
+finish_position = 3920
+border_bottom = 425
+border_top = -475
+border_right = 2395
+
+[node name="Player" parent="." instance=ExtResource("3_ofpr1")]
+position = Vector2(232, 240)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Collectables" type="Node2D" parent="."]
+
+[node name="Coins" type="Node2D" parent="Collectables"]
+
+[node name="Snowflakes" type="Node2D" parent="Collectables"]
+
+[node name="Shards" type="Node2D" parent="Collectables"]
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Level"]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAD//wYAAAAMAAAAAAD+/wYAAAALAAAAAAD+/wcAAAALAAEAAAD+/wgAAAALAAEAAAD+/wkAAAALAAEAAAD+/woAAAALAAIAAAD//woAAAAMAAIAAAAAAAoAAAAMAAIAAAABAAoAAAAMAAIAAAACAAoAAAAMAAIAAAADAAoAAAAMAAIAAAAEAAoAAAAMAAIAAAAFAAoAAAAMAAIAAAAGAAoAAAAMAAIAAAAHAAoAAAANAAIAAAAHAAcAAAANAAEAAAAHAAYAAAANAAAAAAAGAAYAAAAMAAAAAAAFAAYAAAAMAAAAAAAEAAYAAAAMAAAAAAADAAYAAAAMAAAAAAACAAYAAAAMAAAAAAAGAAcAAAABAAEAAAAFAAcAAAABAAEAAAAEAAcAAAABAAEAAAADAAcAAAABAAEAAAACAAcAAAABAAEAAAABAAcAAAABAAEAAAAAAAcAAAABAAEAAAD//wcAAAABAAEAAAD//wgAAAABAAEAAAAAAAgAAAABAAEAAAABAAgAAAABAAEAAAACAAgAAAABAAEAAAADAAgAAAABAAEAAAAEAAgAAAABAAEAAAAFAAgAAAABAAEAAAAGAAgAAAABAAEAAAAHAAgAAAANAAEAAAAHAAkAAAANAAEAAAAGAAkAAAABAAEAAAAFAAkAAAABAAEAAAAEAAkAAAABAAEAAAADAAkAAAABAAEAAAACAAkAAAABAAEAAAABAAkAAAABAAEAAAAAAAkAAAABAAEAAAD//wkAAAABAAEAAAAAAAYAAAAMAAAAAAABAAYAAAAMAAAAAAA=")
+tile_set = ExtResource("6_tydic")
+script = ExtResource("5_ag2nh")
+
+[node name="OneWayPlatforms" type="Node2D" parent="Level"]
+
+[node name="BrickWalls" type="Node2D" parent="Level"]
+
+[node name="Doors" type="Node2D" parent="Level"]

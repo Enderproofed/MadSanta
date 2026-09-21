@@ -1,0 +1,118 @@
+[gd_scene load_steps=11 format=3 uid="uid://br7td7lkiiqj1"]
+
+[ext_resource type="Texture2D" uid="uid://bsatv12byvsbb" path="res://Resources/Images/Projectiles/IcicleSelected.png" id="2_v5u58"]
+[ext_resource type="Script" path="res://Scripts/UI/SoundSlider.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://8v2til5u0c6l" path="res://Resources/Images/Projectiles/Icicle.png" id="4"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="4_543l3"]
+[ext_resource type="Texture2D" uid="uid://b5k3is810ayhk" path="res://Resources/Images/GlowStar.png" id="5_w3uvg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n01j3"]
+bg_color = Color(0.0119074, 0.838494, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n21h1"]
+bg_color = Color(0.566319, 0.901855, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Curve" id="Curve_1kybv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.210332, 1), 0.0, 0.0, 0, 0, Vector2(0.708487, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_cnl62"]
+curve = SubResource("Curve_1kybv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lvdem"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 8.0
+angle_min = -90.0
+angle_max = 90.0
+spread = 180.0
+initial_velocity_max = 35.0
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+alpha_curve = SubResource("CurveTexture_cnl62")
+
+[node name="master" type="HSlider"]
+offset_right = 671.0
+offset_bottom = 32.0
+focus_mode = 0
+theme_override_icons/grabber = ExtResource("4")
+theme_override_icons/grabber_highlight = ExtResource("2_v5u58")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_n01j3")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_n21h1")
+min_value = -50.0
+max_value = 0.0
+step = 0.1
+value = -2.9
+script = ExtResource("3")
+
+[node name="Label" type="Label" parent="." groups=["Translated"]]
+layout_mode = 1
+offset_left = -208.0
+offset_top = -24.0
+offset_right = 432.0
+offset_bottom = 280.0
+scale = Vector2(0.25, 0.25)
+theme = ExtResource("4_543l3")
+theme_override_constants/outline_size = 35
+theme_override_font_sizes/font_size = 100
+text = "Master"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Speaker" type="Polygon2D" parent="."]
+position = Vector2(-24, 16)
+scale = Vector2(0.845, 0.845)
+polygon = PackedVector2Array(-12, -4, -8, -4, 8, -12, 12, -12, 12, 12, 8, 12, -8, 4, -12, 4)
+
+[node name="SpeakerOutline" type="Polygon2D" parent="Speaker"]
+show_behind_parent = true
+color = Color(0.2, 0.7, 100, 1)
+polygon = PackedVector2Array(-14, -6, -9, -6, 7, -14, 14, -14, 14, 14, 7, 14, -9, 6, -14, 6)
+
+[node name="Cross" type="Line2D" parent="."]
+position = Vector2(-20, 16)
+points = PackedVector2Array(-12, -12, 12, 12)
+width = 4.0
+default_color = Color(0.4, 0.9, 5, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Cross2" type="Line2D" parent="Cross"]
+rotation = 3.14159
+scale = Vector2(1, -1)
+points = PackedVector2Array(-12, -12, 12, 12)
+width = 4.0
+default_color = Color(0.4, 0.9, 5, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="mute" type="Button" parent="."]
+layout_mode = 0
+offset_left = -40.0
+offset_right = -8.0
+offset_bottom = 32.0
+focus_mode = 0
+toggle_mode = true
+flat = true
+
+[node name="Paricles" type="GPUParticles2D" parent="."]
+position = Vector2(622, 22)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_lvdem")
+texture = ExtResource("5_w3uvg")
+
+[connection signal="drag_ended" from="." to="." method="_on_drag_ended"]
+[connection signal="drag_started" from="." to="." method="_on_drag_started"]
+[connection signal="value_changed" from="." to="." method="_on_master_value_changed"]
+[connection signal="button_up" from="mute" to="." method="_on_mute_button_up"]

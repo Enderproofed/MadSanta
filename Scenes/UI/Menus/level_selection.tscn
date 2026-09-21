@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsojbxfvy4pk8"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/level_selection.gd" id="1_a5ygt"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Blur.gdshader" id="3_m1au8"]
+[ext_resource type="PackedScene" uid="uid://c1oul5fnukx8a" path="res://Scenes/UI/LevelButton.tscn" id="5_kbtgd"]
+[ext_resource type="PackedScene" uid="uid://bbqnngojh2bwq" path="res://Scenes/UI/BackButton.tscn" id="5_ufoik"]
+[ext_resource type="PackedScene" uid="uid://rmoe7m3xwv14" path="res://Scenes/UI/ArrowButton.tscn" id="8_q2x1x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pc7b3"]
+shader = ExtResource("3_m1au8")
+shader_parameter/blur = 2.0
+
+[node name="LevelSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a5ygt")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_pc7b3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Selection" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -21.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" parent="Selection" instance=ExtResource("8_q2x1x")]
+z_index = 1
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -424.0
+offset_top = -72.0
+offset_right = -328.0
+offset_bottom = 72.0
+grow_horizontal = 1
+grow_vertical = 1
+type = 0
+button_size = 1.4
+
+[node name="Forth" parent="Selection" instance=ExtResource("8_q2x1x")]
+z_index = 1
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 328.0
+offset_top = -72.0
+offset_right = 424.0
+offset_bottom = 72.0
+grow_horizontal = 1
+grow_vertical = 1
+type = 1
+button_size = 1.4
+
+[node name="Pivot" type="Control" parent="Selection"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelButton" parent="Selection/Pivot" instance=ExtResource("5_kbtgd")]
+layout_mode = 1
+level_number = 1
+
+[node name="Back" parent="." instance=ExtResource("5_ufoik")]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 213.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[connection signal="button_up" from="Selection/Back" to="." method="_on_back_button_up"]
+[connection signal="button_up" from="Selection/Forth" to="." method="_on_forth_button_up"]

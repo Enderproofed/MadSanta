@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cscmikhebd6or"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xcwgc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6jkfo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ris2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qoswe"]
+
+[resource]
+Button/colors/icon_disabled_color = Color(0.856067, 0.856067, 0.856067, 0.6)
+Button/colors/icon_focus_color = Color(1.2, 1.2, 1.2, 1)
+Button/colors/icon_hover_color = Color(1.2, 1.2, 1.2, 1)
+Button/colors/icon_hover_pressed_color = Color(1.5, 1.5, 1.5, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1.5, 1.5, 1.5, 1)
+Button/styles/disabled = SubResource("StyleBoxEmpty_xcwgc")
+Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_6jkfo")
+Button/styles/focus = SubResource("StyleBoxEmpty_1ris2")
+Button/styles/hover = SubResource("StyleBoxEmpty_qoswe")

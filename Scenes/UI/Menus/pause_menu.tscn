@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://cq0tw86if3h4t"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/pause_menu.gd" id="1_5ldqw"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Blur.gdshader" id="2_phjbn"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="3_o4pym"]
+[ext_resource type="Texture2D" uid="uid://qb0i6yg4f3kd" path="res://Resources/Images/Icons/PlayButton.png" id="4_rex1o"]
+[ext_resource type="Texture2D" uid="uid://u2g4se103l05" path="res://Resources/Images/Icons/Restart.png" id="5_8xblm"]
+[ext_resource type="Texture2D" uid="uid://cum3x8i5ivv6k" path="res://Resources/Images/Icons/CreateIcon.png" id="6_xlpkl"]
+[ext_resource type="Texture2D" uid="uid://dacagreiytvdx" path="res://Resources/Images/Icons/Gear.png" id="7_2l038"]
+[ext_resource type="Texture2D" uid="uid://xhrkgvshw1uq" path="res://Resources/Images/Icons/Menu.png" id="8_xyi24"]
+[ext_resource type="Texture2D" uid="uid://demp05b2eewkl" path="res://Resources/Images/Icons/LogOut.png" id="9_gneas"]
+[ext_resource type="PackedScene" uid="uid://ot4d1fn1yc2u" path="res://Scenes/UI/UpgradesButton.tscn" id="10_0ywux"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5j77a"]
+shader = ExtResource("2_phjbn")
+shader_parameter/blur = 2.0
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5ldqw")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5j77a")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.388889
+anchor_top = 0.296296
+anchor_right = 0.611111
+anchor_bottom = 0.740741
+offset_bottom = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Resume" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+theme = ExtResource("3_o4pym")
+text = "Weiter"
+icon = ExtResource("4_rex1o")
+icon_alignment = 2
+metadata/tr_key = "RESUME"
+
+[node name="Restart" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+theme = ExtResource("3_o4pym")
+text = "        Neustart  (R) "
+icon = ExtResource("5_8xblm")
+icon_alignment = 2
+metadata/tr_key = "RESTART"
+
+[node name="ResumeBuilding" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+theme = ExtResource("3_o4pym")
+text = "Bearbeiten"
+icon = ExtResource("6_xlpkl")
+icon_alignment = 2
+metadata/tr_key = "EDIT"
+
+[node name="Options" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+theme = ExtResource("3_o4pym")
+text = "Einstellungen"
+icon = ExtResource("7_2l038")
+icon_alignment = 2
+metadata/tr_key = "SETTINGS"
+
+[node name="Return to Menu" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+theme = ExtResource("3_o4pym")
+text = " Hauptmenü "
+icon = ExtResource("8_xyi24")
+icon_alignment = 2
+metadata/tr_key = "M_MENU"
+
+[node name="Quit Game" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+theme = ExtResource("3_o4pym")
+theme_override_colors/font_color = Color(5, 0.5, 0.5, 1)
+theme_override_colors/font_outline_color = Color(1, 0.792157, 0.8, 1)
+theme_override_colors/icon_normal_color = Color(5, 0.5, 0.5, 1)
+theme_override_colors/icon_focus_color = Color(10, 0.4, 0.4, 1)
+theme_override_colors/icon_pressed_color = Color(10, 0.3, 0.3, 1)
+theme_override_colors/icon_hover_color = Color(10, 0.4, 0.4, 1)
+theme_override_constants/outline_size = 7
+text = " Rage Quit "
+icon = ExtResource("9_gneas")
+icon_alignment = 2
+metadata/tr_key = "RAGE_QUIT"
+
+[node name="Upgrades" parent="." instance=ExtResource("10_0ywux")]
+layout_mode = 1
+
+[connection signal="pressed" from="Container/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Container/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Container/ResumeBuilding" to="." method="_on_resume_building_pressed"]
+[connection signal="pressed" from="Container/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Container/Return to Menu" to="." method="_on_exit_level_pressed"]
+[connection signal="pressed" from="Container/Quit Game" to="." method="_on_quit_game_pressed"]

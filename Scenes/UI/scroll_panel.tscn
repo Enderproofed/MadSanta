@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://caqumt0qr0rs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pd7gm"]
+bg_color = Color(0, 0.67451, 0.772549, 0.333333)
+border_width_left = 2
+border_width_top = 10
+border_width_right = 2
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 2.0
+expand_margin_top = 10.0
+expand_margin_right = 2.0
+expand_margin_bottom = 8.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_533hw"]
+draw_center = false
+border_width_left = 2
+border_width_top = 8
+border_width_right = 2
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 2.0
+expand_margin_top = 8.0
+expand_margin_right = 2.0
+expand_margin_bottom = 6.0
+anti_aliasing = false
+
+[node name="ScrollPanel" type="Control"]
+layout_mode = 3
+anchor_right = 0.388889
+anchor_bottom = 0.469136
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pd7gm")
+
+[node name="PanelBorder" type="Panel" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_533hw")
+
+[node name="Container" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+
+[node name="Spacing" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3

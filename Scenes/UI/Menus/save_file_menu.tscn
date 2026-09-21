@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://crwcen4b7i4ir"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/save_file_menu.gd" id="1_mwweg"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Blur.gdshader" id="2_krcif"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="3_5jb8b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pc7b3"]
+shader = ExtResource("2_krcif")
+shader_parameter/blur = 2.0
+
+[node name="SaveMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mwweg")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_pc7b3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Saves" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = 88.0
+offset_right = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="AddSave" type="Button" parent="Saves"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_5jb8b")
+text = "    +    "
+
+[node name="NewSave" type="LineEdit" parent="Saves" groups=["Translated"]]
+layout_mode = 2
+focus_mode = 1
+theme = ExtResource("3_5jb8b")
+placeholder_text = "Enter name of the save"
+alignment = 1
+max_length = 22
+caret_blink = true
+metadata/tr_placeholder_key = "NEW_SAVE"
+
+[connection signal="button_up" from="Saves/AddSave" to="." method="_on_add_save_button_up"]
+[connection signal="text_changed" from="Saves/NewSave" to="." method="_on_new_save_text_changed"]
+[connection signal="text_submitted" from="Saves/NewSave" to="." method="_on_new_save_text_submitted"]

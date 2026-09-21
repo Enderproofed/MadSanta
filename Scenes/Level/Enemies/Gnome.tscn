@@ -1,0 +1,123 @@
+[gd_scene load_steps=13 format=3 uid="uid://gv4layjcwelw"]
+
+[ext_resource type="Texture2D" uid="uid://xv0xrc5mu1a7" path="res://Resources/Images/Animations/Gnome.png" id="1_0ew41"]
+[ext_resource type="Script" path="res://Scripts/Level/Enemies/Gnome.gd" id="1_18kyi"]
+[ext_resource type="PackedScene" uid="uid://cnau3rqgkdp0" path="res://Scenes/Level/Enemies/EnemyBase.tscn" id="2_vjr62"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Border.gdshader" id="3_wwohi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cayvj"]
+height = 54.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dlb6x"]
+resource_local_to_scene = true
+shader = ExtResource("3_wwohi")
+shader_parameter/line_color = Color(0.8, 0.8, 1, 0.8)
+shader_parameter/line_thickness = 0.0
+shader_parameter/pulsating_thickness = 0.0
+shader_parameter/alpha_threashold = null
+
+[sub_resource type="Animation" id="Animation_qmt73"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4646l"]
+resource_name = "hurt"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.09, 0.19, 0.291522, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0.37, 0.37, 1), Color(1, 0.37, 0.37, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_luvuf"]
+_data = {
+"RESET": SubResource("Animation_qmt73"),
+"hurt": SubResource("Animation_4646l")
+}
+
+[sub_resource type="Animation" id="Animation_gh0ej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_vjcum"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0kd6y"]
+_data = {
+"RESET": SubResource("Animation_gh0ej"),
+"walk": SubResource("Animation_vjcum")
+}
+
+[node name="Gnome" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 25
+script = ExtResource("1_18kyi")
+collectable_amount = null
+extra_health = null
+
+[node name="EnemyBase" parent="." instance=ExtResource("2_vjr62")]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_cayvj")
+
+[node name="Skin" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_dlb6x")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_0ew41")
+hframes = 3
+frame = 1
+
+[node name="HurtAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_luvuf")
+}
+
+[node name="WalkAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0kd6y")
+}
+autoplay = "walk"

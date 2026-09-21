@@ -1,0 +1,461 @@
+[gd_scene load_steps=16 format=3 uid="uid://0xy21d1ke5rq"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/upgrade_menu.gd" id="1_44ok1"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Blur.gdshader" id="2_q0bn1"]
+[ext_resource type="PackedScene" uid="uid://dwjdd8gpys2xm" path="res://Scenes/UI/Deco/DecoSnowball.tscn" id="3_6xsm0"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="4_syl7w"]
+[ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="5_g8fgx"]
+[ext_resource type="PackedScene" uid="uid://bf8hm4qkh6qar" path="res://Scenes/UI/BuyUpgrade.tscn" id="6_awvwb"]
+[ext_resource type="PackedScene" uid="uid://bha0oxkrplatf" path="res://Scenes/UI/Deco/DecoIcicle.tscn" id="7_l66l4"]
+[ext_resource type="PackedScene" uid="uid://2k0dfvfpvmou" path="res://Scenes/UI/Deco/DecoLaser.tscn" id="8_s2v7i"]
+[ext_resource type="PackedScene" uid="uid://bh5bs3eetf8q2" path="res://Scenes/UI/Deco/Wings.tscn" id="9_hgyq6"]
+[ext_resource type="Texture2D" uid="uid://b2vumwmikhr3h" path="res://Resources/Images/Snowman.png" id="10_dt8wt"]
+[ext_resource type="PackedScene" uid="uid://rmoe7m3xwv14" path="res://Scenes/UI/ArrowButton.tscn" id="11_ejsdf"]
+[ext_resource type="PackedScene" uid="uid://bbqnngojh2bwq" path="res://Scenes/UI/BackButton.tscn" id="12_l2m8h"]
+[ext_resource type="PackedScene" uid="uid://dnxpu1jdle27" path="res://Scenes/UI/CollectablesDisplay.tscn" id="13_kibpj"]
+[ext_resource type="Texture2D" uid="uid://u2g4se103l05" path="res://Resources/Images/Icons/Restart.png" id="14_vuxyp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5j77a"]
+shader = ExtResource("2_q0bn1")
+shader_parameter/blur = 2.0
+
+[node name="UpgradeMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_44ok1")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5j77a")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pivot" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pivot" type="Control" parent="Pivot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Snowball" type="Control" parent="Pivot/Pivot"]
+anchors_preset = 0
+
+[node name="Deco" parent="Pivot/Pivot/Snowball" instance=ExtResource("3_6xsm0")]
+offset_top = -65.0
+offset_bottom = -65.0
+
+[node name="Title" type="Label" parent="Pivot/Pivot/Snowball" groups=["Translated"]]
+z_index = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -2880.0
+offset_top = -267.18
+offset_right = 2880.0
+offset_bottom = 732.82
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(2880, 0)
+theme = ExtResource("4_syl7w")
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("5_g8fgx")
+theme_override_font_sizes/font_size = 200
+text = "Schneeball"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/tr_key = "SNOWBALL"
+
+[node name="Upgrades" type="VBoxContainer" parent="Pivot/Pivot/Snowball" groups=["TranslatedContainer"]]
+layout_mode = 0
+offset_left = -132.0
+offset_right = 136.0
+offset_bottom = 207.0
+alignment = 1
+
+[node name="BuyStrength" parent="Pivot/Pivot/Snowball/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(198, 0)
+layout_mode = 2
+text = "  Stärke"
+metadata/tr_key = "STRENGTH"
+
+[node name="BuySize" parent="Pivot/Pivot/Snowball/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(198, 0)
+layout_mode = 2
+text = "  Größe"
+upgrade_type = 3
+upgrade_name = "Größe"
+metadata/tr_key = "SIZE"
+
+[node name="BuyBounces" parent="Pivot/Pivot/Snowball/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(216, 0)
+layout_mode = 2
+text = "  Bouncy"
+upgrade_type = 5
+upgrade_name = "Bouncy"
+metadata/tr_key = "BOUNCY"
+
+[node name="BuySpeed" parent="Pivot/Pivot/Snowball/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(378, 0)
+layout_mode = 2
+upgrade_type = 2
+metadata/tr_key = "SPEED"
+
+[node name="BuyReload" parent="Pivot/Pivot/Snowball/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+text = "  Nachladen"
+upgrade_type = 1
+upgrade_name = "Nachladen"
+metadata/tr_key = "RELOAD"
+
+[node name="Icicle" type="Control" parent="Pivot/Pivot"]
+anchors_preset = 0
+offset_left = 232.0
+offset_right = 232.0
+
+[node name="Deco" parent="Pivot/Pivot/Icicle" instance=ExtResource("7_l66l4")]
+offset_left = 0.0
+offset_top = -65.0
+offset_right = 0.0
+offset_bottom = -65.0
+
+[node name="Title" type="Label" parent="Pivot/Pivot/Icicle" groups=["Translated"]]
+z_index = 1
+layout_mode = 1
+offset_left = -2880.0
+offset_top = -267.18
+offset_right = 2920.0
+offset_bottom = 732.82
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(2880, 0)
+theme = ExtResource("4_syl7w")
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("5_g8fgx")
+theme_override_font_sizes/font_size = 200
+text = "O'zapfts"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/tr_key = "ICICLE"
+
+[node name="Upgrades" type="VBoxContainer" parent="Pivot/Pivot/Icicle" groups=["TranslatedContainer"]]
+visible = false
+layout_mode = 0
+offset_left = -130.0
+offset_top = -15.0
+offset_right = 317.0
+offset_bottom = 192.0
+alignment = 1
+
+[node name="BuyStrength" parent="Pivot/Pivot/Icicle/Upgrades" instance=ExtResource("6_awvwb")]
+layout_mode = 2
+text = "  Stärke"
+item_to_upgrade = 1
+metadata/tr_key = "STRENGTH"
+
+[node name="BuySpeed" parent="Pivot/Pivot/Icicle/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(446.505, 0)
+layout_mode = 2
+item_to_upgrade = 1
+upgrade_type = 2
+metadata/tr_key = "SPEED"
+
+[node name="BuyReload" parent="Pivot/Pivot/Icicle/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+text = "  Nachladen"
+item_to_upgrade = 1
+upgrade_type = 1
+upgrade_name = "Nachladen"
+metadata/tr_key = "RELOAD"
+
+[node name="BuyPrecision" parent="Pivot/Pivot/Icicle/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+text = "  Nachladen"
+item_to_upgrade = 1
+upgrade_type = 4
+upgrade_name = "Nachladen"
+metadata/tr_key = "PRECISION"
+
+[node name="Laser" type="Control" parent="Pivot/Pivot"]
+anchors_preset = 0
+offset_left = 464.0
+offset_right = 464.0
+
+[node name="Deco" parent="Pivot/Pivot/Laser" instance=ExtResource("8_s2v7i")]
+offset_left = 0.0
+offset_top = -65.0
+offset_right = 0.0
+offset_bottom = -65.0
+
+[node name="Title" type="Label" parent="Pivot/Pivot/Laser" groups=["Translated"]]
+z_index = 1
+layout_mode = 1
+offset_left = -2880.0
+offset_top = -267.18
+offset_right = 2920.0
+offset_bottom = 732.82
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(2880, 0)
+theme = ExtResource("4_syl7w")
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("5_g8fgx")
+theme_override_font_sizes/font_size = 200
+text = "Lazer"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/tr_key = "LASER"
+
+[node name="Upgrades" type="VBoxContainer" parent="Pivot/Pivot/Laser" groups=["TranslatedContainer"]]
+visible = false
+layout_mode = 0
+offset_left = -130.0
+offset_top = -15.0
+offset_right = 134.0
+offset_bottom = 192.0
+alignment = 1
+
+[node name="BuyStrength" parent="Pivot/Pivot/Laser/Upgrades" instance=ExtResource("6_awvwb")]
+layout_mode = 2
+text = "  Stärke"
+item_to_upgrade = 2
+upgrade_name = "Stärke"
+metadata/tr_key = "STRENGTH"
+
+[node name="BuySpread" parent="Pivot/Pivot/Laser/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(306, 0)
+layout_mode = 2
+text = "  Ausbreitung"
+item_to_upgrade = 2
+upgrade_type = 4
+upgrade_name = "Ausbreitung"
+metadata/tr_key = "SPREAD"
+
+[node name="BuyReload" parent="Pivot/Pivot/Laser/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(342, 0)
+layout_mode = 2
+text = "  Auflade-Speed"
+item_to_upgrade = 2
+upgrade_type = 1
+upgrade_name = "Auflade-Speed"
+metadata/tr_key = "LOAD_SPEED"
+
+[node name="BuyTime" parent="Pivot/Pivot/Laser/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+text = "  Feuerzeit"
+item_to_upgrade = 2
+upgrade_type = 2
+upgrade_name = "Feuerzeit"
+metadata/tr_key = "FIRE_TIME"
+
+[node name="Wings" type="Control" parent="Pivot/Pivot"]
+anchors_preset = 0
+offset_left = 696.0
+offset_right = 696.0
+
+[node name="Deco" parent="Pivot/Pivot/Wings" instance=ExtResource("9_hgyq6")]
+position = Vector2(0, -65)
+
+[node name="Title" type="Label" parent="Pivot/Pivot/Wings" groups=["Translated"]]
+z_index = 1
+layout_mode = 1
+offset_left = -2880.0
+offset_top = -267.18
+offset_right = 2920.0
+offset_bottom = 732.82
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(2880, 0)
+theme = ExtResource("4_syl7w")
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("5_g8fgx")
+theme_override_font_sizes/font_size = 200
+text = "Flügelchen"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/tr_key = "WINGS"
+
+[node name="Upgrades" type="VBoxContainer" parent="Pivot/Pivot/Wings" groups=["TranslatedContainer"]]
+visible = false
+layout_mode = 0
+offset_left = -135.0
+offset_top = -15.0
+offset_right = 129.0
+offset_bottom = 192.0
+alignment = 1
+
+[node name="BuyFlightTime" parent="Pivot/Pivot/Wings/Upgrades" instance=ExtResource("6_awvwb")]
+layout_mode = 2
+text = "  Flugzeit"
+item_to_upgrade = 3
+upgrade_name = "Flugzeit"
+metadata/tr_key = "FLIGHT_TIME"
+
+[node name="BuyReload" parent="Pivot/Pivot/Wings/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(342, 0)
+layout_mode = 2
+text = "  Auflade-Speed"
+item_to_upgrade = 3
+upgrade_type = 1
+upgrade_name = "Auflade-Speed"
+metadata/tr_key = "LOAD_TIME"
+
+[node name="BuySpeed" parent="Pivot/Pivot/Wings/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+text = "  Feuerzeit"
+item_to_upgrade = 3
+upgrade_type = 2
+upgrade_name = "Feuerzeit"
+metadata/tr_key = "SPEED"
+
+[node name="Miscellaneous" type="Control" parent="Pivot/Pivot"]
+anchors_preset = 0
+offset_left = 928.0
+offset_right = 928.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/Pivot/Miscellaneous"]
+position = Vector2(0, -64)
+scale = Vector2(4, 4)
+texture = ExtResource("10_dt8wt")
+
+[node name="Title" type="Label" parent="Pivot/Pivot/Miscellaneous" groups=["Translated"]]
+z_index = 1
+layout_mode = 1
+offset_left = -2880.0
+offset_top = -267.18
+offset_right = 2920.0
+offset_bottom = 732.82
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(2880, 0)
+theme = ExtResource("4_syl7w")
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("5_g8fgx")
+theme_override_font_sizes/font_size = 200
+text = "Verschiedenes"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/tr_key = "MISCELLANEOUS"
+
+[node name="Upgrades" type="VBoxContainer" parent="Pivot/Pivot/Miscellaneous" groups=["TranslatedContainer"]]
+visible = false
+layout_mode = 0
+offset_left = -132.0
+offset_top = -15.0
+offset_right = 132.0
+offset_bottom = 192.0
+alignment = 1
+
+[node name="BuyJumpHeight" parent="Pivot/Pivot/Miscellaneous/Upgrades" instance=ExtResource("6_awvwb")]
+layout_mode = 2
+text = "  Sprung-Höhe"
+item_to_upgrade = 3
+metadata/tr_key = "JUMP_HEIGHT"
+
+[node name="BuyDash" parent="Pivot/Pivot/Miscellaneous/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(342, 0)
+layout_mode = 2
+text = "  Auflade-Speed"
+item_to_upgrade = 3
+upgrade_type = 1
+upgrade_name = "Auflade-Speed"
+metadata/tr_key = "DASH"
+
+[node name="BuySpeed" parent="Pivot/Pivot/Miscellaneous/Upgrades" instance=ExtResource("6_awvwb")]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+text = "  Feuerzeit"
+item_to_upgrade = 3
+upgrade_type = 2
+upgrade_name = "Feuerzeit"
+metadata/tr_key = "SPEED"
+
+[node name="Back" parent="." instance=ExtResource("11_ejsdf")]
+layout_mode = 1
+offset_left = -305.0
+offset_top = -124.0
+offset_right = -249.0
+offset_bottom = -60.0
+type = 2
+button_size = 1.1
+
+[node name="Forth" parent="." instance=ExtResource("11_ejsdf")]
+layout_mode = 1
+offset_left = 242.0
+offset_top = -124.0
+offset_right = 298.0
+offset_bottom = -60.0
+button_size = 1.1
+
+[node name="Return" parent="." instance=ExtResource("12_l2m8h")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.5
+offset_top = -88.0
+offset_right = 94.5
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CollectablesDisplay" parent="." instance=ExtResource("13_kibpj")]
+offset_left = -15.0
+offset_top = 16.0
+offset_right = 369.0
+offset_bottom = 52.0
+always_visible = true
+disable_fake_collect = false
+
+[node name="Reset" type="Button" parent="." groups=["Translated"]]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -376.0
+offset_top = 16.0
+offset_right = -21.0
+offset_bottom = 52.0
+grow_horizontal = 0
+focus_mode = 0
+theme = ExtResource("4_syl7w")
+theme_override_colors/font_color = Color(5, 0.5, 0.5, 1)
+theme_override_colors/font_outline_color = Color(1, 0.792157, 0.8, 1)
+theme_override_colors/icon_normal_color = Color(5, 0.5, 0.5, 1)
+theme_override_colors/icon_focus_color = Color(10, 0.4, 0.4, 1)
+theme_override_colors/icon_pressed_color = Color(10, 0.3, 0.3, 1)
+theme_override_colors/icon_hover_color = Color(10, 0.4, 0.4, 1)
+theme_override_constants/outline_size = 7
+text = " Upgrades zurücksetzen   "
+icon = ExtResource("14_vuxyp")
+icon_alignment = 2
+metadata/tr_key = "RESET_UPGRADES"
+
+[connection signal="button_up" from="Back" to="." method="_on_back_button_up"]
+[connection signal="button_up" from="Forth" to="." method="_on_forth_button_up"]
+[connection signal="pressed" from="Reset" to="." method="reset_upgrages"]

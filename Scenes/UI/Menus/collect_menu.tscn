@@ -1,0 +1,364 @@
+[gd_scene load_steps=30 format=3 uid="uid://c5kxstyjgvo6b"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/collect_screen.gd" id="1_sv3vy"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Blur.gdshader" id="2_wndp2"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="3_13dab"]
+[ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="4_8a175"]
+[ext_resource type="Texture2D" uid="uid://b5k3is810ayhk" path="res://Resources/Images/GlowStar.png" id="5_xbmpn"]
+[ext_resource type="PackedScene" uid="uid://dwjdd8gpys2xm" path="res://Scenes/UI/Deco/DecoSnowball.tscn" id="6_x255q"]
+[ext_resource type="PackedScene" uid="uid://bha0oxkrplatf" path="res://Scenes/UI/Deco/DecoIcicle.tscn" id="7_klm1r"]
+[ext_resource type="PackedScene" uid="uid://2k0dfvfpvmou" path="res://Scenes/UI/Deco/DecoLaser.tscn" id="8_01y0d"]
+[ext_resource type="PackedScene" uid="uid://bh5bs3eetf8q2" path="res://Scenes/UI/Deco/Wings.tscn" id="9_tr7ud"]
+[ext_resource type="Texture2D" uid="uid://cg08nn7x73lcu" path="res://Resources/Images/Icons/ArrowUp.png" id="10_f3nda"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_836vi"]
+shader = ExtResource("2_wndp2")
+shader_parameter/blur = 2.0
+
+[sub_resource type="Gradient" id="Gradient_oqgde"]
+offsets = PackedFloat32Array(0, 0.491803, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bhav1"]
+gradient = SubResource("Gradient_oqgde")
+
+[sub_resource type="Curve" id="Curve_7kg7j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.293333, 1), 0.0, 0.0, 0, 0, Vector2(0.753333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ee3rj"]
+curve = SubResource("Curve_7kg7j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_re7kw"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(220, 100, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 1.0
+damping_max = 3.0
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_ee3rj")
+color_ramp = SubResource("GradientTexture1D_bhav1")
+
+[sub_resource type="Gradient" id="Gradient_mmb3q"]
+offsets = PackedFloat32Array(0, 0.491803, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bawbi"]
+gradient = SubResource("Gradient_mmb3q")
+
+[sub_resource type="Curve" id="Curve_ofh8d"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.293333, 1), 0.0, 0.0, 0, 0, Vector2(0.753333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_fkfn7"]
+curve = SubResource("Curve_ofh8d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ysbsj"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(120, 60, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 1.0
+damping_max = 3.0
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_fkfn7")
+color_ramp = SubResource("GradientTexture1D_bawbi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uwkbw"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(120, 50, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 1.0
+damping_max = 3.0
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_fkfn7")
+color_ramp = SubResource("GradientTexture1D_bawbi")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ipb6"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 5
+
+[sub_resource type="Animation" id="Animation_icb1a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6igpi"]
+resource_name = "float"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [Vector2(0, 20), Vector2(0, -24), Vector2(0, 20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e31r2"]
+_data = {
+"RESET": SubResource("Animation_icb1a"),
+"float": SubResource("Animation_6igpi")
+}
+
+[sub_resource type="Animation" id="Animation_gaait"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uycvt"]
+resource_name = "fade_in"
+length = 1.75
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yh2jt"]
+_data = {
+"RESET": SubResource("Animation_gaait"),
+"fade_in": SubResource("Animation_uycvt")
+}
+
+[node name="CollectMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sv3vy")
+
+[node name="Blur" type="ColorRect" parent="."]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_836vi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Claim" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = 228.0
+offset_right = 112.0
+offset_bottom = 268.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_13dab")
+text = "      Einsammeln     "
+
+[node name="CollectLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -324.0
+offset_bottom = -124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_8a175")
+theme_override_font_sizes/font_size = 40
+text = "Du hast ... erhalten!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pivot" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -28.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Particles" type="GPUParticles2D" parent="Pivot"]
+modulate = Color(5, 5, 5, 1)
+position = Vector2(0, -27.43)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_re7kw")
+texture = ExtResource("5_xbmpn")
+lifetime = 5.0
+preprocess = 5.0
+
+[node name="ParticlesBlue" type="GPUParticles2D" parent="Pivot"]
+modulate = Color(0.4, 0.9, 5, 1)
+show_behind_parent = true
+position = Vector2(0, -27.43)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_ysbsj")
+texture = ExtResource("5_xbmpn")
+lifetime = 5.0
+preprocess = 5.0
+
+[node name="ParticlesBlue2" type="GPUParticles2D" parent="Pivot"]
+modulate = Color(0.6, 0.95, 5, 1)
+show_behind_parent = true
+position = Vector2(0, -27.43)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_uwkbw")
+texture = ExtResource("5_xbmpn")
+lifetime = 5.0
+preprocess = 5.0
+
+[node name="Pivot" type="Control" parent="Pivot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Snowball" parent="Pivot/Pivot" instance=ExtResource("6_x255q")]
+visible = false
+
+[node name="Icicle" parent="Pivot/Pivot" instance=ExtResource("7_klm1r")]
+visible = false
+offset_left = 0.0
+offset_right = 0.0
+
+[node name="Laser" parent="Pivot/Pivot" instance=ExtResource("8_01y0d")]
+offset_left = 0.0
+offset_right = 0.0
+
+[node name="Wings" parent="Pivot/Pivot" instance=ExtResource("9_tr7ud")]
+visible = false
+position = Vector2(0, 20)
+scale = Vector2(2, 2)
+
+[node name="Upgrades" type="TextureRect" parent="."]
+modulate = Color(0.4, 1, 5, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 178.11
+offset_top = 453.935
+offset_right = 196.905
+offset_bottom = 485.15
+texture = ExtResource("10_f3nda")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Upgrades"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ipb6")
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 68.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5)
+theme_override_constants/line_spacing = -19
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("4_8a175")
+theme_override_font_sizes/font_size = 25
+text = "Sie geben dir die Möglichkeit für 5 Sekunden zu fliegen! (Upgrades möglich)
+Drücke dazu 2x hintereinander die Sprung-Taste.
+Nach einem Flug benötigen die Flügel eine Pause von 30 Sekunden."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e31r2")
+}
+autoplay = "float"
+
+[node name="AnimationFade" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yh2jt")
+}
+autoplay = "fade_in"
+
+[connection signal="pressed" from="Claim" to="." method="_on_claim_pressed"]

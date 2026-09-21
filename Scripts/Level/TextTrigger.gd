@@ -1,0 +1,56 @@
+@tool
+class_name TextTrigger
+extends Area2D
+
+@export var text: Texts.TEXTS
+@export var camera_offset_x = 0
+@export var camera_offset_y = 0
+@export var offset_target: Node2D
+@export var closing_doors: Array[Door] = []
+@export var queued_cam_offset: Node2D
+
+@onready var ui:UI = get_node("/root/Main/Overlay/UI")
+
+var triggered = false
+
+func _ready() -> void:
+	if offset_target != null:
+		if offset_target is Enemy:
+			offset_target.activated_by = self
+	if text in Globals.triggered_texts:
+		trigger(false)
+
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		$CamOffsetLine.clear_points()
+		$CamOffsetLine.add_point(Vector2.ZERO)
+		var offset = offset_target.global_position - global_position if offset_target != null else Vector2(camera_offset_x, camera_offset_y)
+		$CamOffsetLine.add_point(offset)
+		$CamOffsetLine.global_scale = Vector2.ONE
+
+func _on_body_entered(body: Node2D) -> void:
+	if !Engine.is_editor_hint():
+		if body == Globals.player:
+			trigger()
+			start_text_sequence()
+
+func start_text_sequence():
+	if text not in Globals.triggered_texts:
+		ui.start_text_sequence(text)
+		if offset_target != null:
+			Globals.offset_camera_global(offset_target.global_position)
+		else:
+			Globals.offset_camera(Vector2(camera_offset_x, camera_offset_y))
+		Globals.triggered_texts.append(text)
+
+func trigger(also_close_doors = true):
+	if !triggered:
+		triggered = true
+		if queued_cam_offset != null:
+			Globals.queued_cam_offset = queued_cam_offset
+		if also_close_doors:
+			for door: Door in closing_doors:
+				door.close()
+		if offset_target != null:
+			if offset_target is Enemy:
+				offset_target.activate()

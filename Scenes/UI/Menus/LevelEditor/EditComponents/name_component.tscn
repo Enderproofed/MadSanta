@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://vjotralgj7h8"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/LevelEditorComponents/name_component.gd" id="1_i2vjg"]
+[ext_resource type="PackedScene" uid="uid://yfnm24kwyj4s" path="res://Scenes/UI/SlideButton.tscn" id="2_1uxqu"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="3_2anr4"]
+
+[node name="NameComponent" type="Control" node_paths=PackedStringArray("name_edit", "has_name_toggle", "random_name_toggle")]
+custom_minimum_size = Vector2(0, 144)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 96.0
+script = ExtResource("1_i2vjg")
+name_edit = NodePath("NameEdit")
+has_name_toggle = NodePath("HasNameToggle")
+random_name_toggle = NodePath("RandomNameToggle")
+
+[node name="HasNameToggle" parent="." instance=ExtResource("2_1uxqu")]
+offset_left = 32.0
+offset_top = 8.0
+offset_right = 304.0
+offset_bottom = 44.0
+text = "HAS_NAME"
+
+[node name="RandomNameToggle" parent="." instance=ExtResource("2_1uxqu")]
+offset_left = 32.0
+offset_top = 52.0
+offset_right = 304.0
+offset_bottom = 88.0
+text = "RANDOM_NAME"
+
+[node name="NameEdit" type="LineEdit" parent="."]
+layout_mode = 2
+offset_left = 112.0
+offset_top = 98.0
+offset_right = 464.0
+offset_bottom = 129.0
+grow_horizontal = 2
+focus_mode = 1
+placeholder_text = "Random ass Name"
+max_length = 30
+metadata/tr_placeholder_key = "LEVEL_NAME"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="NameEdit"]
+layout_mode = 0
+offset_left = -112.0
+offset_top = -2.0
+offset_right = 304.0
+offset_bottom = 137.0
+scale = Vector2(0.25, 0.25)
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_2anr4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 100
+text = "Name"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/tr_key = "NAME"
+
+[connection signal="toggled" from="HasNameToggle" to="." method="_on_has_name_toggled"]
+[connection signal="toggled" from="RandomNameToggle" to="." method="_on_random_name_toggled"]
+[connection signal="text_changed" from="NameEdit" to="." method="_on_name_edit_text_changed"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://04pjw6voa12i"]
+
+[ext_resource type="Script" path="res://Scripts/UI/radio_button_container.gd" id="1_ofmrj"]
+
+[node name="RadioButtonContainer" type="ScrollContainer"]
+script = ExtResource("1_ofmrj")
+
+[node name="Spacing" type="VBoxContainer" parent="."]
+layout_mode = 2

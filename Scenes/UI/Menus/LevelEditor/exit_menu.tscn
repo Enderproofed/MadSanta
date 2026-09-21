@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://dggs0hdm50mgb"]
+
+[ext_resource type="Shader" path="res://Resources/Shaders/Blur.gdshader" id="1_2y6nq"]
+[ext_resource type="Script" path="res://Scripts/UI/Menus/exit_menu.gd" id="1_tpm18"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="2_srnp1"]
+[ext_resource type="Texture2D" uid="uid://cum3x8i5ivv6k" path="res://Resources/Images/Icons/CreateIcon.png" id="3_a3wbm"]
+[ext_resource type="Texture2D" uid="uid://bjxhnbg2mw16t" path="res://Resources/Images/Icons/Save.png" id="3_sifnq"]
+[ext_resource type="Texture2D" uid="uid://mo3ga2wsp1d1" path="res://Resources/Images/Icons/CrossWhite.png" id="4_2foab"]
+[ext_resource type="Texture2D" uid="uid://demp05b2eewkl" path="res://Resources/Images/Icons/LogOut.png" id="4_5qm88"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7yuls"]
+shader = ExtResource("1_2y6nq")
+shader_parameter/blur = 2.0
+
+[node name="ExitMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tpm18")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_7yuls")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333333
+anchor_top = 0.296296
+anchor_right = 0.666667
+anchor_bottom = 0.790123
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Resume" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_srnp1")
+text = "Weiter bauen"
+icon = ExtResource("3_a3wbm")
+icon_alignment = 2
+metadata/tr_key = "CONTINUE_BUILDING"
+
+[node name="SaveAndExit" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_srnp1")
+text = "Speichern und verlassen"
+icon = ExtResource("4_5qm88")
+icon_alignment = 2
+metadata/tr_key = "SAVE_AND_EXIT"
+
+[node name="Save" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_srnp1")
+text = "Speichern"
+icon = ExtResource("3_sifnq")
+icon_alignment = 2
+metadata/tr_key = "SAVE"
+
+[node name="Exit" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+theme = ExtResource("2_srnp1")
+theme_override_colors/font_color = Color(5, 0.5, 0.5, 1)
+theme_override_colors/font_outline_color = Color(1, 0.792157, 0.8, 1)
+theme_override_colors/icon_normal_color = Color(5, 0.5, 0.5, 1)
+theme_override_colors/icon_focus_color = Color(10, 0.4, 0.4, 1)
+theme_override_colors/icon_pressed_color = Color(10, 0.3, 0.3, 1)
+theme_override_colors/icon_hover_color = Color(10, 0.4, 0.4, 1)
+theme_override_constants/outline_size = 7
+text = " Verlassen"
+icon = ExtResource("4_2foab")
+icon_alignment = 2
+metadata/tr_key = "EXIT"

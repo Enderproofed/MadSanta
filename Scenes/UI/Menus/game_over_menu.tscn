@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2nvm0a1eb11t"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/game_over_menu.gd" id="1_wuee7"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="2_x085v"]
+[ext_resource type="Texture2D" uid="uid://u2g4se103l05" path="res://Resources/Images/Icons/Restart.png" id="3_bu8sl"]
+[ext_resource type="Texture2D" uid="uid://xhrkgvshw1uq" path="res://Resources/Images/Icons/Menu.png" id="4_6w3qy"]
+[ext_resource type="Texture2D" uid="uid://cum3x8i5ivv6k" path="res://Resources/Images/Icons/CreateIcon.png" id="4_vo8rh"]
+[ext_resource type="Texture2D" uid="uid://demp05b2eewkl" path="res://Resources/Images/Icons/LogOut.png" id="5_nplw3"]
+
+[node name="gameOverMenu" type="Control" node_paths=PackedStringArray("edit_button", "my_levels_button", "level_selection_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wuee7")
+edit_button = NodePath("Container/Edit")
+my_levels_button = NodePath("Container/MyLevels")
+level_selection_button = NodePath("Container/Levelauswahl")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.368056
+anchor_top = 0.37037
+anchor_right = 0.631944
+anchor_bottom = 0.734568
+offset_top = 1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Restart" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_x085v")
+text = "Neustart"
+icon = ExtResource("3_bu8sl")
+icon_alignment = 2
+metadata/tr_key = "RESTART"
+
+[node name="Edit" type="Button" parent="Container" groups=["Translated"]]
+visible = false
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_x085v")
+text = "Bearbeiten"
+icon = ExtResource("4_vo8rh")
+icon_alignment = 2
+metadata/tr_key = "EDIT"
+
+[node name="MyLevels" type="Button" parent="Container" groups=["Translated"]]
+visible = false
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_x085v")
+text = "Meine Levels"
+icon = ExtResource("4_6w3qy")
+icon_alignment = 2
+metadata/tr_key = "CREATE_LEVEL_MENU"
+
+[node name="Levelauswahl" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_x085v")
+text = "    Levelauswahl        "
+metadata/tr_key = "LEVEL_SELECTION"
+
+[node name="MainMenu" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_x085v")
+text = "     Hauptmenü     "
+icon = ExtResource("4_6w3qy")
+icon_alignment = 2
+metadata/tr_key = "M_MENU"
+
+[node name="Quit Game" type="Button" parent="Container" groups=["Translated"]]
+layout_mode = 2
+theme = ExtResource("2_x085v")
+theme_override_colors/font_color = Color(5, 0.5, 0.5, 1)
+theme_override_colors/font_outline_color = Color(1, 0.792157, 0.8, 1)
+theme_override_colors/icon_normal_color = Color(5, 0.5, 0.5, 1)
+theme_override_colors/icon_focus_color = Color(10, 0.4, 0.4, 1)
+theme_override_colors/icon_pressed_color = Color(10, 0.3, 0.3, 1)
+theme_override_colors/icon_hover_color = Color(10, 0.4, 0.4, 1)
+theme_override_constants/outline_size = 7
+text = " Rage Quit "
+icon = ExtResource("5_nplw3")
+icon_alignment = 2
+metadata/tr_key = "RAGE_QUIT"
+
+[connection signal="pressed" from="Container/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Container/Edit" to="." method="_on_edit_pressed"]
+[connection signal="pressed" from="Container/MyLevels" to="." method="_on_my_levels_pressed"]
+[connection signal="pressed" from="Container/Levelauswahl" to="." method="_on_levelauswahl_pressed"]
+[connection signal="pressed" from="Container/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Container/Quit Game" to="." method="_on_quit_pressed"]

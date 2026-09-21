@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://86wb7fmjskc6"]
+
+[ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="1_lkvhq"]
+
+[sub_resource type="Animation" id="Animation_0rttt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.596078)]
+}
+
+[sub_resource type="Animation" id="Animation_03obo"]
+resource_name = "blink"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.15), Color(1, 1, 1, 0.631373), Color(1, 1, 1, 0.15)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n4jus"]
+_data = {
+"RESET": SubResource("Animation_0rttt"),
+"blink": SubResource("Animation_03obo")
+}
+
+[node name="WorldLabel" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -576.0
+offset_top = -328.0
+offset_right = 576.0
+offset_bottom = 328.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.596078)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -5
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_lkvhq")
+theme_override_font_sizes/font_size = 35
+text = "Drücke im Sprung nach unten, um durch
+die dünnen Balken durch zu fallen!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Label")
+libraries = {
+"": SubResource("AnimationLibrary_n4jus")
+}
+autoplay = "blink"

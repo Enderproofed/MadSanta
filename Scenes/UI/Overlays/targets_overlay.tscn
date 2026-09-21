@@ -1,0 +1,147 @@
+[gd_scene load_steps=10 format=3 uid="uid://cydyaltwui53p"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Overlays/TargetsOverlay.gd" id="1_51t27"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="2_b8two"]
+[ext_resource type="FontFile" uid="uid://cd2d0made820k" path="res://Resources/Fonts/Default.ttf" id="3_3d5fi"]
+[ext_resource type="PackedScene" uid="uid://bmo7vxw63uepn" path="res://Scenes/Level/Target.tscn" id="4_tj34w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0iyg2"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 5
+
+[sub_resource type="Animation" id="Animation_qkijx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o0sge"]
+resource_name = "collect"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.2),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ga57o"]
+resource_name = "pop in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(0.5, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1gmkp"]
+_data = {
+"RESET": SubResource("Animation_qkijx"),
+"collect": SubResource("Animation_o0sge"),
+"pop in": SubResource("Animation_ga57o")
+}
+
+[node name="TargetsOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_51t27")
+
+[node name="CountsDisplay" type="Label" parent="." groups=["ActionBlocker"]]
+process_mode = 3
+layout_mode = 1
+offset_left = -15.0
+offset_top = 16.0
+offset_right = 144.0
+offset_bottom = 52.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_0iyg2")
+
+[node name="Targets" type="Label" parent="CountsDisplay"]
+process_mode = 3
+layout_mode = 0
+offset_left = 119.0
+offset_top = -7.0
+offset_right = 143.0
+offset_bottom = 41.0
+pivot_offset = Vector2(0, 24)
+theme = ExtResource("2_b8two")
+theme_override_fonts/font = ExtResource("3_3d5fi")
+theme_override_font_sizes/font_size = 25
+text = "0"
+vertical_alignment = 1
+
+[node name="Target" parent="CountsDisplay/Targets" instance=ExtResource("4_tj34w")]
+position = Vector2(-25, 26)
+size = 1
+deco = true
+
+[node name="Animation" type="AnimationPlayer" parent="CountsDisplay/Targets"]
+libraries = {
+"": SubResource("AnimationLibrary_1gmkp")
+}

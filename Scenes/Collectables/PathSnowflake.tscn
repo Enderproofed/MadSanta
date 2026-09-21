@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcbv2p2etpte"]
+
+[ext_resource type="Curve2D" uid="uid://btaycx3snr0yg" path="res://Resources/simple_circle_curve.tres" id="1_kw57g"]
+[ext_resource type="Script" path="res://Scripts/Level/Collectables/PathSnowflake.gd" id="2_nsyl6"]
+[ext_resource type="PackedScene" uid="uid://c86r2jrovbcdf" path="res://Scenes/Collectables/Snowflake.tscn" id="3_phcfk"]
+[ext_resource type="PackedScene" uid="uid://bawf6rrfoul0i" path="res://Scenes/Collectables/Coin.tscn" id="4_7s3h3"]
+[ext_resource type="PackedScene" uid="uid://6ydg47mvcxcl" path="res://Scenes/Collectables/ShardIce.tscn" id="5_xhdet"]
+[ext_resource type="PackedScene" uid="uid://dbiwksccqorqa" path="res://Scenes/Collectables/ShardFire.tscn" id="6_i7u20"]
+
+[node name="PathCollectable" type="Node2D"]
+script = ExtResource("2_nsyl6")
+id = 0
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = ExtResource("1_kw57g")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, -48)
+rotates = false
+
+[node name="Snowflake" parent="Path2D/PathFollow2D" instance=ExtResource("3_phcfk")]
+
+[node name="Coin" parent="Path2D/PathFollow2D" instance=ExtResource("4_7s3h3")]
+visible = false
+
+[node name="IceShard" parent="Path2D/PathFollow2D" instance=ExtResource("5_xhdet")]
+visible = false
+
+[node name="FireShard" parent="Path2D/PathFollow2D" instance=ExtResource("6_i7u20")]
+visible = false

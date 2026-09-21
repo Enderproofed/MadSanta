@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcyfvua546lnf"
-path="res://.godot/imported/icicles.png-b7924a079efb92788ec076433fd877c4.ctex"
+path="res://.godot/imported/Icicles.png-9f4f441e27640cbca0ac08114b555bf0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Images/icicles.png"
-dest_files=["res://.godot/imported/icicles.png-b7924a079efb92788ec076433fd877c4.ctex"]
+source_file="res://Resources/Images/Icicles.png"
+dest_files=["res://.godot/imported/Icicles.png-9f4f441e27640cbca0ac08114b555bf0.ctex"]
 
 [params]
 

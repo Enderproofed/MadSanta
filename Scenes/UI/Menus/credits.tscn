@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqtytgj7d7p1u"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/credits.gd" id="1_vjycw"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Blur.gdshader" id="2_4ugha"]
+[ext_resource type="PackedScene" uid="uid://bbqnngojh2bwq" path="res://Scenes/UI/BackButton.tscn" id="2_niyh2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pc7b3"]
+shader = ExtResource("2_4ugha")
+shader_parameter/blur = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ma207"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+
+[node name="Credits" type="Control" node_paths=PackedStringArray("credit_text", "textures_text", "texts_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjycw")
+credit_text = NodePath("ScrollContainer/TextsContainer/CreditText")
+textures_text = NodePath("ScrollContainer/TextsContainer/Textures")
+texts_container = NodePath("ScrollContainer/TextsContainer")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_pc7b3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" parent="." instance=ExtResource("2_niyh2")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.5
+offset_top = -88.0
+offset_right = 94.5
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0555556
+anchor_top = 0.259259
+anchor_right = 0.944444
+anchor_bottom = 0.82716
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextsContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CreditText" type="RichTextLabel" parent="ScrollContainer/TextsContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ma207")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ma207")
+bbcode_enabled = true
+text = "Dieses Spiel hat im Rahmen eines Schulprojekts der MTS21-C an der OSZIMT angefangen. Die Köpfe dahinter sind Nico Hellmann, David Sonnenberg und Mirko Riek."
+fit_content = true
+scroll_active = false
+scroll_following = true
+selection_enabled = true
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="Textures" type="RichTextLabel" parent="ScrollContainer/TextsContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ma207")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ma207")
+bbcode_enabled = true
+text = "Texturen:
+Bla
+Bla blub"
+fit_content = true
+scroll_active = false
+scroll_following = true
+selection_enabled = true
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false

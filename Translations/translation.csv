@@ -1,0 +1,127 @@
+keys,de,en,ja,fr,it
+,,,,,
+_____PARAMETER_STYLE_____,%1$s,%2$d,%1$s,%2$d,%1$s
+,,,,,
+PLAY,Spielen,Play,プレイ,Jouer,Gioca
+SETTINGS,Einstellungen,Settings,設定,Paramètres,Impostazioni
+SAVES,Spielstände,Saves,セーブ,Parties,Salvataggi
+QUIT,Verlassen,Quit,終了,Quitter,Esci
+RAGE_QUIT,Rage Quit,Rage Quit,怒って終了,Rage Quit,Rage Quit
+RESUME,Weiter,Resume,再開,Reprendre,Riprendi
+BACK,Zurück,Back,戻る,Retour,Indietro
+RESTART,Neustart (R),Restart (R),リスタート (R),Redémarrer (R),Riavvia (R)
+M_MENU,Hauptmenü,Main Menu,メインメニュー,Menu principal,Menu principale
+NEXT_LEVEL,Nächstes Level,Next Level,次のレベル,Niveau suivant,Livello successivo
+PLAY_AGAIN,Noch einmal spielen,Play Again,もう一度プレイ,Rejouer,Gioca ancora
+UPGRADES,Upgrades,Upgrades,アップグレード,Améliorations,Potenziamenti
+CREATE_NEW_LEVEL,Neues Level erstellen,Create new Level,,,
+LEVELS_NONE,"Bisher gibt es keine Levels.%nErstelle eins mit ""Neues Level erstellen""","There are currently no Levels.%nCreate one with ""Create new Level""",,,
+EDIT,Bearbeiten,Edit,,,
+DELETE,Löschen,Delete,,,
+VALID,Validiert,Validated,,,
+NOT_VALID,Nicht validiert,Not validated,,,
+IMPORT_LEVEL,Level importieren,Import Level,,,
+OPEN_SAVE,Speicherort öffnen,Open Save location,,,
+SAVE,Speichern,Save,,,
+EXIT,Verlassen,Exit,,,
+SAVE_AND_EXIT,Speichern und verlassen,Save and exit,,,
+CONTINUE_BUILDING,Weiter bauen,Continue building,,,
+SELECT_ALL,Alles auswählen,Select all,,,
+DESELECT_ALL,Auswahl aufheben,Deselect all,,,
+DELETE_SELECTION,Ausgewähltes löschen,Delecte selected,,,
+UNNAMED,Unbenannt,Unnamed,,,
+____________POPUP____________,,,,,
+OVERWRITE_LEVEL,Level existiert bereits. Überschreiben?,Level already existing. Overwrite?,,,
+DELETE_LEVEL,Das Level wirklich löschen?%nDas kann nicht rückgängig gemacht werden!,Really wanna delete this level?%nCannot be undone!,,,
+EXIT_WITHOUT_SAVE,Wollen sie alle Änderungen verwerfen und ohne zu Speichern verlassen?,Do you really want to exit without saving and lose all your changes?,,,
+REFRESH_EDITOR,Das Level wirklich neu laden?%nAlle Änderungen gehen dabei verloren!,Really wanna re-load the level?%nAll changes will be lost!,,,
+____________ALERTS____________,,,,,
+SAVE_ALERT,Erfolgreich gespeichert,Successfully saved,,,
+SAVE_FAIL_ALERT,Fehler beim speichern,Failed to save,,,
+FAILED_TO_LOAD,Konnte nicht geladen werden,Failed to load,,,
+FAILED_TO_DELETE,Konnte nicht gelöscht werden,Failed to delete,,,
+UNDONE,Erfolgreich rückgängig gemacht: {0},Undo successful: {0},,,
+REDONE,Erfolgreich wiederhergestellt: {0},Redo successful: {0},,,
+____________ACTIONS____________,,,,,
+PLACE,Platzieren,Place,,,
+ERASE,Löschen,Erase,,,
+SELECT,Auswählen,Select,,,
+MOVE,Verschieben,Move,,,
+PLAYER_MOVEMENT,Spieler verschieben,Move player,,,
+LIMIT_MOVEMENT,Levelgrenze verschieben,Move level border,,,
+CONTENT_MOVEMENT,Element Verschieben,Move element,,,
+EDIT_PLACEHOLDER,Element bearbeiten,Edit element,,,
+____________GENERAL_TITLES____________,,,,,
+MINIGAMES,Minispiele (%s),Minigames (%s),ミニゲーム (%s),Mini-jeux (%s),Minigiochi (%s)
+TARGETS,Ziele,Targets,目標,Objectifs,Obiettivi
+DAILY,Tages Minispiel,Daily Mini,デイリーミニゲーム,Mini-jeu quotidien,Sfida giornaliera
+SPEEDRUN,Speedrun,Speedrun,スピードラン,Speedrun,Speedrun
+SANDBOX,Sandbox,Sandbox,Translation missing,Sandbox,Sandbox
+CREATE,Erstellen,Create,作る,Créer,Crea
+FLOOR,Boden,Floor,,,
+ENEMIES,Gegner,Enemies,,,
+COLLECTABLES,Sammelzeugs,Collectables,,,
+OTHER,Anderes,Other,,,
+____________GENERAL_LABELS____________,,,,,
+HEALTH,Leben,Health,体力,Santé,Salute
+ENEMIES_KILLED,Besiegte Gegner,Enemies killed,倒した敵,Ennemis vaincus,Nemici sconfitti
+____________PLACEHOLDERS____________,,,,,
+NEW_SAVE,Namen des Spielstands eingeben,Enter name of the save,セーブ名を入力,Entrez le nom de la sauvegarde,Inserisci il nome del salvataggio
+LEVEL_NAME,Levelname,Level Name,レベル名,Nom du niveau,Nome del livello
+____________SETTINGS_LABELS____________,,,,,
+MASTER,Allgemein,Master,全体,Général,Generale
+MUSIC,Musik,Music,音楽,Musique,Musica
+SOUND_EFFECTS,Soundeffekte,Sound effects,効果音,Effets sonores,Effetti sonori
+DRAW_TRAIL,Flugbahn zeichnen,Draw trail,軌跡を描く,Afficher la trajectoire,Mostra traiettoria
+PLAYER_GHOST_VISIBLE,Spieler-Geist anzeigen,Display player ghost,,,
+LANG,Sprache,Language,言語,Langue,Lingua
+RANDOM_NAME,Zufälliger Name,Random name,,,
+HAS_NAME,Hat Name,Has name,,,
+NAME,Name,Name,,,
+EDIT_ELEMENT,{0} bearbeiten,Edit {0},,,
+____________PLACEHOLDERS____________,,,,,
+TILES,Boden,Ground,,,
+ONE_WAY,Durchlässige Plattform,One way platfornm,,,
+BRICK_WALL,Ziegelblock,Brick block,,,
+GNOME,Zwerg,Gnome,,,
+ELF,Elf,Elf,,,
+COIN,Münze,Coin,,,
+SNOWFLAKE,Schneeflocke,Snowflake,,,
+ICE_SHARD,Eiskristall,Ice shard,,,
+FIRE_SHARD,Feuerkristall,Fire shard,,,
+____________TITLE_LABELS____________,,,,,
+PAUSED,Pause,Pause,一時停止,Pause,Pausa
+MAIN_MENU,Mad Santa,Mad Santa,Mad Santa,Mad Santa,Mad Santa
+SAVE_MENU,Spielstände,Saves,セーブ,Parties,Salvataggi
+SETTINGS_PAUSE,Einstellungen,Settings,設定,Paramètres,Impostazioni
+SETTINGS_PLAYING,Einstellungen,Settings,設定,Paramètres,Impostazioni
+CREDITS,Credits,Credits,クレジット,Crédits,Crediti
+FINISH_MENU,Geschafft!,Congratulations!,クリア！,Félicitations !,Complimenti!
+DEATH_SCREEN,Game Over,Game Over,ゲームオーバー,Game Over,Game Over
+MINIGAMES_MENU,Minispiele,Minigames,ミニゲーム,Mini-jeux,Minigiochi
+LEVEL_SELECTION,Levelauswahl,Level selection,レベル選択,Sélection du niveau,Selezione livello
+LEVEL_SELECTION_SPEEDRUN,Levelauswahl,Level selection,レベル選択,Sélection du niveau,Selezione livello
+CREATE_LEVEL_MENU,Meine Levels,My Levels,マイレベル,Mes niveaux,I miei livelli
+____________UPGRADE_LABELS____________,,,,,
+SNOWBALL,Schneeball,Snowball,雪玉,Boule de neige,Palla di neve
+ICICLE,Eiszapfen,Icicle,つらら,Glaçon,Ghiacciolo
+LASER,Super-Eisstrahl,Super Ice-Beam,スーパー氷レーザー,Super rayon de glace,Super raggio di ghiaccio
+WINGS,Engelsflügel,Angel Wings,天使の翼,Ailes d'ange,Ali d'angelo
+MISCELLANEOUS,Verschiedenes,Miscellaneous,その他,Divers,Varie
+RESET_UPGRADES,"Upgrades zurücksetzen   ","Reset upgrades   ","アップグレードをリセット   ","Réinitialiser les améliorations   ","Reimposta potenziamenti   "
+STRENGTH,"  Stärke","  Strength","  威力","  Puissance","  Potenza"
+SIZE,"  Größe","  Size","  サイズ","  Taille","  Dimensione"
+BOUNCY,"  Bouncy","  Bouncy","  跳ね返り","  Rebond","  Rimbalzo"
+SPEED,"  Geschwindigkeit","  Speed","  速度","  Vitesse","  Velocità"
+RELOAD,"  Nachladen","  Reload","  リロード","  Rechargement","  Ricarica"
+SPREAD,"  Ausbreitung","  Spread","  拡散","  Dispersion","  Dispersione"
+LOAD_SPEED,"  Auflade-Speed","  Reload-Speed","  チャージ速度","  Vitesse de recharge","  Velocità di ricarica"
+LOAD_TIME,"  Auflade-Zeit","  Load-Time",,,
+FIRE_TIME,"  Feuerzeit","  Fire-Time","  発射時間","  Durée de tir","  Durata del fuoco"
+FLIGHT_TIME,"  Flugzeit","  Flight-Time","  飛行時間","  Temps de vol","  Tempo di volo"
+JUMP_HEIGHT,"  Sprunghöhe","  Jump-Height","  ジャンプ力","  Hauteur de saut","  Altezza salto"
+DASH,"  Dash","  Dash","  ダッシュ","  Dash","  Scatto"
+PRECISION,"  Genauigkeit","  Precision",,,
+____________CREDITS___________,,,,,
+CREDITS_TEXT,"Dieses Spiel hat im Rahmen eines Schulprojekts der MTS21-C an der OSZIMT angefangen. Die Köpfe dahinter sind Nico Hellmann, David Sonnenberg und","This game started as a school project of MTS21-C at the OSZIMT. The heads behind this are Nico Hellmann, David Sonnenberg and",,,
+TEXTURES,Texturen,Textures,,,

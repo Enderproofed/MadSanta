@@ -1,0 +1,161 @@
+[gd_scene load_steps=13 format=3 uid="uid://boqrpx2ng8sea"]
+
+[ext_resource type="Script" path="res://Scripts/Level/BrickWall.gd" id="1_1nnxn"]
+[ext_resource type="Texture2D" uid="uid://dbav2xbn5075x" path="res://Resources/Images/Animations/CrackingBrickWallEnclosed.png" id="2_7ykxk"]
+[ext_resource type="Texture2D" uid="uid://drmwdk0c0ms0k" path="res://Resources/Images/WallFragment.png" id="3_q4vjb"]
+[ext_resource type="Texture2D" uid="uid://06gxvxaknnux" path="res://Resources/Images/WallFragment2.png" id="4_ogjqk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_10pty"]
+size = Vector2(96, 96)
+
+[sub_resource type="Animation" id="Animation_1d75a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hg760"]
+resource_name = "destroy"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WallFragments:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WallFragments2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lngd1"]
+_data = {
+"RESET": SubResource("Animation_1d75a"),
+"destroy": SubResource("Animation_hg760")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_opcqv"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(64, 64, 1)
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, -1, 0)
+spread = 120.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+angular_velocity_min = -150.0
+angular_velocity_max = 150.0
+gravity = Vector3(0, 200, 0)
+scale_min = 3.0
+scale_max = 3.0
+
+[sub_resource type="Gradient" id="Gradient_qgobv"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_isygv"]
+resource_local_to_scene = true
+noise_type = 0
+seed = 25
+frequency = 0.1764
+offset = Vector3(-4.07, 0, 0)
+fractal_type = 0
+domain_warp_frequency = 0.09
+domain_warp_fractal_type = 0
+domain_warp_fractal_lacunarity = 12.68
+domain_warp_fractal_gain = 3.235
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c6d4v"]
+resource_local_to_scene = true
+width = 32
+height = 32
+color_ramp = SubResource("Gradient_qgobv")
+noise = SubResource("FastNoiseLite_isygv")
+
+[node name="BrickWall" type="StaticBody2D"]
+script = ExtResource("1_1nnxn")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_10pty")
+
+[node name="Texture" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_7ykxk")
+hframes = 4
+frame = 3
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lngd1")
+}
+
+[node name="WallFragments" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_opcqv")
+texture = ExtResource("3_q4vjb")
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="WallFragments2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_opcqv")
+texture = ExtResource("4_ogjqk")
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="NoiseCracks" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = SubResource("NoiseTexture2D_c6d4v")

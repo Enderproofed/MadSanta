@@ -1,0 +1,400 @@
+[gd_scene load_steps=11 format=3 uid="uid://cfvkbulgn0l0s"]
+
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="1_20xr5"]
+[ext_resource type="Script" path="res://Scripts/UI/LevelEntry.gd" id="2_nfwnh"]
+[ext_resource type="Texture2D" uid="uid://bo7t10f82mkvr" path="res://Resources/Images/Icons/Pencil.png" id="3_3ynby"]
+[ext_resource type="Texture2D" uid="uid://qb0i6yg4f3kd" path="res://Resources/Images/Icons/PlayButton.png" id="4_0dtvd"]
+[ext_resource type="Texture2D" uid="uid://djxryo777ln0k" path="res://Resources/Images/Icons/TrashCan.png" id="5_aegbd"]
+[ext_resource type="Texture2D" uid="uid://3m5msmxv23qb" path="res://Resources/Images/Icons/Cross.png" id="6_21cax"]
+[ext_resource type="Texture2D" uid="uid://d3o4yesuv3jfc" path="res://Resources/Images/Icons/Folder.png" id="7_4kmc5"]
+
+[sub_resource type="Animation" id="Animation_phg1e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("ActionContainer/Play:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ActionContainer/Edit:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ActionContainer/Delete:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TitleEditToggle:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("ActionContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:height")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [68.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TitleEdit:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Title:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ActionContainer/Edit:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ActionContainer/Delete:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ajjh6"]
+resource_name = "open"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("ActionContainer/Play:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.4),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ActionContainer/Edit:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.7),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ActionContainer/Delete:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("ActionContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:height")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [68.0, 136.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ActionContainer/Edit:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.28, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ActionContainer/Delete:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.59, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sc28q"]
+_data = {
+"RESET": SubResource("Animation_phg1e"),
+"open": SubResource("Animation_ajjh6")
+}
+
+[node name="LevelEntry" type="Button"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 136)
+anchors_preset = -1
+anchor_left = 0.111
+anchor_top = 0.259
+anchor_right = 0.889
+anchor_bottom = 0.469
+offset_left = 0.127991
+offset_top = -33.8315
+offset_right = -0.128052
+offset_bottom = -33.9115
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_20xr5")
+toggle_mode = true
+script = ExtResource("2_nfwnh")
+height = 68.0
+
+[node name="TitleEditToggle" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = 56.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("3_3ynby")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="TitleEdit" type="LineEdit" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.009
+anchor_right = 0.009
+offset_left = 47.936
+offset_top = 8.0
+offset_right = 559.936
+offset_bottom = 52.0
+grow_horizontal = 2
+focus_mode = 1
+max_length = 30
+metadata/tr_placeholder_key = "LEVEL_NAME"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.009
+anchor_right = 0.009
+offset_left = 55.936
+offset_top = 8.0
+offset_right = 1335.94
+offset_bottom = 120.0
+grow_horizontal = 2
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("1_20xr5")
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 80
+text = "Irgendein Levelname"
+vertical_alignment = 1
+
+[node name="ActionContainer" type="VBoxContainer" parent="." groups=["TranslatedContainer"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.732
+anchor_right = 1.0
+offset_left = 0.12793
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = 128.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Play" type="Button" parent="ActionContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "  Spielen"
+icon = ExtResource("4_0dtvd")
+clip_text = true
+icon_alignment = 2
+metadata/tr_key = "PLAY"
+
+[node name="Edit" type="Button" parent="ActionContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+disabled = true
+text = "  Bearbeiten"
+icon = ExtResource("3_3ynby")
+clip_text = true
+icon_alignment = 2
+metadata/tr_key = "EDIT"
+
+[node name="Delete" type="Button" parent="ActionContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/icon_normal_color = Color(5, 0.5, 0.5, 1)
+theme_override_colors/icon_focus_color = Color(10, 0.4, 0.4, 1)
+theme_override_colors/icon_pressed_color = Color(10, 0.3, 0.3, 1)
+theme_override_colors/icon_hover_color = Color(10, 0.4, 0.4, 1)
+disabled = true
+text = "  Löschen"
+icon = ExtResource("5_aegbd")
+clip_text = true
+icon_alignment = 2
+metadata/tr_key = "DELETE"
+
+[node name="Valid" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.009
+anchor_right = 0.009
+offset_left = -0.0639992
+offset_top = 84.0
+offset_right = 459.936
+offset_bottom = 196.0
+grow_horizontal = 2
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("1_20xr5")
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 60
+text = "Nicht validiert "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Valid"]
+modulate = Color(10, 0.4, 0.4, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.179
+anchor_right = 1.0
+anchor_bottom = 0.179
+offset_left = 4.0
+offset_top = -0.0480003
+offset_right = 84.0
+offset_bottom = 79.952
+texture = ExtResource("6_21cax")
+expand_mode = 1
+
+[node name="OpenSave" type="Button" parent="." groups=["Translated"]]
+layout_mode = 2
+anchor_left = 0.339
+anchor_right = 0.67
+offset_left = 48.256
+offset_top = 90.0
+offset_right = 47.68
+offset_bottom = 126.0
+mouse_default_cursor_shape = 2
+text = "  Speicherort öffnen"
+icon = ExtResource("7_4kmc5")
+clip_text = true
+icon_alignment = 2
+metadata/tr_key = "OPEN_SAVE"
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sc28q")
+}
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]
+[connection signal="toggled" from="TitleEditToggle" to="." method="_on_title_edit_toggle_toggled"]
+[connection signal="text_submitted" from="TitleEdit" to="." method="_on_title_edit_text_submitted"]
+[connection signal="pressed" from="ActionContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ActionContainer/Edit" to="." method="_on_edit_pressed"]
+[connection signal="pressed" from="ActionContainer/Delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="OpenSave" to="." method="_on_open_save_pressed"]

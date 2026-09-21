@@ -1,0 +1,140 @@
+[gd_scene load_steps=11 format=3 uid="uid://6bbklc4f5k2l"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/level_editor_edit_menu.gd" id="1_c4twt"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Blur.gdshader" id="2_8ofjg"]
+[ext_resource type="PackedScene" uid="uid://caqumt0qr0rs" path="res://Scenes/UI/scroll_panel.tscn" id="2_nosud"]
+[ext_resource type="Theme" uid="uid://jnbngevfqoh4" path="res://Resources/main_theme.tres" id="4_b2k25"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qnoxx"]
+shader = ExtResource("2_8ofjg")
+shader_parameter/blur = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4xe0v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5p0cp"]
+bg_color = Color(0, 0.667333, 0.77, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ulmo"]
+bg_color = Color(0, 0.667333, 0.77, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8q66"]
+bg_color = Color(0, 0.667333, 0.77, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrb87"]
+bg_color = Color(0, 0.667333, 0.77, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="LevelEditorEditMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c4twt")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_qnoxx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -456.0
+offset_top = -204.0
+offset_right = 3192.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_b2k25")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 100
+text = "Gnom 12 bearbeiten"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/tr_key = "NAME"
+
+[node name="ScrollPanel" parent="." instance=ExtResource("2_nosud")]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.531
+anchor_right = 0.5
+anchor_bottom = 0.531
+offset_left = -240.0
+offset_top = -144.088
+offset_right = 240.0
+offset_bottom = 159.912
+
+[node name="CloseButton" type="Button" parent="ScrollPanel"]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = 16.0
+theme_override_colors/font_hover_color = Color(1, 0.69, 0.69, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.24, 0.24, 1)
+theme_override_colors/font_color = Color(0.999999, 0.892254, 0.88988, 1)
+theme_override_colors/icon_pressed_color = Color(1, 0.24, 0.24, 1)
+theme_override_colors/icon_hover_color = Color(1, 0.69, 0.69, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4xe0v")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_5p0cp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4ulmo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_b8q66")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yrb87")
+text = "X"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="ScrollPanel/CloseButton" to="." method="_on_close"]
